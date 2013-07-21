@@ -16,22 +16,37 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     CHANGES / TODOLIST
+    - 07/22/2013 : added comm emulation to test the code without the ArduSat infrastructure    
     - 07/17/2013 : license edited cause unsuitable for code
     - TODO : sprintf : i'm never sure of this kind of syntax, need to check if there is a "0" before bytes (like in 0xFF or 0FF)
     - TODO : to be tested with the real sensor values before end of july
 */
 
 #include <Wire.h>//for I2C
-#include <EEPROM.h>
-#include <OnboardCommLayer.h>
+
 #include <nanosat_message.h>
 #include <I2C_add.h>
+
+#define COMM_EMULATION
+
+#ifdef COMM_EMULATION
+#include "SAT_AppStorageEMU.h"
+#else
+#include <EEPROM.h>
+#include <OnboardCommLayer.h>
 #include <SAT_AppStorage.h>
+#endif /* COMM_EMULATION */
+
 #include <SAT_Mag.h>
 
 // *** SDK constructors needed
 SAT_Mag mag;
+
+#ifdef COMM_EMULATION
+SAT_AppStorageEMU store;
+#else
 SAT_AppStorage store;
+#endif
 
 // *** CONFIG ***
 #define POOL_DELAY  12000  // data is pooled every 12 seconds
