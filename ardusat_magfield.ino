@@ -111,5 +111,6 @@ void loop()
   prepareBuffer();   // prepare the buffer for sending the message
   
   store.send(messageBuffer);   // sends data into the communication file and queue for transfer
+                               // WARNING : introduces a 100ms delay
   delay(POOL_DELAY); //wait for next pool
 }
