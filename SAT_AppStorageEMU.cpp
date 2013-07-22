@@ -52,7 +52,9 @@ void SAT_AppStorageEMU::copyAndSend(
   memcpy(msg.buf, (uint8_t*)&(data[offset]), length * sizeof(char));
   // commLayer_.sendMessage(msg);
   Serial.println(data);
-  Serial.print("***SAT_AppStorageEMU:");
+  Serial.print("***SAT_AppStorageEMU(ms=");
+  Serial.print(millis());
+  Serial.print(")");
   Serial.print(" node_addr=");
   Serial.print(msg.node_addr,HEX);
   Serial.print(" prefix=");

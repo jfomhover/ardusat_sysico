@@ -16,6 +16,9 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     CHANGES / TODOLIST
+    - 07/22/2013 : introduce an "intelligent" delay, exact delay between two values (in order to take into account the delay of the support functions)
+    - 07/22/2013 : first test without real mag/comm, then corrections on sprintf bugs (multiple ["%04x",int] in the same line seems to have a wrong behavior)
+    - 07/22/2013 : added mag emulation to test the code without the sensor
     - 07/22/2013 : added comm emulation to test the code without the ArduSat infrastructure    
     - 07/17/2013 : license edited cause unsuitable for code
     - TODO : sprintf : i'm never sure of this kind of syntax, need to check if there is a "0" before bytes (like in 0xFF or 0FF)
@@ -37,10 +40,20 @@
 #include <SAT_AppStorage.h>
 #endif /* COMM_EMULATION */
 
+#define MAG_EMULATION
+
+#ifdef MAG_EMULATION
+#include "SAT_MagEMU.h"
+#else
 #include <SAT_Mag.h>
+#endif
 
 // *** SDK constructors needed
+#ifdef MAG_EMULATION
+SAT_MagEMU mag;
+#else
 SAT_Mag mag;
+#endif
 
 #ifdef COMM_EMULATION
 SAT_AppStorageEMU store;
@@ -70,7 +83,6 @@ void poolValues() {
 }
 
 #define MESSAGE_BUFFER_SIZE  24  // only 24 chars needed in our case (18 hex chars actually)
-
 char messageBuffer[MESSAGE_BUFFER_SIZE];  // buffer for printing the message to be sent to earth
 
 // printing the values in an optimized format (we hope !)
@@ -81,12 +93,13 @@ void prepareBuffer() {
   }
 
   // data size of securely reduced to fit the sprintf
-  id = id & 0x00FFFFFF;  // we keep only 6 hex digits
-  for (int i=0; i<3; i++)
-    values[i] = values[i] & 0xFFFF;  // we keep only the 4 hex digits (this sensors returns 16 bits only anyway).
+  id = id & 0x00FFFFFF;  // we keep only 6 hex digits (4.6h before looping)
+  sprintf(messageBuffer, "%06X", id);
 
-  // data is printed in hex format
-  sprintf(messageBuffer, "%06x%04x%04x%04x\0", id, values[0], values[1], values[2]);
+  for (int i=0; i<3; i++) {
+    values[i] = values[i] & 0xFFFF;  // we keep only the 4 hex digits (this sensors returns 16 bits only anyway).
+    sprintf(messageBuffer+6+i*4, "%04X", values[i]); // after testing, it seems using multiple "%04x" on the same sprintf has a bugged behavior
+  }
 }
 
 
@@ -105,12 +118,19 @@ void setup()
 // *** LOOP ***
 // ************
 
+int previousMs;
+int nextMs;
 void loop()
 {
+  previousMs = millis();  // marking the previous millis for "intelligent" delay
+
   poolValues();   // pool the values needed
   prepareBuffer();   // prepare the buffer for sending the message
   
   store.send(messageBuffer);   // sends data into the communication file and queue for transfer
                                // WARNING : introduces a 100ms delay
-  delay(POOL_DELAY); //wait for next pool
+
+  nextMs = POOL_DELAY-(millis()-previousMs);  // "intelligent delay" : just the ms needed to have a perfect timing, takes into account the delay of all the functions in the loop
+  delay(nextMs); //wait for next pool
 }
+
