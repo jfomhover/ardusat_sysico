@@ -16,12 +16,13 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     CHANGES / TODOLIST
-    - 07/22/2013 : introduce an "intelligent" delay, exact delay between two values (in order to take into account the delay of the support functions)
+    - 07/22/2013 : introduce a sensorhandler for handling data "continuously" between two iterations, (min,max,avg,var) is sent with raw values
+    - 07/22/2013 : (obsolete) introduce an "intelligent" delay, exact delay between two values (in order to take into account the delay of the support functions)
     - 07/22/2013 : first test without real mag/comm, then corrections on sprintf bugs (multiple ["%04x",int] in the same line seems to have a wrong behavior)
     - 07/22/2013 : added mag emulation to test the code without the sensor
     - 07/22/2013 : added comm emulation to test the code without the ArduSat infrastructure    
     - 07/17/2013 : license edited cause unsuitable for code
-    - TODO : sprintf : i'm never sure of this kind of syntax, need to check if there is a "0" before bytes (like in 0xFF or 0FF)
+    - TODO : we really need to implement a decoder now ^^
     - TODO : to be tested with the real sensor values before end of july
 */
 
@@ -166,7 +167,8 @@ void prepareBuffer() {
 
   // data size of securely reduced to fit the sprintf
   id = id & 0x00FFFFFF;  // we keep only 6 hex digits (4.6h before looping)
-  sprintf(messageIndex, "%06X", id);              messageIndex += 6;
+  
+  sprintf(messageIndex, "%06X", id);              messageIndex+=6;
 
   sprintf(messageIndex, "%04X", msg.count);       messageIndex+=4;
   
