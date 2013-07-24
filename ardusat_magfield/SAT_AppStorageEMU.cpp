@@ -30,6 +30,10 @@ SAT_AppStorageEMU::SAT_AppStorageEMU() {
 void SAT_AppStorageEMU::send(char data[]){
   unsigned int dataLen  = (unsigned)strlen(data);
   unsigned int messages = dataLen / NODE_COMM_MAX_BUFFER_SIZE;
+  
+  Serial.print("*** SAT_AppStorageEMU::send() : data=");
+  Serial.println(data);
+
   for(unsigned int i = 0; i < messages; i++) {
     unsigned int start_offset   = i * NODE_COMM_MAX_BUFFER_SIZE;
     copyAndSend(data, start_offset, NODE_COMM_MAX_BUFFER_SIZE);
@@ -51,8 +55,7 @@ void SAT_AppStorageEMU::copyAndSend(
   msg.type      = APPEND;
   memcpy(msg.buf, (uint8_t*)&(data[offset]), length * sizeof(char));
   // commLayer_.sendMessage(msg);
-  Serial.println(data);
-  Serial.print("***SAT_AppStorageEMU(ms=");
+  Serial.print("*** SAT_AppStorageEMU::copyAndSend() : (ms=");
   Serial.print(millis());
   Serial.print(")");
   Serial.print(" node_addr=");

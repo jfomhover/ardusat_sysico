@@ -15,22 +15,41 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-    CHANGES / TODOLIST
+    CHANGES
+    - 07/24/2013 : added a DEBUG_MODE macro for printing out the readable results, also did a little bit of ordering and commenting
+    - 07/24/2013 : tested on MAG3110, modified the type of "value[]" for int16_t, in order to keep the signed 16bits data coming out of the sensor
     - 07/22/2013 : introduce an "intelligent" delay, exact delay between two values (in order to take into account the delay of the support functions)
     - 07/22/2013 : first test without real mag/comm, then corrections on sprintf bugs (multiple ["%04x",int] in the same line seems to have a wrong behavior)
     - 07/22/2013 : added mag emulation to test the code without the sensor
     - 07/22/2013 : added comm emulation to test the code without the ArduSat infrastructure    
     - 07/17/2013 : license edited cause unsuitable for code
-    - TODO : sprintf : i'm never sure of this kind of syntax, need to check if there is a "0" before bytes (like in 0xFF or 0FF)
-    - TODO : to be tested with the real sensor values before end of july
+
+    TODOLIST
+    - TODO : we really need to implement a decoder now ^^
+    - TODO : try to decode the data and see if it matches the real values
 */
 
-#include <Wire.h>//for I2C
 
+// **************
+// *** CONFIG ***
+// **************
+
+#define DEBUG_MODE      // prints the values in readable format via Serial
+#define COMM_EMULATION  // to emulate the Comm via SAT_AppStorageEMU, prints out (via Serial) the results of the data sent
+//#define MAG_EMULATION // to emulate the MAG3110 via SAT_MagEMU, outputs constant values
+#define POOL_DELAY  12000  // data is pooled every 12 seconds
+                     // note : this makes approx 480 data points for 1 earth rotation
+                     // and 1,12 rotations before reaching the 10kb limit for data
+#define MESSAGE_BUFFER_SIZE  24  // only 24 chars needed in our case (18 hex chars actually)
+
+
+// ***************
+// *** HEADERS ***
+// ***************
+
+#include <Wire.h>//for I2C
 #include <nanosat_message.h>
 #include <I2C_add.h>
-
-#define COMM_EMULATION
 
 #ifdef COMM_EMULATION
 #include "SAT_AppStorageEMU.h"
@@ -40,15 +59,16 @@
 #include <SAT_AppStorage.h>
 #endif /* COMM_EMULATION */
 
-#define MAG_EMULATION
-
 #ifdef MAG_EMULATION
 #include "SAT_MagEMU.h"
 #else
 #include <SAT_Mag.h>
-#endif
+#endif /* MAG_EMULATION */
 
-// *** SDK constructors needed
+// ************************
+// *** API CONSTRUCTORS ***
+// ************************
+
 #ifdef MAG_EMULATION
 SAT_MagEMU mag;
 #else
@@ -61,17 +81,13 @@ SAT_AppStorageEMU store;
 SAT_AppStorage store;
 #endif
 
-// *** CONFIG ***
-#define POOL_DELAY  12000  // data is pooled every 12 seconds
-                     // note : this makes approx 480 data points for 1 earth rotation
-                     // and 1,12 rotations before reaching the 10kb limit for data
 
-// ****************************
-// *** EXPERIMENT FUNCTIONS ***
-// ****************************
+// ********************************
+// *** SENSOR POOLING FUNCTIONS ***
+// ********************************
 
 unsigned long int id;
-int values[3];
+int16_t values[3];
 
 // pools the values needed by the experiment
 // here : the magnetometer
@@ -82,7 +98,6 @@ void poolValues() {
   values[2] = mag.readz();
 }
 
-#define MESSAGE_BUFFER_SIZE  24  // only 24 chars needed in our case (18 hex chars actually)
 char messageBuffer[MESSAGE_BUFFER_SIZE];  // buffer for printing the message to be sent to earth
 
 // printing the values in an optimized format (we hope !)
@@ -126,7 +141,19 @@ void loop()
 
   poolValues();   // pool the values needed
   prepareBuffer();   // prepare the buffer for sending the message
-  
+
+#ifdef DEBUG_MODE
+  Serial.print("*** DEBUG :");
+  Serial.print("\tid=");
+  Serial.print(id);
+  Serial.print("\tX=");
+  Serial.print(values[0]);
+  Serial.print("\tY=");
+  Serial.print(values[1]);
+  Serial.print("\tZ=");
+  Serial.print(values[2]);
+#endif
+
   store.send(messageBuffer);   // sends data into the communication file and queue for transfer
                                // WARNING : introduces a 100ms delay
 

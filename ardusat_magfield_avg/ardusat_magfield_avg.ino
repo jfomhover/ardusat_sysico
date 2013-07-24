@@ -15,24 +15,44 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-    CHANGES / TODOLIST
+    CHANGES
+    - 07/24/2013 : added a DEBUG_MODE macro for printing out the readable results, also did a little bit of ordering and commenting
+    - 07/24/2013 : modified code for introduction of BUFFER_SIZE macro, set to 128 cause the arduino Uno can't take more.
+    - 07/24/2013 : tested on MAG3110, modified the type of "value[]" for int16_t, in order to keep the signed 16bits data coming out of the sensor    
     - 07/22/2013 : introduce a sensorhandler for handling data "continuously" between two iterations, (min,max,avg,var) is sent with raw values
     - 07/22/2013 : (obsolete) introduce an "intelligent" delay, exact delay between two values (in order to take into account the delay of the support functions)
     - 07/22/2013 : first test without real mag/comm, then corrections on sprintf bugs (multiple ["%04x",int] in the same line seems to have a wrong behavior)
     - 07/22/2013 : added mag emulation to test the code without the sensor
     - 07/22/2013 : added comm emulation to test the code without the ArduSat infrastructure    
     - 07/17/2013 : license edited cause unsuitable for code
+    
+    TODOLIST
     - TODO : we really need to implement a decoder now ^^
-    - TODO : to be tested with the real sensor values before end of july
+    - TODO : try to decode the data and see if it matches the real values
 */
 
-#include <Wire.h>//for I2C
 
+
+// **************
+// *** CONFIG ***
+// **************
+
+#define DEBUG_MODE      // prints the values in readable format via Serial
+#define COMM_EMULATION  // to emulate the Comm via SAT_AppStorageEMU, prints out (via Serial) the results of the data sent
+//#define MAG_EMULATION // to emulate the MAG3110 via SAT_MagEMU, outputs constant values
+#define POOL_PERIOD 50  // sensors are pooled every POOL_PERIOD (ms)
+#define POOL_INTERVAL  1000  // data is pooled for POOL_INTERVAL (ms) before sending data
+#define BUFFER_SPACE  128
+
+// ***************
+// *** HEADERS ***
+// ***************
+
+#include <Wire.h>//for I2C
 #include <nanosat_message.h>
 #include <I2C_add.h>
-#include "SensorHandler.h"
 
-#define COMM_EMULATION
+#include "SensorHandler.h"
 
 #ifdef COMM_EMULATION
 #include "SAT_AppStorageEMU.h"
@@ -42,15 +62,17 @@
 #include <SAT_AppStorage.h>
 #endif /* COMM_EMULATION */
 
-#define MAG_EMULATION
 
 #ifdef MAG_EMULATION
 #include "SAT_MagEMU.h"
 #else
 #include <SAT_Mag.h>
-#endif
+#endif /* MAG_EMULATION */
 
-// *** SDK constructors needed
+// ************************
+// *** API CONSTRUCTORS ***
+// ************************
+
 #ifdef MAG_EMULATION
 SAT_MagEMU mag;
 #else
@@ -64,22 +86,32 @@ SAT_AppStorage store;
 #endif
 
 
-// *** CONFIG ***
-#define POOL_PERIOD 50  // sensors are pooled every POOL_PERIOD (ms)
-#define POOL_INTERVAL  53000  // data is pooled for POOL_INTERVAL (ms) before sending data
-
-
-// ******************************
-// *** SENSOR VALUES HANDLING ***
-// ******************************
+// ********************************
+// *** SENSOR POOLING FUNCTIONS ***
+// ********************************
 
 unsigned long int id;
-int valuesBuffer_x[1024];            // yeah, i know, but I just wanted to keep all the havy memory allocations on the "front page"
-int valuesBuffer_y[1024];
-int valuesBuffer_z[1024];
-SensorHandler<int> sensor_x(valuesBuffer_x, 1024);
-SensorHandler<int> sensor_y(valuesBuffer_y, 1024);
-SensorHandler<int> sensor_z(valuesBuffer_z, 1024);
+int16_t valuesBuffer_x[BUFFER_SPACE];            // yeah, i know, but I just wanted to keep all the havy memory allocations on the "front page"
+int16_t valuesBuffer_y[BUFFER_SPACE];
+int16_t valuesBuffer_z[BUFFER_SPACE];
+SensorHandler<int16_t> sensor_x(valuesBuffer_x, BUFFER_SPACE);
+SensorHandler<int16_t> sensor_y(valuesBuffer_y, BUFFER_SPACE);
+SensorHandler<int16_t> sensor_z(valuesBuffer_z, BUFFER_SPACE);
+
+#ifdef DEBUG_MODE
+int freeRam() {
+  int byteCounter = 0; // initialize a counter
+  byte *byteArray; // create a pointer to a byte array
+  
+  while ( (byteArray = (byte*) malloc (byteCounter * sizeof(byte))) != NULL ) {
+    byteCounter++; // if allocation was successful, then up the count for the next try
+    free(byteArray); // free memory after allocating it
+  }
+  
+  free(byteArray); // also free memory after the function finishes 
+  return byteCounter; // send back the highest number of bytes successfully allocated
+};
+#endif
 
 void resetValues() {
   sensor_x.reset();
@@ -90,9 +122,9 @@ void resetValues() {
 // pools the values needed by the experiment
 void poolValues() {
   id = millis();
-  sensor_x.pushValue((int)mag.readx());
-  sensor_y.pushValue((int)mag.ready());
-  sensor_z.pushValue((int)mag.readz());
+  sensor_x.pushValue((int16_t)mag.readx());
+  sensor_y.pushValue((int16_t)mag.ready());
+  sensor_z.pushValue((int16_t)mag.readz());
 }
 
 
@@ -104,21 +136,21 @@ struct t_message {
   unsigned long int id;
   int count;
   
-  int value_x;
-  int value_x_min;
-  int value_x_max;
+  int16_t value_x;
+  int16_t value_x_min;
+  int16_t value_x_max;
   float value_x_avg;
   float value_x_var;
   
-  int value_y;
-  int value_y_min;
-  int value_y_max;
+  int16_t value_y;
+  int16_t value_y_min;
+  int16_t value_y_max;
   float value_y_avg;
   float value_y_var;
   
-  int value_z;
-  int value_z_min;
-  int value_z_max;
+  int16_t value_z;
+  int16_t value_z_min;
+  int16_t value_z_max;
   float value_z_avg;
   float value_z_var;
 } msg;
@@ -201,6 +233,7 @@ void setup()
   Wire.begin();        // join i2c bus (address optional for master)
   Serial.begin(9600);  // start serial for output (fast)
   mag.configMag();          // turn the MAG3110 on
+  Serial.println("*** setup complete");
 }
 
 // *****************
@@ -211,6 +244,12 @@ unsigned long int previousMs;
 
 void loop()
 {
+#ifdef DEBUG_MODE
+  Serial.print("*** free ram :");
+  Serial.println(freeRam());
+  Serial.println("*** reset values");
+#endif
+
   resetValues();          // blanks all the values of the sensor handlers
   
   previousMs = millis();  // marking the first millis before looping
@@ -219,13 +258,55 @@ void loop()
   while ((millis()-previousMs)<POOL_INTERVAL) {
     poolValues();
     delay(POOL_PERIOD);
-  }
+  };
   
   prepareMessage();            // prepare a structure for the message to be sent
   
   prepareBuffer();             // prepare the buffer for sending the message
   
+#ifdef DEBUG_MODE
+  Serial.print("count=");
+  Serial.println(msg.count);
+
+  Serial.print("X=");
+  Serial.print(msg.value_x);
+  Serial.print("\tMIN=");
+  Serial.print(msg.value_x_min);
+  Serial.print("\tMAX=");
+  Serial.print(msg.value_x_max);
+  Serial.print("\tAVG=");
+  Serial.print(msg.value_x_avg);
+  Serial.print("\tVAR=");
+  Serial.print(msg.value_x_var);
+  Serial.println(" ;");
+  
+  Serial.print("Y=");
+  Serial.print(msg.value_y);
+  Serial.print("\tMIN=");
+  Serial.print(msg.value_y_min);
+  Serial.print("\tMAX=");
+  Serial.print(msg.value_y_max);
+  Serial.print("\tAVG=");
+  Serial.print(msg.value_y_avg);
+  Serial.print("\tVAR=");
+  Serial.print(msg.value_y_var);
+  Serial.println(" ;");
+
+  Serial.print("Z=");
+  Serial.print(msg.value_z);
+  Serial.print("\tMIN=");
+  Serial.print(msg.value_z_min);
+  Serial.print("\tMAX=");
+  Serial.print(msg.value_z_max);
+  Serial.print("\tAVG=");
+  Serial.print(msg.value_z_avg);
+  Serial.print("\tVAR=");
+  Serial.print(msg.value_z_var);
+  Serial.println(" ;");
+#endif
+
   store.send(messageBuffer);   // sends data into the communication file and queue for transfer
                                // WARNING : introduces a 100ms delay
 }
+
 
