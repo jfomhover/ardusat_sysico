@@ -151,7 +151,7 @@ void loop()
   Serial.print("\tY=");
   Serial.print(values[1]);
   Serial.print("\tZ=");
-  Serial.print(values[2]);
+  Serial.println(values[2]);
 #endif
 
   store.send(messageBuffer);   // sends data into the communication file and queue for transfer

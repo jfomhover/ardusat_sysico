@@ -233,7 +233,9 @@ void setup()
   Wire.begin();        // join i2c bus (address optional for master)
   Serial.begin(9600);  // start serial for output (fast)
   mag.configMag();          // turn the MAG3110 on
-  Serial.println("*** setup complete");
+#ifdef DEBUG_MODE
+  Serial.println("*** DEBUG : setup complete");
+#endif
 }
 
 // *****************
@@ -245,9 +247,9 @@ unsigned long int previousMs;
 void loop()
 {
 #ifdef DEBUG_MODE
-  Serial.print("*** free ram :");
+  Serial.print("*** DEBUG : free ram = ");
   Serial.println(freeRam());
-  Serial.println("*** reset values");
+  Serial.println("*** DEBUG : reset values");
 #endif
 
   resetValues();          // blanks all the values of the sensor handlers
@@ -265,9 +267,11 @@ void loop()
   prepareBuffer();             // prepare the buffer for sending the message
   
 #ifdef DEBUG_MODE
+  Serial.println("*** DEBUG : ");
   Serial.print("count=");
   Serial.println(msg.count);
 
+  Serial.println("*** DEBUG : ");
   Serial.print("X=");
   Serial.print(msg.value_x);
   Serial.print("\tMIN=");
@@ -280,6 +284,7 @@ void loop()
   Serial.print(msg.value_x_var);
   Serial.println(" ;");
   
+  Serial.println("*** DEBUG : ");
   Serial.print("Y=");
   Serial.print(msg.value_y);
   Serial.print("\tMIN=");
@@ -292,6 +297,7 @@ void loop()
   Serial.print(msg.value_y_var);
   Serial.println(" ;");
 
+  Serial.println("*** DEBUG : ");
   Serial.print("Z=");
   Serial.print(msg.value_z);
   Serial.print("\tMIN=");
