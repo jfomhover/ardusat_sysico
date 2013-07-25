@@ -16,6 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     CHANGES
+    - 07/25/2013 : added a MessageHandler for handling everything related to the message printing (format, etc.)
     - 07/24/2013 : added a DEBUG_MODE macro for printing out the readable results, also did a little bit of ordering and commenting
     - 07/24/2013 : modified code for introduction of BUFFER_SIZE macro, set to 128 cause the arduino Uno can't take more.
     - 07/24/2013 : tested on MAG3110, modified the type of "value[]" for int16_t, in order to keep the signed 16bits data coming out of the sensor    
@@ -39,10 +40,12 @@
 
 #define DEBUG_MODE      // prints the values in readable format via Serial
 #define COMM_EMULATION  // to emulate the Comm via SAT_AppStorageEMU, prints out (via Serial) the results of the data sent
-//#define MAG_EMULATION // to emulate the MAG3110 via SAT_MagEMU, outputs constant values
+#define MAG_EMULATION // to emulate the MAG3110 via SAT_MagEMU, outputs constant values
 #define POOL_PERIOD 50  // sensors are pooled every POOL_PERIOD (ms)
-#define POOL_INTERVAL  1000  // data is pooled for POOL_INTERVAL (ms) before sending data
+#define POOL_INTERVAL  10000  // data is pooled for POOL_INTERVAL (ms) before sending data
 #define BUFFER_SPACE  128
+#define MESSAGE_BUFFER_SIZE  100  // only 24 chars needed in our case (18 hex chars actually)
+#define MESSAGE_SCHEME_MAXSIZE  24 // the number of chars used to describe the format of the message
 
 // ***************
 // *** HEADERS ***
@@ -53,6 +56,7 @@
 #include <I2C_add.h>
 
 #include "SensorHandler.h"
+#include "MessageHandler.h"
 
 #ifdef COMM_EMULATION
 #include "SAT_AppStorageEMU.h"
@@ -132,95 +136,36 @@ void poolValues() {
 // *** MESSAGE STRUCTURE ***
 // *************************
 
-struct t_message {
-  unsigned long int id;
-  int count;
-  
-  int16_t value_x;
-  int16_t value_x_min;
-  int16_t value_x_max;
-  float value_x_avg;
-  float value_x_var;
-  
-  int16_t value_y;
-  int16_t value_y_min;
-  int16_t value_y_max;
-  float value_y_avg;
-  float value_y_var;
-  
-  int16_t value_z;
-  int16_t value_z_min;
-  int16_t value_z_max;
-  float value_z_avg;
-  float value_z_var;
-} msg;
+char messageBuffer[MESSAGE_BUFFER_SIZE];      // buffer for printing the message to be sent to earth
+char messageScheme[MESSAGE_SCHEME_MAXSIZE];   // buffer for the "scheme" (format) of the message
+                                              // MessageHandler for putting values without caring about format/size
+MessageHandler messageHdl(messageBuffer, MESSAGE_BUFFER_SIZE, messageScheme, MESSAGE_SCHEME_MAXSIZE);
 
-
+// prepares the message using MessageHandler
 void prepareMessage() {
-  msg.id = id;
+  messageHdl.zero();
+
+  messageHdl.add(id,3); // we keep only 3 bytes (4.6h before looping)
   
-  msg.count = sensor_x.getCount();
+  messageHdl.add(sensor_x.getCount(),2);
+
+  messageHdl.add(sensor_x.getValue());
+  messageHdl.add(sensor_x.getMinimum());
+  messageHdl.add(sensor_x.getMaximum());
+  messageHdl.add(sensor_x.getAverage());
+  messageHdl.add(sensor_x.getVariance());
   
-  msg.value_x = sensor_x.getValue();
-  msg.value_x_min = sensor_x.getMinimum();
-  msg.value_x_max = sensor_x.getMaximum();
-  msg.value_x_avg = sensor_x.getAverage();
-  msg.value_x_var = sensor_x.getVariance();
+  messageHdl.add(sensor_y.getValue());
+  messageHdl.add(sensor_y.getMinimum());
+  messageHdl.add(sensor_y.getMaximum());
+  messageHdl.add(sensor_y.getAverage());
+  messageHdl.add(sensor_y.getVariance());
 
-  msg.value_y = sensor_y.getValue();
-  msg.value_y_min = sensor_y.getMinimum();
-  msg.value_y_max = sensor_y.getMaximum();
-  msg.value_y_avg = sensor_y.getAverage();
-  msg.value_y_var = sensor_y.getVariance();
-
-  msg.value_z = sensor_z.getValue();
-  msg.value_z_min = sensor_z.getMinimum();
-  msg.value_z_max = sensor_z.getMaximum();
-  msg.value_z_avg = sensor_z.getAverage();
-  msg.value_z_var = sensor_z.getVariance();
-};
-
-
-// **********************
-// *** MESSAGE BUFFER ***
-// **********************
-
-#define MESSAGE_BUFFER_SIZE  96  // 94 chars needed in our case
-char messageBuffer[MESSAGE_BUFFER_SIZE];  // buffer for printing the message to be sent to earth
-
-// printing the values in an optimized format (we hope !)
-void prepareBuffer() {
-  // safety first (you never know...) clearing the buffer
-  for (int i=0; i<MESSAGE_BUFFER_SIZE; i++) {
-    messageBuffer[i] = '\0';
-  }
-
-  char * messageIndex = messageBuffer;
-
-  // data size of securely reduced to fit the sprintf
-  id = id & 0x00FFFFFF;  // we keep only 6 hex digits (4.6h before looping)
-  
-  sprintf(messageIndex, "%06X", id);              messageIndex+=6;
-
-  sprintf(messageIndex, "%04X", msg.count);       messageIndex+=4;
-  
-  sprintf(messageIndex, "%04X", msg.value_x);     messageIndex+=4;
-  sprintf(messageIndex, "%04X", msg.value_x_min); messageIndex+=4;
-  sprintf(messageIndex, "%04X", msg.value_x_max); messageIndex+=4;
-  sprintf(messageIndex, "%08X", msg.value_x_avg); messageIndex+=8;
-  sprintf(messageIndex, "%08X", msg.value_x_var); messageIndex+=8;
-  
-  sprintf(messageIndex, "%04X", msg.value_y);     messageIndex+=4;
-  sprintf(messageIndex, "%04X", msg.value_y_min); messageIndex+=4;
-  sprintf(messageIndex, "%04X", msg.value_y_max); messageIndex+=4;
-  sprintf(messageIndex, "%08X", msg.value_y_avg); messageIndex+=8;
-  sprintf(messageIndex, "%08X", msg.value_y_var); messageIndex+=8;
-
-  sprintf(messageIndex, "%04X", msg.value_z);     messageIndex+=4;
-  sprintf(messageIndex, "%04X", msg.value_z_min); messageIndex+=4;
-  sprintf(messageIndex, "%04X", msg.value_z_max); messageIndex+=4;
-  sprintf(messageIndex, "%08X", msg.value_z_avg); messageIndex+=8;
-  sprintf(messageIndex, "%08X", msg.value_z_var); messageIndex+=8;
+  messageHdl.add(sensor_z.getValue());
+  messageHdl.add(sensor_z.getMinimum());
+  messageHdl.add(sensor_z.getMaximum());
+  messageHdl.add(sensor_z.getAverage());
+  messageHdl.add(sensor_z.getVariance());
 };
 
 
@@ -233,6 +178,7 @@ void setup()
   Wire.begin();        // join i2c bus (address optional for master)
   Serial.begin(9600);  // start serial for output (fast)
   mag.configMag();          // turn the MAG3110 on
+  
 #ifdef DEBUG_MODE
   Serial.println("*** DEBUG : setup complete");
 #endif
@@ -243,6 +189,7 @@ void setup()
 // *****************
 
 unsigned long int previousMs;
+boolean firstIteration = true;
 
 void loop()
 {
@@ -263,54 +210,70 @@ void loop()
   };
   
   prepareMessage();            // prepare a structure for the message to be sent
-  
-  prepareBuffer();             // prepare the buffer for sending the message
-  
+    
 #ifdef DEBUG_MODE
   Serial.println("*** DEBUG : ");
   Serial.print("count=");
-  Serial.println(msg.count);
+  Serial.println(sensor_x.getCount());
 
   Serial.println("*** DEBUG : ");
   Serial.print("X=");
-  Serial.print(msg.value_x);
+  Serial.print(sensor_x.getValue());
   Serial.print("\tMIN=");
-  Serial.print(msg.value_x_min);
+  Serial.print(sensor_x.getMinimum());
   Serial.print("\tMAX=");
-  Serial.print(msg.value_x_max);
+  Serial.print(sensor_x.getMaximum());
   Serial.print("\tAVG=");
-  Serial.print(msg.value_x_avg);
+  Serial.print(sensor_x.getAverage());
   Serial.print("\tVAR=");
-  Serial.print(msg.value_x_var);
+  Serial.print(sensor_x.getVariance());
   Serial.println(" ;");
   
   Serial.println("*** DEBUG : ");
   Serial.print("Y=");
-  Serial.print(msg.value_y);
+  Serial.print(sensor_y.getValue());
   Serial.print("\tMIN=");
-  Serial.print(msg.value_y_min);
+  Serial.print(sensor_y.getMinimum());
   Serial.print("\tMAX=");
-  Serial.print(msg.value_y_max);
+  Serial.print(sensor_y.getMaximum());
   Serial.print("\tAVG=");
-  Serial.print(msg.value_y_avg);
+  Serial.print(sensor_y.getAverage());
   Serial.print("\tVAR=");
-  Serial.print(msg.value_y_var);
+  Serial.print(sensor_y.getVariance());
   Serial.println(" ;");
 
   Serial.println("*** DEBUG : ");
   Serial.print("Z=");
-  Serial.print(msg.value_z);
+  Serial.print(sensor_z.getValue());
   Serial.print("\tMIN=");
-  Serial.print(msg.value_z_min);
+  Serial.print(sensor_z.getMinimum());
   Serial.print("\tMAX=");
-  Serial.print(msg.value_z_max);
+  Serial.print(sensor_z.getMaximum());
   Serial.print("\tAVG=");
-  Serial.print(msg.value_z_avg);
+  Serial.print(sensor_z.getAverage());
   Serial.print("\tVAR=");
-  Serial.print(msg.value_z_var);
+  Serial.print(sensor_z.getVariance());
   Serial.println(" ;");
+  
+  Serial.print("*** DEBUG : message = ");
+  Serial.println(messageBuffer);
+  Serial.print("*** DEBUG : scheme = ");
+  Serial.println(messageScheme);
 #endif
 
+  messageHdl.compress();      // compresses the message before sending
+
+#ifdef DEBUG_MODE
+  Serial.print("*** DEBUG : compressed = ");
+  Serial.println(messageBuffer);
+#endif
+
+                                // if we are sending the first message
+  if (firstIteration) {
+    store.send(messageScheme);  // send the scheme (format) first !
+    firstIteration = false;
+  }
+  
   store.send(messageBuffer);   // sends data into the communication file and queue for transfer
                                // WARNING : introduces a 100ms delay
 }
