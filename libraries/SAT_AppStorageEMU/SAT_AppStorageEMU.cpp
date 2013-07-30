@@ -16,6 +16,7 @@
 SAT_AppStorageEMU::SAT_AppStorageEMU() {
   Serial.begin(9600);
   nodeAddress_  = 0xFE;
+  debugMode = false;
 }
 
 /******************************************************************************
@@ -30,8 +31,8 @@ SAT_AppStorageEMU::SAT_AppStorageEMU() {
 void SAT_AppStorageEMU::send(char data[]){
   unsigned int dataLen  = (unsigned)strlen(data);
   unsigned int messages = dataLen / NODE_COMM_MAX_BUFFER_SIZE;
-  
-  Serial.print("*** SAT_AppStorageEMU::send() : data=");
+  if (debugMode)
+    Serial.print("*** SAT_AppStorageEMU::send() : data=");
   Serial.println(data);
 
   for(unsigned int i = 0; i < messages; i++) {
@@ -55,19 +56,27 @@ void SAT_AppStorageEMU::copyAndSend(
   msg.type      = APPEND;
   memcpy(msg.buf, (uint8_t*)&(data[offset]), length * sizeof(char));
   // commLayer_.sendMessage(msg);
-  Serial.print("*** SAT_AppStorageEMU::copyAndSend() : (ms=");
-  Serial.print(millis());
-  Serial.print(")");
-  Serial.print(" node_addr=");
-  Serial.print(msg.node_addr,HEX);
-  Serial.print(" prefix=");
-  Serial.print(msg.prefix,HEX);
-  Serial.print(" len=");
-  Serial.print(msg.len);
-  Serial.print(" type=");
-  Serial.print(msg.type,HEX);
-  dataCount+=msg.len;
-  Serial.print(" totalLen=");
-  Serial.println(dataCount);
+  dataCount+=msg.len+1;
+
+  if (debugMode) {
+    Serial.print("*** SAT_AppStorageEMU::copyAndSend() : (ms=");
+    Serial.print(millis());
+    Serial.print(")");
+    Serial.print(" node_addr=");
+    Serial.print(msg.node_addr,HEX);
+    Serial.print(" prefix=");
+    Serial.print(msg.prefix,HEX);
+    Serial.print(" len=");
+    Serial.print(msg.len);
+    Serial.print(" type=");
+    Serial.print(msg.type,HEX);
+    Serial.print(" totalLen=");
+    Serial.println(dataCount);
+  }
+
+  if (dataCount > 10240) {
+    Serial.print("*** END OF EXPERIMENT BY REACHING 10KB");
+    while(1);
+  }
   delay(100);
 }

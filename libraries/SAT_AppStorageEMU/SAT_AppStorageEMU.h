@@ -3,6 +3,7 @@
 
 #include <inttypes.h>
 #include <stdlib.h>
+#include <Arduino.h>
 
 #include <nanosat_message.h>
 
@@ -26,7 +27,8 @@ class SAT_AppStorageEMU
      * Constructor
      */
     SAT_AppStorageEMU();
-
+    boolean debugMode;
+    
     /*
      * Simple way to enqueue data to be published to disk.
      *

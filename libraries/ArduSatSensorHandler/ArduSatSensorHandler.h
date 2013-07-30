@@ -1,12 +1,10 @@
-#ifndef SENSORHANDLER_H
-#define SENSORHANDLER_H
+#ifndef ArduSatSensorHandler_H
+#define ArduSatSensorHandler_H
 
-#include <Arduino.h>
-
-template <typename T> class SensorHandler
+template <typename T> class ArduSatSensorHandler
 {
 public:
-  SensorHandler(T * valueBuffer, int length);
+  ArduSatSensorHandler(T * valueBuffer, int length);
 
   void reset();
   void pushValue(T value);
@@ -25,19 +23,20 @@ private:
   T * values;
 };
 
-template <typename T> SensorHandler<T>::SensorHandler(T * valueBuffer, int length) {
+
+template <typename T> ArduSatSensorHandler<T>::ArduSatSensorHandler(T * valueBuffer, int length) {
   bufferLength = length;
   values = valueBuffer;
 };
 
-template <typename T> void SensorHandler<T>::reset() {
+template <typename T> void ArduSatSensorHandler<T>::reset() {
   for (int i=0; i<bufferLength; i++)
     values[i] = 0;
   index = 0;
   count = 0;
 };
 
-template <typename T> void SensorHandler<T>::pushValue(T value) {
+template <typename T> void ArduSatSensorHandler<T>::pushValue(T value) {
   values[index]=value;
   count++;
   index++;
@@ -45,18 +44,18 @@ template <typename T> void SensorHandler<T>::pushValue(T value) {
     index = 0;
 };
 
-template <typename T> int SensorHandler<T>::getCount() {
+template <typename T> int ArduSatSensorHandler<T>::getCount() {
   return(count);
 };
 
-template <typename T> int SensorHandler<T>::getCurrentMaxIndex() {
+template <typename T> int ArduSatSensorHandler<T>::getCurrentMaxIndex() {
   int t_index = index;
   if (count > index)
     t_index = bufferLength;
   return(t_index);
 };
 
-template <typename T> T SensorHandler<T>::getValue() {
+template <typename T> T ArduSatSensorHandler<T>::getValue() {
   if (index == 0) {
     if (count > 0)
       return(values[bufferLength-1]);
@@ -65,7 +64,7 @@ template <typename T> T SensorHandler<T>::getValue() {
   return(values[index-1]);
 };
 
-template <typename T> T SensorHandler<T>::getMinimum() {
+template <typename T> T ArduSatSensorHandler<T>::getMinimum() {
   int t_index = getCurrentMaxIndex();
   
   int t_min = values[0];
@@ -76,7 +75,7 @@ template <typename T> T SensorHandler<T>::getMinimum() {
   return(t_min);
 };
 
-template <typename T> T SensorHandler<T>::getMaximum() {
+template <typename T> T ArduSatSensorHandler<T>::getMaximum() {
   int t_index = getCurrentMaxIndex();
   
   int t_max = values[0];
@@ -87,7 +86,7 @@ template <typename T> T SensorHandler<T>::getMaximum() {
   return(t_max);
 };
 
-template <typename T> float SensorHandler<T>::getVariance() {
+template <typename T> float ArduSatSensorHandler<T>::getVariance() {
   int t_index = getCurrentMaxIndex();
   float t_avg = getAverage();
   float t_var = 0;
@@ -98,7 +97,7 @@ template <typename T> float SensorHandler<T>::getVariance() {
   return(t_var/t_index);
 };
 
-template <typename T> float SensorHandler<T>::getAverage() {
+template <typename T> float ArduSatSensorHandler<T>::getAverage() {
   int t_index = getCurrentMaxIndex();
   float t_avg = 0;
 
@@ -108,6 +107,5 @@ template <typename T> float SensorHandler<T>::getAverage() {
   return(t_avg/t_index);
 };
 
+
 #endif
-
-

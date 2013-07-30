@@ -38,14 +38,17 @@
 // *** CONFIG ***
 // **************
 
-#define DEBUG_MODE      // prints the values in readable format via Serial
+//#define DEBUG_MODE      // prints the values in readable format via Serial
+#define DEBUG_RAM       // computes the free ram at the end of setup
 #define COMM_EMULATION  // to emulate the Comm via SAT_AppStorageEMU, prints out (via Serial) the results of the data sent
-#define MAG_EMULATION // to emulate the MAG3110 via SAT_MagEMU, outputs constant values
+//#define MAG_EMULATION // to emulate the MAG3110 via SAT_MagEMU, outputs constant values
 #define POOL_PERIOD 50  // sensors are pooled every POOL_PERIOD (ms)
-#define POOL_INTERVAL  10000  // data is pooled for POOL_INTERVAL (ms) before sending data
+#define POOL_INTERVAL  60000  // data is pooled for POOL_INTERVAL (ms) before sending data
 #define BUFFER_SPACE  128
-#define MESSAGE_BUFFER_SIZE  100  // only 24 chars needed in our case (18 hex chars actually)
-#define MESSAGE_SCHEME_MAXSIZE  24 // the number of chars used to describe the format of the message
+
+#define MESSAGE_BUFFER_SIZE  196  // chars needed for the message buffer (scheme + actual message)
+#define MESSAGE_SCHEME_MAXSIZE  20 // the number of chars used to describe the format of the message
+#define MESSAGE_FORMAT 0            // 0 for plain CSV, 1 for HEX, 2 for HEX "compressed"
 
 // ***************
 // *** HEADERS ***
@@ -55,11 +58,11 @@
 #include <nanosat_message.h>
 #include <I2C_add.h>
 
-#include "SensorHandler.h"
-#include "MessageHandler.h"
+#include <ArduSatSensorHandler.h>
+#include <ArduSatMessageWriter.h>
 
 #ifdef COMM_EMULATION
-#include "SAT_AppStorageEMU.h"
+#include <SAT_AppStorageEMU.h>
 #else
 #include <EEPROM.h>
 #include <OnboardCommLayer.h>
@@ -68,7 +71,7 @@
 
 
 #ifdef MAG_EMULATION
-#include "SAT_MagEMU.h"
+#include <SAT_MagEMU.h>
 #else
 #include <SAT_Mag.h>
 #endif /* MAG_EMULATION */
@@ -98,11 +101,11 @@ unsigned long int id;
 int16_t valuesBuffer_x[BUFFER_SPACE];            // yeah, i know, but I just wanted to keep all the havy memory allocations on the "front page"
 int16_t valuesBuffer_y[BUFFER_SPACE];
 int16_t valuesBuffer_z[BUFFER_SPACE];
-SensorHandler<int16_t> sensor_x(valuesBuffer_x, BUFFER_SPACE);
-SensorHandler<int16_t> sensor_y(valuesBuffer_y, BUFFER_SPACE);
-SensorHandler<int16_t> sensor_z(valuesBuffer_z, BUFFER_SPACE);
+ArduSatSensorHandler<int16_t> sensor_x(valuesBuffer_x, BUFFER_SPACE);
+ArduSatSensorHandler<int16_t> sensor_y(valuesBuffer_y, BUFFER_SPACE);
+ArduSatSensorHandler<int16_t> sensor_z(valuesBuffer_z, BUFFER_SPACE);
 
-#ifdef DEBUG_MODE
+#ifdef DEBUG_RAM
 int freeRam() {
   int byteCounter = 0; // initialize a counter
   byte *byteArray; // create a pointer to a byte array
@@ -137,9 +140,11 @@ void poolValues() {
 // *************************
 
 char messageBuffer[MESSAGE_BUFFER_SIZE];      // buffer for printing the message to be sent to earth
-char messageScheme[MESSAGE_SCHEME_MAXSIZE];   // buffer for the "scheme" (format) of the message
                                               // MessageHandler for putting values without caring about format/size
-MessageHandler messageHdl(messageBuffer, MESSAGE_BUFFER_SIZE, messageScheme, MESSAGE_SCHEME_MAXSIZE);
+ArduSatMessageWriter messageHdl(messageBuffer,            // argument 1 : available char[] as buffer
+                          MESSAGE_BUFFER_SIZE,      // argument 2 : the size of the buffer
+                          MESSAGE_FORMAT,       // argument 3 : the format of the message (see MessageWriter.h)
+                          MESSAGE_SCHEME_MAXSIZE);  // argument 4 : the size of the scheme
 
 // prepares the message using MessageHandler
 void prepareMessage() {
@@ -152,20 +157,20 @@ void prepareMessage() {
   messageHdl.add(sensor_x.getValue());
   messageHdl.add(sensor_x.getMinimum());
   messageHdl.add(sensor_x.getMaximum());
-  messageHdl.add(sensor_x.getAverage());
-  messageHdl.add(sensor_x.getVariance());
+  messageHdl.add(sensor_x.getAverage(),3,2);
+  messageHdl.add(sensor_x.getVariance(),3,2);
   
   messageHdl.add(sensor_y.getValue());
   messageHdl.add(sensor_y.getMinimum());
   messageHdl.add(sensor_y.getMaximum());
-  messageHdl.add(sensor_y.getAverage());
-  messageHdl.add(sensor_y.getVariance());
+  messageHdl.add(sensor_y.getAverage(),3,2);
+  messageHdl.add(sensor_y.getVariance(),3,2);
 
   messageHdl.add(sensor_z.getValue());
   messageHdl.add(sensor_z.getMinimum());
   messageHdl.add(sensor_z.getMaximum());
-  messageHdl.add(sensor_z.getAverage());
-  messageHdl.add(sensor_z.getVariance());
+  messageHdl.add(sensor_z.getAverage(),3,2);
+  messageHdl.add(sensor_z.getVariance(),3,2);
 };
 
 
@@ -182,6 +187,11 @@ void setup()
 #ifdef DEBUG_MODE
   Serial.println("*** DEBUG : setup complete");
 #endif
+
+#ifdef DEBUG_RAM
+  Serial.print("*** DEBUG : free ram = ");
+  Serial.println(freeRam());
+#endif
 }
 
 // *****************
@@ -194,9 +204,7 @@ boolean firstIteration = true;
 void loop()
 {
 #ifdef DEBUG_MODE
-  Serial.print("*** DEBUG : free ram = ");
-  Serial.println(freeRam());
-  Serial.println("*** DEBUG : reset values");
+  Serial.println("*** DEBUG : reseting values");
 #endif
 
   resetValues();          // blanks all the values of the sensor handlers
@@ -256,25 +264,18 @@ void loop()
   Serial.println(" ;");
   
   Serial.print("*** DEBUG : message = ");
-  Serial.println(messageBuffer);
+  Serial.println(messageHdl.getMessage());
   Serial.print("*** DEBUG : scheme = ");
-  Serial.println(messageScheme);
-#endif
-
-  messageHdl.compress();      // compresses the message before sending
-
-#ifdef DEBUG_MODE
-  Serial.print("*** DEBUG : compressed = ");
-  Serial.println(messageBuffer);
+  Serial.println(messageHdl.getScheme());
 #endif
 
                                 // if we are sending the first message
   if (firstIteration) {
-    store.send(messageScheme);  // send the scheme (format) first !
+    store.send(messageHdl.getScheme());  // send the scheme (format) first !
     firstIteration = false;
   }
   
-  store.send(messageBuffer);   // sends data into the communication file and queue for transfer
+  store.send(messageHdl.getMessage());   // sends data into the communication file and queue for transfer
                                // WARNING : introduces a 100ms delay
 }
 
