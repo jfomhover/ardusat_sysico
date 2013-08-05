@@ -8,3 +8,5 @@ Considering the ArduSat platform, our objective is just to gather as much sensor
 - experiments_dev : where the development version of the experiments are stored (can be opened with Arduino IDE + libraries)
 - experiments_integrated : where "integrated" version of the experiments are stored (can be uploaded to the ArduSat control center)
 - libraries : specific libraries developed to support our experiments
+- testing : code for testing specific sensors or libraries
+- datasets : sample sets of data captures by experiments / testing code
