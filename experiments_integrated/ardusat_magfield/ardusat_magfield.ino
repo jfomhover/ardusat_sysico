@@ -21,9 +21,7 @@
 // *** CONFIG ***
 // **************
 
-//#define DEBUG_MODE      // prints the values in readable format via Serial
-#define COMM_EMULATION  // to emulate the Comm via SAT_AppStorageEMU, prints out (via Serial) the results of the data sent
-#define POOL_DELAY  5000  // data is pooled every 12 seconds
+#define POOL_DELAY  30000  // data is pooled every 12 seconds
                      // note : this makes approx 480 data points for 1 earth rotation
                      // and 1,12 rotations before reaching the 10kb limit for data
 #define MESSAGE_BUFFER_SIZE  32  // only 32 chars needed in our case
@@ -37,36 +35,20 @@
 #include <nanosat_message.h>
 #include <I2C_add.h>
 
-#ifdef COMM_EMULATION
-#include <SAT_AppStorageEMU.h>
-#else
 #include <EEPROM.h>
 #include <OnboardCommLayer.h>
 #include <SAT_AppStorage.h>
-#endif /* COMM_EMULATION */
 
-#ifdef MAG_EMULATION
-#include <SAT_MagEMU.h>
-#else
 #include <SAT_Mag.h>
-#endif /* MAG_EMULATION */
 
 
 // ************************
 // *** API CONSTRUCTORS ***
 // ************************
 
-#ifdef MAG_EMULATION
-SAT_MagEMU mag;
-#else
 SAT_Mag mag;
-#endif
 
-#ifdef COMM_EMULATION
-SAT_AppStorageEMU store;
-#else
 SAT_AppStorage store;
-#endif
 
 
 // ********************************
@@ -84,7 +66,7 @@ void poolValues() {
   values[0] = mag.readx();
   values[1] = mag.ready();
   values[2] = mag.readz();
-  id = t_id - previousMillis - POOL_DELAY;
+  id = t_id - previousMillis;
   previousMillis = t_id;
 }
 
@@ -141,21 +123,6 @@ void loop()
 
   poolValues();   // pool the values needed
   prepareBuffer();   // prepare the buffer for sending the message
-
-#ifdef DEBUG_MODE
-  Serial.print("*** DEBUG :");
-  Serial.print("\tid=");
-  Serial.print(id);
-  Serial.print("\tX=");
-  Serial.print(values[0]);
-  Serial.print("\tY=");
-  Serial.print(values[1]);
-  Serial.print("\tZ=");
-  Serial.println(values[2]);
-  
-  Serial.print("MESSAGE: ");
-  Serial.println(messageBuffer);
-#endif
 
   store.send(messageBuffer);   // sends data into the communication file and queue for transfer
                                // WARNING : introduces a 100ms delay

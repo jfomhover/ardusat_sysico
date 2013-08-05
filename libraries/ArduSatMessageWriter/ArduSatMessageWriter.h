@@ -12,15 +12,19 @@ public:
 #define MESSAGE_FORMAT_HEX     1    // full HEX
 #define MESSAGE_FORMAT_XHEX    2    // compressed HEX
 
+  void setFormat(int format);
   void zero();                      // resets the handler, put all buffer and scheme chars to '\0'
   char * getScheme();               // returns the "scheme" of the message (format)
   char * getMessage();              // returns the message
 
+  int add(int8_t val);            // add a value of this type to the message
+  int add(uint8_t val);            // add a value of this type to the message
   int add(int16_t val);            // add a value of this type to the message
-  int add(long val);               // add a value of this type to the message
-  int add(float val, int minNumber, int precision);              // add a value of this type to the message
   int add(uint16_t val);           // add a value of this type to the message
-  int add(long val, int bytes);     // add a value of this type to the message
+  int add(int32_t val);               // add a value of this type to the message
+  int add(uint32_t val);               // add a value of this type to the message
+  int add(float val, int minNumber, int precision);              // add a value of this type to the message
+  int add(int32_t val, int bytes);     // add a value of this type to the message
 
                                    // below : return values for the "add" functions
 #define MESSAGE_ADD_OK  0
@@ -39,4 +43,14 @@ private:
   int schemeLen,schemeMaxLen;
   char * message;
 };
+
+#define MESSAGE_SCHEME_INT8	'b'
+#define MESSAGE_SCHEME_UINT8	'B'
+#define MESSAGE_SCHEME_INT16	'I'
+#define MESSAGE_SCHEME_UINT16	'U'
+#define MESSAGE_SCHEME_FLOAT	'F'
+#define MESSAGE_SCHEME_INT24	'E'
+#define MESSAGE_SCHEME_INT32	'l'
+#define MESSAGE_SCHEME_UINT32	'L'
+
 #endif /* ArduSatMessageWriter_H */

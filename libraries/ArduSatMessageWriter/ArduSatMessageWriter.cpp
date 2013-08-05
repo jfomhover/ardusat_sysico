@@ -14,6 +14,10 @@ ArduSatMessageWriter::ArduSatMessageWriter(char * charBuffer, int bufferLength, 
   messageType = format;
 };
 
+void ArduSatMessageWriter::setFormat(int format) {
+	messageType = format;
+};
+
 void ArduSatMessageWriter::zero() {
   for (int i=0; i<bufferLen; i++)
     buffer[i]='\0';
@@ -34,6 +38,51 @@ char * ArduSatMessageWriter::getScheme() {
 };
 
 
+// *** PRINTING SIGNED INT 8 BITS VALUES ***
+int ArduSatMessageWriter::add(int8_t val) {
+  int ret = canAdd(2);
+  if (ret != MESSAGE_ADD_OK)
+    return(ret);
+
+  int8_t t_val = val;
+  scheme[schemeLen++] = MESSAGE_SCHEME_INT8;
+  
+  switch(messageType) {
+    case MESSAGE_FORMAT_TEXT:
+      sprintf(buffer+bufferLen, "%i;", t_val);  bufferLen=strlen(buffer);
+      break;
+    case MESSAGE_FORMAT_HEX:
+    case MESSAGE_FORMAT_XHEX:
+    default:
+      sprintf(buffer+bufferLen, "%02X", (byte)t_val);  bufferLen+=2;      
+      break;
+  };
+  
+  return(MESSAGE_ADD_OK);
+};
+
+// *** PRINTING UNSIGNED INT 8 BITS VALUES ***
+int ArduSatMessageWriter::add(uint8_t val) {
+  int ret = canAdd(2);
+  if (ret != MESSAGE_ADD_OK)
+    return(ret);
+    
+  scheme[schemeLen++] = MESSAGE_SCHEME_UINT8;
+  
+  switch(messageType) {
+    case MESSAGE_FORMAT_TEXT:
+      sprintf(buffer+bufferLen, "%u;", val);  bufferLen=strlen(buffer);
+      break;
+    case MESSAGE_FORMAT_HEX:
+    case MESSAGE_FORMAT_XHEX:
+    default:
+      sprintf(buffer+bufferLen, "%02X", (byte)val);  bufferLen+=2;      
+      break;
+  };
+
+  return(MESSAGE_ADD_OK);
+};
+
 // *** PRINTING SIGNED INT 16 BITS VALUES ***
 int ArduSatMessageWriter::add(int16_t val) {
   int ret = canAdd(4);
@@ -42,7 +91,7 @@ int ArduSatMessageWriter::add(int16_t val) {
 
   int16_t t_val = val;
   t_val = t_val & 0x0000FFFF;
-  scheme[schemeLen++] = 'I';
+  scheme[schemeLen++] = MESSAGE_SCHEME_INT16;
   
   switch(messageType) {
     case MESSAGE_FORMAT_TEXT:
@@ -51,7 +100,7 @@ int ArduSatMessageWriter::add(int16_t val) {
     case MESSAGE_FORMAT_HEX:
     case MESSAGE_FORMAT_XHEX:
     default:
-      sprintf(buffer+bufferLen, "%04X", val);  bufferLen+=4;      
+      sprintf(buffer+bufferLen, "%04X", (uint16_t)val);  bufferLen+=4;      
       break;
   };
   
@@ -64,16 +113,16 @@ int ArduSatMessageWriter::add(uint16_t val) {
   if (ret != MESSAGE_ADD_OK)
     return(ret);
     
-  scheme[schemeLen++] = 'U';
+  scheme[schemeLen++] = MESSAGE_SCHEME_UINT16;
   
   switch(messageType) {
     case MESSAGE_FORMAT_TEXT:
-      sprintf(buffer+bufferLen, "%i;", val);  bufferLen=strlen(buffer);
+      sprintf(buffer+bufferLen, "%u;", val);  bufferLen=strlen(buffer);
       break;
     case MESSAGE_FORMAT_HEX:
     case MESSAGE_FORMAT_XHEX:
     default:
-      sprintf(buffer+bufferLen, "%04X", val);  bufferLen+=4;      
+      sprintf(buffer+bufferLen, "%04X", (uint16_t)val);  bufferLen+=4;      
       break;
   };
 
@@ -81,12 +130,12 @@ int ArduSatMessageWriter::add(uint16_t val) {
 };
 
 // *** PRINTING LONG INT VALUES ***
-int ArduSatMessageWriter::add(long val) {
+int ArduSatMessageWriter::add(int32_t val) {
   int ret = canAdd(8);
   if (ret != MESSAGE_ADD_OK)
     return(ret);
 
-  scheme[schemeLen++] = 'L';
+  scheme[schemeLen++] = MESSAGE_SCHEME_INT32;
   
   switch(messageType) {
     case MESSAGE_FORMAT_TEXT:
@@ -107,6 +156,31 @@ int ArduSatMessageWriter::add(long val) {
   return(MESSAGE_ADD_OK);
 };
 
+int ArduSatMessageWriter::add(uint32_t val) {
+  int ret = canAdd(8);
+  if (ret != MESSAGE_ADD_OK)
+    return(ret);
+
+  scheme[schemeLen++] = MESSAGE_SCHEME_UINT32;
+  
+  switch(messageType) {
+    case MESSAGE_FORMAT_TEXT:
+      sprintf(buffer+bufferLen, "%lu;", val);  bufferLen=strlen(buffer);
+      break;
+    case MESSAGE_FORMAT_HEX:
+    case MESSAGE_FORMAT_XHEX:
+    default:
+      long l_var = val;
+      byte byte_array[4];
+      memcpy(byte_array,&l_var,4);
+      for (int i=3; i>=0; i--) {
+        sprintf(buffer+bufferLen, "%02X", byte_array[i]);  bufferLen+=2;
+      }
+      break;
+  };  
+
+  return(MESSAGE_ADD_OK);
+};
 
 // *** PRINTING FLOAT VALUES ***
 int ArduSatMessageWriter::add(float val, int minNumber, int precision) {
@@ -114,7 +188,7 @@ int ArduSatMessageWriter::add(float val, int minNumber, int precision) {
   if (ret != MESSAGE_ADD_OK)
     return(ret);
 
-  scheme[schemeLen++] = 'F';
+  scheme[schemeLen++] = MESSAGE_SCHEME_FLOAT;
 
   switch(messageType) {
     case MESSAGE_FORMAT_TEXT:
@@ -143,30 +217,31 @@ int ArduSatMessageWriter::add(long val, int bytes) {
   int t_val = val;
   if (ret != MESSAGE_ADD_OK)
     return(ret);
-    
-  if (messageType == MESSAGE_FORMAT_TEXT) {
-    // TODO: reducing by mask ?
-    scheme[schemeLen++] = 'L';
-    sprintf(buffer+bufferLen, "%li;", val);  bufferLen=strlen(buffer);
-    return(MESSAGE_ADD_OK);
-  }
 
   long l_var = val;
   byte byte_array[4];
   memcpy(byte_array,&l_var,4);
+    
+  if (messageType == MESSAGE_FORMAT_TEXT) {
+    // TODO: reducing by mask ?
+    scheme[schemeLen++] = MESSAGE_SCHEME_INT32;
+    sprintf(buffer+bufferLen, "%li;", val); bufferLen=strlen(buffer);
+    return(MESSAGE_ADD_OK);
+  }
+
   
   switch(bytes) {
     case 1:
-      scheme[schemeLen++] = 'B';
+      scheme[schemeLen++] = MESSAGE_SCHEME_INT8;
       break;
     case 2:
-      scheme[schemeLen++] = 'I';
+      scheme[schemeLen++] = MESSAGE_SCHEME_INT16;
       break;
     case 3:
-      scheme[schemeLen++] = 'E';
+      scheme[schemeLen++] = MESSAGE_SCHEME_INT24;
       break;
     case 4:
-      scheme[schemeLen++] = 'L';
+      scheme[schemeLen++] = MESSAGE_SCHEME_INT32;
       break;
     default:
       return(MESSAGE_ADD_ERROR);
@@ -232,4 +307,3 @@ void ArduSatMessageWriter::compress() {
   replaceSuccessive('F',compressionMatrixEff);
   replaceSuccessive('0',compressionMatrixZero);
 };
-
