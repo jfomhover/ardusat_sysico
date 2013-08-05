@@ -23,9 +23,9 @@
 
 //#define DEBUG_MODE      // prints the values in readable format via Serial
 #define COMM_EMULATION  // to emulate the Comm via SAT_AppStorageEMU, prints out (via Serial) the results of the data sent
-#define POOL_DELAY  5000  // data is pooled every 12 seconds
-                     // note : this makes approx 480 data points for 1 earth rotation
-                     // and 1,12 rotations before reaching the 10kb limit for data
+#define POOL_DELAY  30000  // data is pooled every 30 seconds
+                     // note : this makes approx 192 data points for 1 earth rotation
+                     // and 3.10 rotations before reaching the 10kb limit for data
 #define MESSAGE_BUFFER_SIZE  32  // only 32 chars needed in our case
                                  // max length message : #4294967296;-32768;-32768;-32768
 
