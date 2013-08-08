@@ -31,9 +31,9 @@
 // *** CONFIG ***
 // **************
 
-#define DEBUG_MODE              // prints the values in readable format via Serial
+//#define DEBUG_MODE              // prints the values in readable format via Serial
 #define DEBUG_LED   9           // the pin of the led that will blink at each pool of the sensors
-//#define COMM_EMULATION        // to emulate the Comm via SAT_AppStorageEMU, prints out (via Serial) the results of the data that is sent through
+#define COMM_EMULATION        // to emulate the Comm via SAT_AppStorageEMU, prints out (via Serial) the results of the data that is sent through
 #define PULL_DELAY  2000        // data is pooled every PULL_DELAY seconds
 //#define LEGACY_SDK              // use sdk BEFORE the integration of I2CComm, on Aug. 7th 2013
 
@@ -154,8 +154,13 @@ void setupSensors() {
 //    while (1);
   }
 #else
+#ifndef LEGACY_SDK
+  tsl_one.begin();
+  tsl_two.begin();
+#else  // LEGACY_SDK
   tsl_one.begin(1);
   tsl_two.begin(1);
+#endif // LEGACY_SDK
 #endif // DEBUG_MODE
 
   //tsl.setGain(SAT_Lum_GAIN_0X);         // set no gain (for bright situtations)
