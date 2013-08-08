@@ -297,9 +297,9 @@ void printPreBufferInt(char * buf, int val) {
   buf[strlen(buf)]=';';
 }
 
-void printPreBufferInt(char * buf, unsigned int val) {
+void printPreBufferUInt(char * buf, unsigned int val) {
   memset(buf, 0x00, 16);
-  uitoa(val, buf, 10);
+  utoa(val, buf, 10);
   buf[strlen(buf)]=';';
 }
 
@@ -349,6 +349,9 @@ void prepareMessage() {
   PRINTINT(messagePreBuffer, data.infrat_value);
   if (!commitPreMessage())  return;
 #endif // POOL_INFRATHERM  
+
+  if ((bufferLen + 2) < CHARBUFFER_SPACE)
+    messageBuffer[bufferLen++]='\n';
 }
 #endif  // OUTPUT_TEXTCSV
 
