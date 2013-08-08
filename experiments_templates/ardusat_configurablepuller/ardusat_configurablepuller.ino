@@ -31,7 +31,7 @@
 // *** CONFIG ***
 // **************
 
-//#define DEBUG_MODE              // prints the values in readable format via Serial
+#define DEBUG_MODE              // prints the values in readable format via Serial
 #define DEBUG_LED   9           // the pin of the led that will blink at each pool of the sensors
 #define COMM_EMULATION        // to emulate the Comm via SAT_AppStorageEMU, prints out (via Serial) the results of the data that is sent through
 #define PULL_DELAY  2000        // data is pooled every PULL_DELAY seconds
@@ -289,6 +289,7 @@ boolean commitPreMessage() {
 //#define PRINTINT(buf,val)  { memset(buf, 0x00, 16); itoa(val, buf, 10); buf[strlen(buf)]=';'; }          // using itoa instead of sprintf gets a 1.5ko smaller prog ^^
 //#define PRINTFLOAT(buf,val)  { memset(buf, 0x00, 16); dtostrf(val, 3, 2, buf); buf[strlen(buf)]=';'; }
 #define PRINTINT(buf,val)  printPreBufferInt(buf,val)
+#define PRINTUINT(buf,val)  printPreBufferUInt(buf,val)
 
 void printPreBufferInt(char * buf, int val) {
   memset(buf, 0x00, 16);
@@ -296,22 +297,28 @@ void printPreBufferInt(char * buf, int val) {
   buf[strlen(buf)]=';';
 }
 
+void printPreBufferInt(char * buf, unsigned int val) {
+  memset(buf, 0x00, 16);
+  uitoa(val, buf, 10);
+  buf[strlen(buf)]=';';
+}
+
 void prepareMessage() {
   memset(messageBuffer, 0, CHARBUFFER_SPACE);
   bufferLen = 0;
   
-  PRINTINT(messagePreBuffer, data.ms);
+  PRINTUINT(messagePreBuffer, data.ms);
   if (!commitPreMessage())  return;
 
       // BELOW, ADD THE POOLING FUNCTIONS YOU NEED
 #ifdef POOL_SAT_LUM
-  PRINTINT(messagePreBuffer, data.tsl_one_values[0]);
+  PRINTUINT(messagePreBuffer, data.tsl_one_values[0]);
   if (!commitPreMessage())  return;
-  PRINTINT(messagePreBuffer, data.tsl_one_values[1]);
+  PRINTUINT(messagePreBuffer, data.tsl_one_values[1]);
   if (!commitPreMessage())  return;
-  PRINTINT(messagePreBuffer, data.tsl_two_values[0]);
+  PRINTUINT(messagePreBuffer, data.tsl_two_values[0]);
   if (!commitPreMessage())  return;
-  PRINTINT(messagePreBuffer, data.tsl_two_values[1]);
+  PRINTUINT(messagePreBuffer, data.tsl_two_values[1]);
   if (!commitPreMessage())  return;
 #endif //POOL_SAT_LUM
 
@@ -419,10 +426,11 @@ void setup()
   Serial.begin(9600);  // start serial for output (fast)
   pinMode(DEBUG_LED,OUTPUT);
   digitalWrite(DEBUG_LED, LOW);
+#endif // DEBUG_MODE
 #if defined(COMM_EMULATION)
+  Serial.begin(9600);  // start serial for output (fast)
   store.debugMode = true;
 #endif
-#endif // DEBUG_MODE
 
   Wire.begin();        // join i2c bus (address optional for master)
 
