@@ -1,0 +1,1226 @@
+Found tsl_one
+No tsl_two
+*** DEBUG :	ms=22	visible_1=888	IR_1=745	visible_2=0	IR_2=0	X=-723	Y=971	Z=807	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 22;888;745;0;0;-723;971;807;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=604) node_addr=42 prefix=AB len=24 type=0 totalLen=24
+*** SAT_AppStorageEMU::copyAndSend() : (ms=761) node_addr=42 prefix=AB len=15 type=0 totalLen=39
+*** DEBUG :	ms=2023	visible_1=886	IR_1=742	visible_2=0	IR_2=0	X=-711	Y=969	Z=806	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 2023;886;742;0;0;-711;969;806;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=2609) node_addr=42 prefix=AB len=24 type=0 totalLen=63
+*** SAT_AppStorageEMU::copyAndSend() : (ms=2767) node_addr=42 prefix=AB len=17 type=0 totalLen=80
+*** DEBUG :	ms=4023	visible_1=885	IR_1=741	visible_2=0	IR_2=0	X=-715	Y=972	Z=801	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 4023;885;741;0;0;-715;972;801;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=4609) node_addr=42 prefix=AB len=24 type=0 totalLen=104
+*** SAT_AppStorageEMU::copyAndSend() : (ms=4768) node_addr=42 prefix=AB len=17 type=0 totalLen=121
+*** DEBUG :	ms=6023	visible_1=885	IR_1=740	visible_2=0	IR_2=0	X=-717	Y=971	Z=792	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 6023;885;740;0;0;-717;971;792;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=6608) node_addr=42 prefix=AB len=24 type=0 totalLen=145
+*** SAT_AppStorageEMU::copyAndSend() : (ms=6768) node_addr=42 prefix=AB len=17 type=0 totalLen=162
+*** DEBUG :	ms=8023	visible_1=884	IR_1=739	visible_2=0	IR_2=0	X=-715	Y=974	Z=786	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 8023;884;739;0;0;-715;974;786;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=8608) node_addr=42 prefix=AB len=24 type=0 totalLen=186
+*** SAT_AppStorageEMU::copyAndSend() : (ms=8768) node_addr=42 prefix=AB len=17 type=0 totalLen=203
+*** DEBUG :	ms=10022	visible_1=882	IR_1=738	visible_2=0	IR_2=0	X=-717	Y=976	Z=797	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 10022;882;738;0;0;-717;976;797;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=10610) node_addr=42 prefix=AB len=24 type=0 totalLen=227
+*** SAT_AppStorageEMU::copyAndSend() : (ms=10771) node_addr=42 prefix=AB len=18 type=0 totalLen=245
+*** DEBUG :	ms=12022	visible_1=882	IR_1=737	visible_2=0	IR_2=0	X=-715	Y=977	Z=800	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 12022;882;737;0;0;-715;977;800;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=12610) node_addr=42 prefix=AB len=24 type=0 totalLen=269
+*** SAT_AppStorageEMU::copyAndSend() : (ms=12771) node_addr=42 prefix=AB len=18 type=0 totalLen=287
+*** DEBUG :	ms=14021	visible_1=881	IR_1=734	visible_2=0	IR_2=0	X=-713	Y=970	Z=810	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 14021;881;734;0;0;-713;970;810;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=14609) node_addr=42 prefix=AB len=24 type=0 totalLen=311
+*** SAT_AppStorageEMU::copyAndSend() : (ms=14770) node_addr=42 prefix=AB len=18 type=0 totalLen=329
+*** DEBUG :	ms=16021	visible_1=891	IR_1=741	visible_2=0	IR_2=0	X=-717	Y=979	Z=819	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 16021;891;741;0;0;-717;979;819;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=16609) node_addr=42 prefix=AB len=24 type=0 totalLen=353
+*** SAT_AppStorageEMU::copyAndSend() : (ms=16770) node_addr=42 prefix=AB len=18 type=0 totalLen=371
+*** DEBUG :	ms=18021	visible_1=888	IR_1=740	visible_2=0	IR_2=0	X=-713	Y=976	Z=797	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 18021;888;740;0;0;-713;976;797;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=18609) node_addr=42 prefix=AB len=24 type=0 totalLen=395
+*** SAT_AppStorageEMU::copyAndSend() : (ms=18769) node_addr=42 prefix=AB len=18 type=0 totalLen=413
+*** DEBUG :	ms=20020	visible_1=889	IR_1=739	visible_2=0	IR_2=0	X=-720	Y=976	Z=801	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 20020;889;739;0;0;-720;976;801;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=20608) node_addr=42 prefix=AB len=24 type=0 totalLen=437
+*** SAT_AppStorageEMU::copyAndSend() : (ms=20768) node_addr=42 prefix=AB len=18 type=0 totalLen=455
+*** DEBUG :	ms=22020	visible_1=889	IR_1=739	visible_2=0	IR_2=0	X=-712	Y=979	Z=818	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 22020;889;739;0;0;-712;979;818;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=22608) node_addr=42 prefix=AB len=24 type=0 totalLen=479
+*** SAT_AppStorageEMU::copyAndSend() : (ms=22769) node_addr=42 prefix=AB len=18 type=0 totalLen=497
+*** DEBUG :	ms=24020	visible_1=886	IR_1=738	visible_2=0	IR_2=0	X=-716	Y=975	Z=793	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 24020;886;738;0;0;-716;975;793;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=24608) node_addr=42 prefix=AB len=24 type=0 totalLen=521
+*** SAT_AppStorageEMU::copyAndSend() : (ms=24769) node_addr=42 prefix=AB len=18 type=0 totalLen=539
+*** DEBUG :	ms=26019	visible_1=885	IR_1=736	visible_2=0	IR_2=0	X=-718	Y=972	Z=793	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 26019;885;736;0;0;-718;972;793;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=26607) node_addr=42 prefix=AB len=24 type=0 totalLen=563
+*** SAT_AppStorageEMU::copyAndSend() : (ms=26768) node_addr=42 prefix=AB len=18 type=0 totalLen=581
+*** DEBUG :	ms=28019	visible_1=884	IR_1=735	visible_2=0	IR_2=0	X=-716	Y=984	Z=786	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 28019;884;735;0;0;-716;984;786;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=28607) node_addr=42 prefix=AB len=24 type=0 totalLen=605
+*** SAT_AppStorageEMU::copyAndSend() : (ms=28768) node_addr=42 prefix=AB len=18 type=0 totalLen=623
+*** DEBUG :	ms=30019	visible_1=883	IR_1=734	visible_2=0	IR_2=0	X=-717	Y=976	Z=794	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 30019;883;734;0;0;-717;976;794;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=30607) node_addr=42 prefix=AB len=24 type=0 totalLen=647
+*** SAT_AppStorageEMU::copyAndSend() : (ms=30768) node_addr=42 prefix=AB len=18 type=0 totalLen=665
+*** DEBUG :	ms=32019	visible_1=880	IR_1=732	visible_2=0	IR_2=0	X=-717	Y=979	Z=798	temp_1=411	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 32019;880;732;0;0;-717;979;798;411;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=32607) node_addr=42 prefix=AB len=24 type=0 totalLen=689
+*** SAT_AppStorageEMU::copyAndSend() : (ms=32768) node_addr=42 prefix=AB len=18 type=0 totalLen=707
+*** DEBUG :	ms=34019	visible_1=878	IR_1=730	visible_2=0	IR_2=0	X=-720	Y=973	Z=809	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 34019;878;730;0;0;-720;973;809;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=34607) node_addr=42 prefix=AB len=24 type=0 totalLen=731
+*** SAT_AppStorageEMU::copyAndSend() : (ms=34767) node_addr=42 prefix=AB len=18 type=0 totalLen=749
+*** DEBUG :	ms=36019	visible_1=873	IR_1=728	visible_2=0	IR_2=0	X=-716	Y=982	Z=785	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 36019;873;728;0;0;-716;982;785;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=36606) node_addr=42 prefix=AB len=24 type=0 totalLen=773
+*** SAT_AppStorageEMU::copyAndSend() : (ms=36767) node_addr=42 prefix=AB len=18 type=0 totalLen=791
+*** DEBUG :	ms=38019	visible_1=871	IR_1=726	visible_2=0	IR_2=0	X=-711	Y=979	Z=789	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 38019;871;726;0;0;-711;979;789;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=38606) node_addr=42 prefix=AB len=24 type=0 totalLen=815
+*** SAT_AppStorageEMU::copyAndSend() : (ms=38767) node_addr=42 prefix=AB len=18 type=0 totalLen=833
+*** DEBUG :	ms=40018	visible_1=870	IR_1=725	visible_2=0	IR_2=0	X=-715	Y=974	Z=799	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 40018;870;725;0;0;-715;974;799;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=40607) node_addr=42 prefix=AB len=24 type=0 totalLen=857
+*** SAT_AppStorageEMU::copyAndSend() : (ms=40768) node_addr=42 prefix=AB len=18 type=0 totalLen=875
+*** DEBUG :	ms=42018	visible_1=867	IR_1=724	visible_2=0	IR_2=0	X=-715	Y=975	Z=788	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 42018;867;724;0;0;-715;975;788;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=42606) node_addr=42 prefix=AB len=24 type=0 totalLen=899
+*** SAT_AppStorageEMU::copyAndSend() : (ms=42767) node_addr=42 prefix=AB len=18 type=0 totalLen=917
+*** DEBUG :	ms=44018	visible_1=867	IR_1=723	visible_2=0	IR_2=0	X=-716	Y=973	Z=806	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 44018;867;723;0;0;-716;973;806;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=44606) node_addr=42 prefix=AB len=24 type=0 totalLen=941
+*** SAT_AppStorageEMU::copyAndSend() : (ms=44767) node_addr=42 prefix=AB len=18 type=0 totalLen=959
+*** DEBUG :	ms=46018	visible_1=864	IR_1=721	visible_2=0	IR_2=0	X=-713	Y=973	Z=803	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 46018;864;721;0;0;-713;973;803;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=46606) node_addr=42 prefix=AB len=24 type=0 totalLen=983
+*** SAT_AppStorageEMU::copyAndSend() : (ms=46767) node_addr=42 prefix=AB len=18 type=0 totalLen=1001
+*** DEBUG :	ms=48018	visible_1=863	IR_1=719	visible_2=0	IR_2=0	X=-712	Y=974	Z=798	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 48018;863;719;0;0;-712;974;798;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=48606) node_addr=42 prefix=AB len=24 type=0 totalLen=1025
+*** SAT_AppStorageEMU::copyAndSend() : (ms=48768) node_addr=42 prefix=AB len=18 type=0 totalLen=1043
+*** DEBUG :	ms=50018	visible_1=864	IR_1=719	visible_2=0	IR_2=0	X=-710	Y=972	Z=806	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 50018;864;719;0;0;-710;972;806;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=50606) node_addr=42 prefix=AB len=24 type=0 totalLen=1067
+*** SAT_AppStorageEMU::copyAndSend() : (ms=50767) node_addr=42 prefix=AB len=18 type=0 totalLen=1085
+*** DEBUG :	ms=52018	visible_1=864	IR_1=719	visible_2=0	IR_2=0	X=-716	Y=972	Z=803	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 52018;864;719;0;0;-716;972;803;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=52605) node_addr=42 prefix=AB len=24 type=0 totalLen=1109
+*** SAT_AppStorageEMU::copyAndSend() : (ms=52767) node_addr=42 prefix=AB len=18 type=0 totalLen=1127
+*** DEBUG :	ms=54019	visible_1=864	IR_1=717	visible_2=0	IR_2=0	X=-716	Y=975	Z=806	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 54019;864;717;0;0;-716;975;806;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=54606) node_addr=42 prefix=AB len=24 type=0 totalLen=1151
+*** SAT_AppStorageEMU::copyAndSend() : (ms=54768) node_addr=42 prefix=AB len=18 type=0 totalLen=1169
+*** DEBUG :	ms=56019	visible_1=862	IR_1=715	visible_2=0	IR_2=0	X=-718	Y=974	Z=807	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 56019;862;715;0;0;-718;974;807;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=56607) node_addr=42 prefix=AB len=24 type=0 totalLen=1193
+*** SAT_AppStorageEMU::copyAndSend() : (ms=56769) node_addr=42 prefix=AB len=18 type=0 totalLen=1211
+*** DEBUG :	ms=58019	visible_1=863	IR_1=716	visible_2=0	IR_2=0	X=-716	Y=980	Z=791	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 58019;863;716;0;0;-716;980;791;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=58607) node_addr=42 prefix=AB len=24 type=0 totalLen=1235
+*** SAT_AppStorageEMU::copyAndSend() : (ms=58769) node_addr=42 prefix=AB len=18 type=0 totalLen=1253
+*** DEBUG :	ms=60019	visible_1=863	IR_1=716	visible_2=0	IR_2=0	X=-717	Y=973	Z=807	temp_1=411	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 60019;863;716;0;0;-717;973;807;411;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=60607) node_addr=42 prefix=AB len=24 type=0 totalLen=1277
+*** SAT_AppStorageEMU::copyAndSend() : (ms=60769) node_addr=42 prefix=AB len=18 type=0 totalLen=1295
+*** DEBUG :	ms=62019	visible_1=864	IR_1=715	visible_2=0	IR_2=0	X=-711	Y=975	Z=789	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 62019;864;715;0;0;-711;975;789;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=62607) node_addr=42 prefix=AB len=24 type=0 totalLen=1319
+*** SAT_AppStorageEMU::copyAndSend() : (ms=62769) node_addr=42 prefix=AB len=18 type=0 totalLen=1337
+*** DEBUG :	ms=64019	visible_1=865	IR_1=715	visible_2=0	IR_2=0	X=-721	Y=976	Z=815	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 64019;865;715;0;0;-721;976;815;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=64607) node_addr=42 prefix=AB len=24 type=0 totalLen=1361
+*** SAT_AppStorageEMU::copyAndSend() : (ms=64769) node_addr=42 prefix=AB len=18 type=0 totalLen=1379
+*** DEBUG :	ms=66019	visible_1=862	IR_1=708	visible_2=0	IR_2=0	X=-715	Y=983	Z=792	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 483;862;708;0;0;-715;983;792;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=66605) node_addr=42 prefix=AB len=24 type=0 totalLen=1403
+*** SAT_AppStorageEMU::copyAndSend() : (ms=66766) node_addr=42 prefix=AB len=16 type=0 totalLen=1419
+*** DEBUG :	ms=68018	visible_1=864	IR_1=713	visible_2=0	IR_2=0	X=-714	Y=978	Z=802	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 2482;864;713;0;0;-714;978;802;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=68605) node_addr=42 prefix=AB len=24 type=0 totalLen=1443
+*** SAT_AppStorageEMU::copyAndSend() : (ms=68767) node_addr=42 prefix=AB len=17 type=0 totalLen=1460
+*** DEBUG :	ms=70019	visible_1=862	IR_1=711	visible_2=0	IR_2=0	X=-717	Y=974	Z=810	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 4483;862;711;0;0;-717;974;810;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=70605) node_addr=42 prefix=AB len=24 type=0 totalLen=1484
+*** SAT_AppStorageEMU::copyAndSend() : (ms=70767) node_addr=42 prefix=AB len=17 type=0 totalLen=1501
+*** DEBUG :	ms=72019	visible_1=861	IR_1=710	visible_2=0	IR_2=0	X=-717	Y=972	Z=807	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 6483;861;710;0;0;-717;972;807;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=72606) node_addr=42 prefix=AB len=24 type=0 totalLen=1525
+*** SAT_AppStorageEMU::copyAndSend() : (ms=72768) node_addr=42 prefix=AB len=17 type=0 totalLen=1542
+*** DEBUG :	ms=74019	visible_1=860	IR_1=708	visible_2=0	IR_2=0	X=-713	Y=975	Z=813	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 8483;860;708;0;0;-713;975;813;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=74606) node_addr=42 prefix=AB len=24 type=0 totalLen=1566
+*** SAT_AppStorageEMU::copyAndSend() : (ms=74768) node_addr=42 prefix=AB len=17 type=0 totalLen=1583
+*** DEBUG :	ms=76019	visible_1=850	IR_1=701	visible_2=0	IR_2=0	X=-710	Y=979	Z=817	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 10483;850;701;0;0;-710;979;817;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=76607) node_addr=42 prefix=AB len=24 type=0 totalLen=1607
+*** SAT_AppStorageEMU::copyAndSend() : (ms=76769) node_addr=42 prefix=AB len=18 type=0 totalLen=1625
+*** DEBUG :	ms=78019	visible_1=855	IR_1=702	visible_2=0	IR_2=0	X=-714	Y=974	Z=795	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 12483;855;702;0;0;-714;974;795;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=78607) node_addr=42 prefix=AB len=24 type=0 totalLen=1649
+*** SAT_AppStorageEMU::copyAndSend() : (ms=78769) node_addr=42 prefix=AB len=18 type=0 totalLen=1667
+*** DEBUG :	ms=80019	visible_1=857	IR_1=705	visible_2=0	IR_2=0	X=-715	Y=972	Z=811	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 14483;857;705;0;0;-715;972;811;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=80607) node_addr=42 prefix=AB len=24 type=0 totalLen=1691
+*** SAT_AppStorageEMU::copyAndSend() : (ms=80769) node_addr=42 prefix=AB len=18 type=0 totalLen=1709
+*** DEBUG :	ms=82019	visible_1=856	IR_1=704	visible_2=0	IR_2=0	X=-717	Y=979	Z=806	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 16483;856;704;0;0;-717;979;806;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=82607) node_addr=42 prefix=AB len=24 type=0 totalLen=1733
+*** SAT_AppStorageEMU::copyAndSend() : (ms=82768) node_addr=42 prefix=AB len=18 type=0 totalLen=1751
+*** DEBUG :	ms=84019	visible_1=857	IR_1=705	visible_2=0	IR_2=0	X=-717	Y=976	Z=797	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 18483;857;705;0;0;-717;976;797;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=84606) node_addr=42 prefix=AB len=24 type=0 totalLen=1775
+*** SAT_AppStorageEMU::copyAndSend() : (ms=84768) node_addr=42 prefix=AB len=18 type=0 totalLen=1793
+*** DEBUG :	ms=86019	visible_1=857	IR_1=704	visible_2=0	IR_2=0	X=-720	Y=973	Z=817	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 20483;857;704;0;0;-720;973;817;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=86606) node_addr=42 prefix=AB len=24 type=0 totalLen=1817
+*** SAT_AppStorageEMU::copyAndSend() : (ms=86768) node_addr=42 prefix=AB len=18 type=0 totalLen=1835
+*** DEBUG :	ms=88019	visible_1=856	IR_1=703	visible_2=0	IR_2=0	X=-716	Y=981	Z=779	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 22483;856;703;0;0;-716;981;779;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=88607) node_addr=42 prefix=AB len=24 type=0 totalLen=1859
+*** SAT_AppStorageEMU::copyAndSend() : (ms=88769) node_addr=42 prefix=AB len=18 type=0 totalLen=1877
+*** DEBUG :	ms=90019	visible_1=857	IR_1=703	visible_2=0	IR_2=0	X=-704	Y=973	Z=800	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 24483;857;703;0;0;-704;973;800;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=90607) node_addr=42 prefix=AB len=24 type=0 totalLen=1901
+*** SAT_AppStorageEMU::copyAndSend() : (ms=90769) node_addr=42 prefix=AB len=18 type=0 totalLen=1919
+*** DEBUG :	ms=92019	visible_1=856	IR_1=701	visible_2=0	IR_2=0	X=-721	Y=978	Z=815	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 26483;856;701;0;0;-721;978;815;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=92607) node_addr=42 prefix=AB len=24 type=0 totalLen=1943
+*** SAT_AppStorageEMU::copyAndSend() : (ms=92769) node_addr=42 prefix=AB len=18 type=0 totalLen=1961
+*** DEBUG :	ms=94019	visible_1=856	IR_1=702	visible_2=0	IR_2=0	X=-714	Y=973	Z=800	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 28483;856;702;0;0;-714;973;800;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=94607) node_addr=42 prefix=AB len=24 type=0 totalLen=1985
+*** SAT_AppStorageEMU::copyAndSend() : (ms=94769) node_addr=42 prefix=AB len=18 type=0 totalLen=2003
+*** DEBUG :	ms=96019	visible_1=856	IR_1=701	visible_2=0	IR_2=0	X=-718	Y=969	Z=809	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 30483;856;701;0;0;-718;969;809;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=96607) node_addr=42 prefix=AB len=24 type=0 totalLen=2027
+*** SAT_AppStorageEMU::copyAndSend() : (ms=96769) node_addr=42 prefix=AB len=18 type=0 totalLen=2045
+*** DEBUG :	ms=98019	visible_1=855	IR_1=700	visible_2=0	IR_2=0	X=-717	Y=977	Z=803	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 32483;855;700;0;0;-717;977;803;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=98607) node_addr=42 prefix=AB len=24 type=0 totalLen=2069
+*** SAT_AppStorageEMU::copyAndSend() : (ms=98768) node_addr=42 prefix=AB len=18 type=0 totalLen=2087
+*** DEBUG :	ms=100019	visible_1=853	IR_1=699	visible_2=0	IR_2=0	X=-720	Y=979	Z=807	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 34483;853;699;0;0;-720;979;807;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=100608) node_addr=42 prefix=AB len=24 type=0 totalLen=2111
+*** SAT_AppStorageEMU::copyAndSend() : (ms=100770) node_addr=42 prefix=AB len=18 type=0 totalLen=2129
+*** DEBUG :	ms=102019	visible_1=825	IR_1=674	visible_2=0	IR_2=0	X=-714	Y=969	Z=795	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 36483;825;674;0;0;-714;969;795;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=102607) node_addr=42 prefix=AB len=24 type=0 totalLen=2153
+*** SAT_AppStorageEMU::copyAndSend() : (ms=102770) node_addr=42 prefix=AB len=18 type=0 totalLen=2171
+*** DEBUG :	ms=104019	visible_1=831	IR_1=679	visible_2=0	IR_2=0	X=-712	Y=973	Z=799	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 38483;831;679;0;0;-712;973;799;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=104608) node_addr=42 prefix=AB len=24 type=0 totalLen=2195
+*** SAT_AppStorageEMU::copyAndSend() : (ms=104771) node_addr=42 prefix=AB len=18 type=0 totalLen=2213
+*** DEBUG :	ms=106019	visible_1=830	IR_1=678	visible_2=0	IR_2=0	X=-720	Y=974	Z=793	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 40483;830;678;0;0;-720;974;793;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=106608) node_addr=42 prefix=AB len=24 type=0 totalLen=2237
+*** SAT_AppStorageEMU::copyAndSend() : (ms=106771) node_addr=42 prefix=AB len=18 type=0 totalLen=2255
+*** DEBUG :	ms=108019	visible_1=828	IR_1=676	visible_2=0	IR_2=0	X=-716	Y=976	Z=803	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 42483;828;676;0;0;-716;976;803;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=108608) node_addr=42 prefix=AB len=24 type=0 totalLen=2279
+*** SAT_AppStorageEMU::copyAndSend() : (ms=108771) node_addr=42 prefix=AB len=18 type=0 totalLen=2297
+*** DEBUG :	ms=110019	visible_1=827	IR_1=675	visible_2=0	IR_2=0	X=-718	Y=975	Z=790	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 44483;827;675;0;0;-718;975;790;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=110608) node_addr=42 prefix=AB len=24 type=0 totalLen=2321
+*** SAT_AppStorageEMU::copyAndSend() : (ms=110771) node_addr=42 prefix=AB len=18 type=0 totalLen=2339
+*** DEBUG :	ms=112019	visible_1=826	IR_1=674	visible_2=0	IR_2=0	X=-717	Y=972	Z=811	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 46483;826;674;0;0;-717;972;811;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=112608) node_addr=42 prefix=AB len=24 type=0 totalLen=2363
+*** SAT_AppStorageEMU::copyAndSend() : (ms=112771) node_addr=42 prefix=AB len=18 type=0 totalLen=2381
+*** DEBUG :	ms=114019	visible_1=827	IR_1=674	visible_2=0	IR_2=0	X=-714	Y=978	Z=808	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 48483;827;674;0;0;-714;978;808;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=114608) node_addr=42 prefix=AB len=24 type=0 totalLen=2405
+*** SAT_AppStorageEMU::copyAndSend() : (ms=114770) node_addr=42 prefix=AB len=18 type=0 totalLen=2423
+*** DEBUG :	ms=116019	visible_1=828	IR_1=675	visible_2=0	IR_2=0	X=-719	Y=971	Z=779	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 50483;828;675;0;0;-719;971;779;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=116608) node_addr=42 prefix=AB len=24 type=0 totalLen=2447
+*** SAT_AppStorageEMU::copyAndSend() : (ms=116770) node_addr=42 prefix=AB len=18 type=0 totalLen=2465
+*** DEBUG :	ms=118019	visible_1=829	IR_1=675	visible_2=0	IR_2=0	X=-718	Y=978	Z=796	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 52483;829;675;0;0;-718;978;796;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=118607) node_addr=42 prefix=AB len=24 type=0 totalLen=2489
+*** SAT_AppStorageEMU::copyAndSend() : (ms=118770) node_addr=42 prefix=AB len=18 type=0 totalLen=2507
+*** DEBUG :	ms=120019	visible_1=830	IR_1=675	visible_2=0	IR_2=0	X=-711	Y=977	Z=810	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 54483;830;675;0;0;-711;977;810;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=120608) node_addr=42 prefix=AB len=24 type=0 totalLen=2531
+*** SAT_AppStorageEMU::copyAndSend() : (ms=120771) node_addr=42 prefix=AB len=18 type=0 totalLen=2549
+*** DEBUG :	ms=122019	visible_1=831	IR_1=674	visible_2=0	IR_2=0	X=-717	Y=979	Z=803	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 56483;831;674;0;0;-717;979;803;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=122608) node_addr=42 prefix=AB len=24 type=0 totalLen=2573
+*** SAT_AppStorageEMU::copyAndSend() : (ms=122771) node_addr=42 prefix=AB len=18 type=0 totalLen=2591
+*** DEBUG :	ms=124019	visible_1=832	IR_1=675	visible_2=0	IR_2=0	X=-717	Y=977	Z=788	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 58483;832;675;0;0;-717;977;788;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=124608) node_addr=42 prefix=AB len=24 type=0 totalLen=2615
+*** SAT_AppStorageEMU::copyAndSend() : (ms=124771) node_addr=42 prefix=AB len=18 type=0 totalLen=2633
+*** DEBUG :	ms=126019	visible_1=834	IR_1=675	visible_2=0	IR_2=0	X=-716	Y=971	Z=813	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 60483;834;675;0;0;-716;971;813;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=126608) node_addr=42 prefix=AB len=24 type=0 totalLen=2657
+*** SAT_AppStorageEMU::copyAndSend() : (ms=126771) node_addr=42 prefix=AB len=18 type=0 totalLen=2675
+*** DEBUG :	ms=128019	visible_1=835	IR_1=675	visible_2=0	IR_2=0	X=-717	Y=977	Z=803	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 62483;835;675;0;0;-717;977;803;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=128608) node_addr=42 prefix=AB len=24 type=0 totalLen=2699
+*** SAT_AppStorageEMU::copyAndSend() : (ms=128771) node_addr=42 prefix=AB len=18 type=0 totalLen=2717
+*** DEBUG :	ms=130019	visible_1=835	IR_1=674	visible_2=0	IR_2=0	X=-718	Y=974	Z=809	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 64483;835;674;0;0;-718;974;809;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=130608) node_addr=42 prefix=AB len=24 type=0 totalLen=2741
+*** SAT_AppStorageEMU::copyAndSend() : (ms=130770) node_addr=42 prefix=AB len=18 type=0 totalLen=2759
+*** DEBUG :	ms=132019	visible_1=847	IR_1=684	visible_2=0	IR_2=0	X=-713	Y=977	Z=792	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 947;847;684;0;0;-713;977;792;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=132605) node_addr=42 prefix=AB len=24 type=0 totalLen=2783
+*** SAT_AppStorageEMU::copyAndSend() : (ms=132768) node_addr=42 prefix=AB len=16 type=0 totalLen=2799
+*** DEBUG :	ms=134019	visible_1=861	IR_1=694	visible_2=0	IR_2=0	X=-716	Y=976	Z=804	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 2947;861;694;0;0;-716;976;804;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=134606) node_addr=42 prefix=AB len=24 type=0 totalLen=2823
+*** SAT_AppStorageEMU::copyAndSend() : (ms=134769) node_addr=42 prefix=AB len=17 type=0 totalLen=2840
+*** DEBUG :	ms=136019	visible_1=854	IR_1=703	visible_2=0	IR_2=0	X=-717	Y=975	Z=818	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 4947;854;703;0;0;-717;975;818;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=136607) node_addr=42 prefix=AB len=24 type=0 totalLen=2864
+*** SAT_AppStorageEMU::copyAndSend() : (ms=136770) node_addr=42 prefix=AB len=17 type=0 totalLen=2881
+*** DEBUG :	ms=138019	visible_1=852	IR_1=698	visible_2=0	IR_2=0	X=-715	Y=978	Z=808	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 6947;852;698;0;0;-715;978;808;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=138607) node_addr=42 prefix=AB len=24 type=0 totalLen=2905
+*** SAT_AppStorageEMU::copyAndSend() : (ms=138770) node_addr=42 prefix=AB len=17 type=0 totalLen=2922
+*** DEBUG :	ms=140019	visible_1=856	IR_1=676	visible_2=0	IR_2=0	X=-715	Y=983	Z=812	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 8947;856;676;0;0;-715;983;812;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=140607) node_addr=42 prefix=AB len=24 type=0 totalLen=2946
+*** SAT_AppStorageEMU::copyAndSend() : (ms=140770) node_addr=42 prefix=AB len=17 type=0 totalLen=2963
+*** DEBUG :	ms=142019	visible_1=835	IR_1=666	visible_2=0	IR_2=0	X=-718	Y=974	Z=805	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 10947;835;666;0;0;-718;974;805;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=142608) node_addr=42 prefix=AB len=24 type=0 totalLen=2987
+*** SAT_AppStorageEMU::copyAndSend() : (ms=142771) node_addr=42 prefix=AB len=18 type=0 totalLen=3005
+*** DEBUG :	ms=144019	visible_1=862	IR_1=678	visible_2=0	IR_2=0	X=-716	Y=975	Z=790	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 12947;862;678;0;0;-716;975;790;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=144608) node_addr=42 prefix=AB len=24 type=0 totalLen=3029
+*** SAT_AppStorageEMU::copyAndSend() : (ms=144771) node_addr=42 prefix=AB len=18 type=0 totalLen=3047
+*** DEBUG :	ms=146019	visible_1=834	IR_1=662	visible_2=0	IR_2=0	X=-721	Y=970	Z=796	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 14947;834;662;0;0;-721;970;796;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=146608) node_addr=42 prefix=AB len=24 type=0 totalLen=3071
+*** SAT_AppStorageEMU::copyAndSend() : (ms=146770) node_addr=42 prefix=AB len=18 type=0 totalLen=3089
+*** DEBUG :	ms=148019	visible_1=830	IR_1=663	visible_2=0	IR_2=0	X=-717	Y=979	Z=796	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 16947;830;663;0;0;-717;979;796;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=148608) node_addr=42 prefix=AB len=24 type=0 totalLen=3113
+*** SAT_AppStorageEMU::copyAndSend() : (ms=148770) node_addr=42 prefix=AB len=18 type=0 totalLen=3131
+*** DEBUG :	ms=150019	visible_1=834	IR_1=662	visible_2=0	IR_2=0	X=-719	Y=979	Z=798	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 18947;834;662;0;0;-719;979;798;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=150607) node_addr=42 prefix=AB len=24 type=0 totalLen=3155
+*** SAT_AppStorageEMU::copyAndSend() : (ms=150770) node_addr=42 prefix=AB len=18 type=0 totalLen=3173
+*** DEBUG :	ms=152019	visible_1=827	IR_1=649	visible_2=0	IR_2=0	X=-718	Y=978	Z=795	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 20947;827;649;0;0;-718;978;795;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=152608) node_addr=42 prefix=AB len=24 type=0 totalLen=3197
+*** SAT_AppStorageEMU::copyAndSend() : (ms=152771) node_addr=42 prefix=AB len=18 type=0 totalLen=3215
+*** DEBUG :	ms=154019	visible_1=832	IR_1=648	visible_2=0	IR_2=0	X=-718	Y=974	Z=798	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 22947;832;648;0;0;-718;974;798;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=154608) node_addr=42 prefix=AB len=24 type=0 totalLen=3239
+*** SAT_AppStorageEMU::copyAndSend() : (ms=154771) node_addr=42 prefix=AB len=18 type=0 totalLen=3257
+*** DEBUG :	ms=156019	visible_1=834	IR_1=649	visible_2=0	IR_2=0	X=-715	Y=974	Z=797	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 24947;834;649;0;0;-715;974;797;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=156608) node_addr=42 prefix=AB len=24 type=0 totalLen=3281
+*** SAT_AppStorageEMU::copyAndSend() : (ms=156771) node_addr=42 prefix=AB len=18 type=0 totalLen=3299
+*** DEBUG :	ms=158019	visible_1=827	IR_1=647	visible_2=0	IR_2=0	X=-716	Y=978	Z=800	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 26947;827;647;0;0;-716;978;800;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=158608) node_addr=42 prefix=AB len=24 type=0 totalLen=3323
+*** SAT_AppStorageEMU::copyAndSend() : (ms=158771) node_addr=42 prefix=AB len=18 type=0 totalLen=3341
+*** DEBUG :	ms=160019	visible_1=829	IR_1=656	visible_2=0	IR_2=0	X=-709	Y=973	Z=804	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 28947;829;656;0;0;-709;973;804;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=160608) node_addr=42 prefix=AB len=24 type=0 totalLen=3365
+*** SAT_AppStorageEMU::copyAndSend() : (ms=160771) node_addr=42 prefix=AB len=18 type=0 totalLen=3383
+*** DEBUG :	ms=162019	visible_1=830	IR_1=657	visible_2=0	IR_2=0	X=-713	Y=971	Z=806	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 30947;830;657;0;0;-713;971;806;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=162608) node_addr=42 prefix=AB len=24 type=0 totalLen=3407
+*** SAT_AppStorageEMU::copyAndSend() : (ms=162770) node_addr=42 prefix=AB len=18 type=0 totalLen=3425
+*** DEBUG :	ms=164019	visible_1=830	IR_1=658	visible_2=0	IR_2=0	X=-716	Y=973	Z=785	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 32947;830;658;0;0;-716;973;785;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=164608) node_addr=42 prefix=AB len=24 type=0 totalLen=3449
+*** SAT_AppStorageEMU::copyAndSend() : (ms=164770) node_addr=42 prefix=AB len=18 type=0 totalLen=3467
+*** DEBUG :	ms=166019	visible_1=835	IR_1=669	visible_2=0	IR_2=0	X=-716	Y=976	Z=791	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 34947;835;669;0;0;-716;976;791;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=166607) node_addr=42 prefix=AB len=24 type=0 totalLen=3491
+*** SAT_AppStorageEMU::copyAndSend() : (ms=166770) node_addr=42 prefix=AB len=18 type=0 totalLen=3509
+*** DEBUG :	ms=168019	visible_1=842	IR_1=664	visible_2=0	IR_2=0	X=-717	Y=970	Z=807	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 36947;842;664;0;0;-717;970;807;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=168608) node_addr=42 prefix=AB len=24 type=0 totalLen=3533
+*** SAT_AppStorageEMU::copyAndSend() : (ms=168771) node_addr=42 prefix=AB len=18 type=0 totalLen=3551
+*** DEBUG :	ms=170019	visible_1=860	IR_1=675	visible_2=0	IR_2=0	X=-721	Y=977	Z=788	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 38947;860;675;0;0;-721;977;788;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=170608) node_addr=42 prefix=AB len=24 type=0 totalLen=3575
+*** SAT_AppStorageEMU::copyAndSend() : (ms=170771) node_addr=42 prefix=AB len=18 type=0 totalLen=3593
+*** DEBUG :	ms=172019	visible_1=849	IR_1=662	visible_2=0	IR_2=0	X=-716	Y=976	Z=799	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 40947;849;662;0;0;-716;976;799;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=172608) node_addr=42 prefix=AB len=24 type=0 totalLen=3617
+*** SAT_AppStorageEMU::copyAndSend() : (ms=172771) node_addr=42 prefix=AB len=18 type=0 totalLen=3635
+*** DEBUG :	ms=174019	visible_1=839	IR_1=651	visible_2=0	IR_2=0	X=-713	Y=980	Z=792	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 42947;839;651;0;0;-713;980;792;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=174608) node_addr=42 prefix=AB len=24 type=0 totalLen=3659
+*** SAT_AppStorageEMU::copyAndSend() : (ms=174771) node_addr=42 prefix=AB len=18 type=0 totalLen=3677
+*** DEBUG :	ms=176019	visible_1=616	IR_1=541	visible_2=0	IR_2=0	X=-716	Y=979	Z=806	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 44947;616;541;0;0;-716;979;806;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=176608) node_addr=42 prefix=AB len=24 type=0 totalLen=3701
+*** SAT_AppStorageEMU::copyAndSend() : (ms=176771) node_addr=42 prefix=AB len=18 type=0 totalLen=3719
+*** DEBUG :	ms=178019	visible_1=746	IR_1=611	visible_2=0	IR_2=0	X=-714	Y=984	Z=816	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 46947;746;611;0;0;-714;984;816;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=178608) node_addr=42 prefix=AB len=24 type=0 totalLen=3743
+*** SAT_AppStorageEMU::copyAndSend() : (ms=178770) node_addr=42 prefix=AB len=18 type=0 totalLen=3761
+*** DEBUG :	ms=180019	visible_1=794	IR_1=647	visible_2=0	IR_2=0	X=-714	Y=980	Z=808	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 48947;794;647;0;0;-714;980;808;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=180608) node_addr=42 prefix=AB len=24 type=0 totalLen=3785
+*** SAT_AppStorageEMU::copyAndSend() : (ms=180770) node_addr=42 prefix=AB len=18 type=0 totalLen=3803
+*** DEBUG :	ms=182019	visible_1=851	IR_1=678	visible_2=0	IR_2=0	X=-718	Y=977	Z=775	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 50947;851;678;0;0;-718;977;775;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=182607) node_addr=42 prefix=AB len=24 type=0 totalLen=3827
+*** SAT_AppStorageEMU::copyAndSend() : (ms=182770) node_addr=42 prefix=AB len=18 type=0 totalLen=3845
+*** DEBUG :	ms=184019	visible_1=855	IR_1=685	visible_2=0	IR_2=0	X=-715	Y=976	Z=805	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 52947;855;685;0;0;-715;976;805;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=184608) node_addr=42 prefix=AB len=24 type=0 totalLen=3869
+*** SAT_AppStorageEMU::copyAndSend() : (ms=184771) node_addr=42 prefix=AB len=18 type=0 totalLen=3887
+*** DEBUG :	ms=186019	visible_1=848	IR_1=680	visible_2=0	IR_2=0	X=-717	Y=978	Z=824	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 54947;848;680;0;0;-717;978;824;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=186608) node_addr=42 prefix=AB len=24 type=0 totalLen=3911
+*** SAT_AppStorageEMU::copyAndSend() : (ms=186771) node_addr=42 prefix=AB len=18 type=0 totalLen=3929
+*** DEBUG :	ms=188019	visible_1=845	IR_1=686	visible_2=0	IR_2=0	X=-713	Y=977	Z=797	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 56947;845;686;0;0;-713;977;797;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=188608) node_addr=42 prefix=AB len=24 type=0 totalLen=3953
+*** SAT_AppStorageEMU::copyAndSend() : (ms=188771) node_addr=42 prefix=AB len=18 type=0 totalLen=3971
+*** DEBUG :	ms=190019	visible_1=844	IR_1=683	visible_2=0	IR_2=0	X=-714	Y=977	Z=815	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 58947;844;683;0;0;-714;977;815;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=190608) node_addr=42 prefix=AB len=24 type=0 totalLen=3995
+*** SAT_AppStorageEMU::copyAndSend() : (ms=190771) node_addr=42 prefix=AB len=18 type=0 totalLen=4013
+*** DEBUG :	ms=192019	visible_1=855	IR_1=698	visible_2=0	IR_2=0	X=-716	Y=981	Z=809	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 60947;855;698;0;0;-716;981;809;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=192608) node_addr=42 prefix=AB len=24 type=0 totalLen=4037
+*** SAT_AppStorageEMU::copyAndSend() : (ms=192771) node_addr=42 prefix=AB len=18 type=0 totalLen=4055
+*** DEBUG :	ms=194019	visible_1=898	IR_1=726	visible_2=0	IR_2=0	X=-718	Y=977	Z=795	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 62947;898;726;0;0;-718;977;795;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=194608) node_addr=42 prefix=AB len=24 type=0 totalLen=4079
+*** SAT_AppStorageEMU::copyAndSend() : (ms=194770) node_addr=42 prefix=AB len=18 type=0 totalLen=4097
+*** DEBUG :	ms=196019	visible_1=901	IR_1=726	visible_2=0	IR_2=0	X=-720	Y=976	Z=810	temp_1=411	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 64947;901;726;0;0;-720;976;810;411;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=196608) node_addr=42 prefix=AB len=24 type=0 totalLen=4121
+*** SAT_AppStorageEMU::copyAndSend() : (ms=196770) node_addr=42 prefix=AB len=18 type=0 totalLen=4139
+*** DEBUG :	ms=198019	visible_1=901	IR_1=725	visible_2=0	IR_2=0	X=-718	Y=985	Z=790	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 1411;901;725;0;0;-718;985;790;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=198606) node_addr=42 prefix=AB len=24 type=0 totalLen=4163
+*** SAT_AppStorageEMU::copyAndSend() : (ms=198769) node_addr=42 prefix=AB len=17 type=0 totalLen=4180
+*** DEBUG :	ms=200019	visible_1=901	IR_1=725	visible_2=0	IR_2=0	X=-719	Y=983	Z=813	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 3411;901;725;0;0;-719;983;813;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=200607) node_addr=42 prefix=AB len=24 type=0 totalLen=4204
+*** SAT_AppStorageEMU::copyAndSend() : (ms=200770) node_addr=42 prefix=AB len=17 type=0 totalLen=4221
+*** DEBUG :	ms=202019	visible_1=902	IR_1=726	visible_2=0	IR_2=0	X=-716	Y=980	Z=782	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 5411;902;726;0;0;-716;980;782;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=202607) node_addr=42 prefix=AB len=24 type=0 totalLen=4245
+*** SAT_AppStorageEMU::copyAndSend() : (ms=202770) node_addr=42 prefix=AB len=17 type=0 totalLen=4262
+*** DEBUG :	ms=204019	visible_1=900	IR_1=724	visible_2=0	IR_2=0	X=-721	Y=982	Z=800	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 7411;900;724;0;0;-721;982;800;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=204607) node_addr=42 prefix=AB len=24 type=0 totalLen=4286
+*** SAT_AppStorageEMU::copyAndSend() : (ms=204770) node_addr=42 prefix=AB len=17 type=0 totalLen=4303
+*** DEBUG :	ms=206019	visible_1=881	IR_1=689	visible_2=0	IR_2=0	X=-715	Y=979	Z=810	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 9411;881;689;0;0;-715;979;810;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=206607) node_addr=42 prefix=AB len=24 type=0 totalLen=4327
+*** SAT_AppStorageEMU::copyAndSend() : (ms=206770) node_addr=42 prefix=AB len=17 type=0 totalLen=4344
+*** DEBUG :	ms=208019	visible_1=878	IR_1=688	visible_2=0	IR_2=0	X=-716	Y=974	Z=799	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 11411;878;688;0;0;-716;974;799;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=208608) node_addr=42 prefix=AB len=24 type=0 totalLen=4368
+*** SAT_AppStorageEMU::copyAndSend() : (ms=208771) node_addr=42 prefix=AB len=18 type=0 totalLen=4386
+*** DEBUG :	ms=210019	visible_1=874	IR_1=696	visible_2=0	IR_2=0	X=-719	Y=979	Z=803	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 13411;874;696;0;0;-719;979;803;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=210608) node_addr=42 prefix=AB len=24 type=0 totalLen=4410
+*** SAT_AppStorageEMU::copyAndSend() : (ms=210770) node_addr=42 prefix=AB len=18 type=0 totalLen=4428
+*** DEBUG :	ms=212019	visible_1=879	IR_1=693	visible_2=0	IR_2=0	X=-714	Y=975	Z=815	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 15411;879;693;0;0;-714;975;815;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=212608) node_addr=42 prefix=AB len=24 type=0 totalLen=4452
+*** SAT_AppStorageEMU::copyAndSend() : (ms=212770) node_addr=42 prefix=AB len=18 type=0 totalLen=4470
+*** DEBUG :	ms=214019	visible_1=883	IR_1=691	visible_2=0	IR_2=0	X=-726	Y=970	Z=817	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 17411;883;691;0;0;-726;970;817;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=214607) node_addr=42 prefix=AB len=24 type=0 totalLen=4494
+*** SAT_AppStorageEMU::copyAndSend() : (ms=214770) node_addr=42 prefix=AB len=18 type=0 totalLen=4512
+*** DEBUG :	ms=216019	visible_1=899	IR_1=709	visible_2=0	IR_2=0	X=-715	Y=986	Z=802	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 19411;899;709;0;0;-715;986;802;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=216608) node_addr=42 prefix=AB len=24 type=0 totalLen=4536
+*** SAT_AppStorageEMU::copyAndSend() : (ms=216771) node_addr=42 prefix=AB len=18 type=0 totalLen=4554
+*** DEBUG :	ms=218019	visible_1=901	IR_1=711	visible_2=0	IR_2=0	X=-718	Y=980	Z=801	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 21411;901;711;0;0;-718;980;801;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=218608) node_addr=42 prefix=AB len=24 type=0 totalLen=4578
+*** SAT_AppStorageEMU::copyAndSend() : (ms=218771) node_addr=42 prefix=AB len=18 type=0 totalLen=4596
+*** DEBUG :	ms=220019	visible_1=903	IR_1=712	visible_2=0	IR_2=0	X=-725	Y=977	Z=785	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 23411;903;712;0;0;-725;977;785;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=220608) node_addr=42 prefix=AB len=24 type=0 totalLen=4620
+*** SAT_AppStorageEMU::copyAndSend() : (ms=220771) node_addr=42 prefix=AB len=18 type=0 totalLen=4638
+*** DEBUG :	ms=222019	visible_1=905	IR_1=713	visible_2=0	IR_2=0	X=-719	Y=981	Z=800	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 25411;905;713;0;0;-719;981;800;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=222608) node_addr=42 prefix=AB len=24 type=0 totalLen=4662
+*** SAT_AppStorageEMU::copyAndSend() : (ms=222771) node_addr=42 prefix=AB len=18 type=0 totalLen=4680
+*** DEBUG :	ms=224019	visible_1=906	IR_1=715	visible_2=0	IR_2=0	X=-722	Y=977	Z=804	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 27411;906;715;0;0;-722;977;804;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=224608) node_addr=42 prefix=AB len=24 type=0 totalLen=4704
+*** SAT_AppStorageEMU::copyAndSend() : (ms=224771) node_addr=42 prefix=AB len=18 type=0 totalLen=4722
+*** DEBUG :	ms=226019	visible_1=906	IR_1=712	visible_2=0	IR_2=0	X=-720	Y=976	Z=796	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 29411;906;712;0;0;-720;976;796;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=226608) node_addr=42 prefix=AB len=24 type=0 totalLen=4746
+*** SAT_AppStorageEMU::copyAndSend() : (ms=226770) node_addr=42 prefix=AB len=18 type=0 totalLen=4764
+*** DEBUG :	ms=228019	visible_1=909	IR_1=717	visible_2=0	IR_2=0	X=-717	Y=975	Z=791	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 31411;909;717;0;0;-717;975;791;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=228608) node_addr=42 prefix=AB len=24 type=0 totalLen=4788
+*** SAT_AppStorageEMU::copyAndSend() : (ms=228770) node_addr=42 prefix=AB len=18 type=0 totalLen=4806
+*** DEBUG :	ms=230019	visible_1=908	IR_1=716	visible_2=0	IR_2=0	X=-722	Y=979	Z=800	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 33411;908;716;0;0;-722;979;800;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=230607) node_addr=42 prefix=AB len=24 type=0 totalLen=4830
+*** SAT_AppStorageEMU::copyAndSend() : (ms=230770) node_addr=42 prefix=AB len=18 type=0 totalLen=4848
+*** DEBUG :	ms=232019	visible_1=908	IR_1=716	visible_2=0	IR_2=0	X=-714	Y=971	Z=803	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 35411;908;716;0;0;-714;971;803;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=232608) node_addr=42 prefix=AB len=24 type=0 totalLen=4872
+*** SAT_AppStorageEMU::copyAndSend() : (ms=232771) node_addr=42 prefix=AB len=18 type=0 totalLen=4890
+*** DEBUG :	ms=234019	visible_1=908	IR_1=716	visible_2=0	IR_2=0	X=-719	Y=977	Z=813	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 37411;908;716;0;0;-719;977;813;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=234608) node_addr=42 prefix=AB len=24 type=0 totalLen=4914
+*** SAT_AppStorageEMU::copyAndSend() : (ms=234771) node_addr=42 prefix=AB len=18 type=0 totalLen=4932
+*** DEBUG :	ms=236019	visible_1=906	IR_1=716	visible_2=0	IR_2=0	X=-719	Y=977	Z=806	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 39411;906;716;0;0;-719;977;806;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=236608) node_addr=42 prefix=AB len=24 type=0 totalLen=4956
+*** SAT_AppStorageEMU::copyAndSend() : (ms=236771) node_addr=42 prefix=AB len=18 type=0 totalLen=4974
+*** DEBUG :	ms=238019	visible_1=920	IR_1=726	visible_2=0	IR_2=0	X=-719	Y=975	Z=806	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 41411;920;726;0;0;-719;975;806;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=238608) node_addr=42 prefix=AB len=24 type=0 totalLen=4998
+*** SAT_AppStorageEMU::copyAndSend() : (ms=238771) node_addr=42 prefix=AB len=18 type=0 totalLen=5016
+*** DEBUG :	ms=240019	visible_1=917	IR_1=723	visible_2=0	IR_2=0	X=-717	Y=975	Z=796	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 43411;917;723;0;0;-717;975;796;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=240608) node_addr=42 prefix=AB len=24 type=0 totalLen=5040
+*** SAT_AppStorageEMU::copyAndSend() : (ms=240771) node_addr=42 prefix=AB len=18 type=0 totalLen=5058
+*** DEBUG :	ms=242019	visible_1=910	IR_1=714	visible_2=0	IR_2=0	X=-721	Y=975	Z=796	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 45411;910;714;0;0;-721;975;796;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=242608) node_addr=42 prefix=AB len=24 type=0 totalLen=5082
+*** SAT_AppStorageEMU::copyAndSend() : (ms=242770) node_addr=42 prefix=AB len=18 type=0 totalLen=5100
+*** DEBUG :	ms=244019	visible_1=912	IR_1=717	visible_2=0	IR_2=0	X=-717	Y=975	Z=802	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 47411;912;717;0;0;-717;975;802;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=244608) node_addr=42 prefix=AB len=24 type=0 totalLen=5124
+*** SAT_AppStorageEMU::copyAndSend() : (ms=244770) node_addr=42 prefix=AB len=18 type=0 totalLen=5142
+*** DEBUG :	ms=246019	visible_1=915	IR_1=719	visible_2=0	IR_2=0	X=-720	Y=976	Z=803	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 49411;915;719;0;0;-720;976;803;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=246607) node_addr=42 prefix=AB len=24 type=0 totalLen=5166
+*** SAT_AppStorageEMU::copyAndSend() : (ms=246770) node_addr=42 prefix=AB len=18 type=0 totalLen=5184
+*** DEBUG :	ms=248019	visible_1=917	IR_1=721	visible_2=0	IR_2=0	X=-718	Y=980	Z=797	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 51411;917;721;0;0;-718;980;797;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=248608) node_addr=42 prefix=AB len=24 type=0 totalLen=5208
+*** SAT_AppStorageEMU::copyAndSend() : (ms=248771) node_addr=42 prefix=AB len=18 type=0 totalLen=5226
+*** DEBUG :	ms=250019	visible_1=918	IR_1=722	visible_2=0	IR_2=0	X=-718	Y=980	Z=792	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 53411;918;722;0;0;-718;980;792;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=250608) node_addr=42 prefix=AB len=24 type=0 totalLen=5250
+*** SAT_AppStorageEMU::copyAndSend() : (ms=250771) node_addr=42 prefix=AB len=18 type=0 totalLen=5268
+*** DEBUG :	ms=252019	visible_1=922	IR_1=726	visible_2=0	IR_2=0	X=-716	Y=978	Z=798	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 55411;922;726;0;0;-716;978;798;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=252608) node_addr=42 prefix=AB len=24 type=0 totalLen=5292
+*** SAT_AppStorageEMU::copyAndSend() : (ms=252771) node_addr=42 prefix=AB len=18 type=0 totalLen=5310
+*** DEBUG :	ms=254019	visible_1=924	IR_1=727	visible_2=0	IR_2=0	X=-715	Y=976	Z=820	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 57411;924;727;0;0;-715;976;820;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=254608) node_addr=42 prefix=AB len=24 type=0 totalLen=5334
+*** SAT_AppStorageEMU::copyAndSend() : (ms=254771) node_addr=42 prefix=AB len=18 type=0 totalLen=5352
+*** DEBUG :	ms=256019	visible_1=924	IR_1=727	visible_2=0	IR_2=0	X=-722	Y=975	Z=785	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 59411;924;727;0;0;-722;975;785;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=256608) node_addr=42 prefix=AB len=24 type=0 totalLen=5376
+*** SAT_AppStorageEMU::copyAndSend() : (ms=256771) node_addr=42 prefix=AB len=18 type=0 totalLen=5394
+*** DEBUG :	ms=258019	visible_1=924	IR_1=727	visible_2=0	IR_2=0	X=-713	Y=975	Z=794	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 61411;924;727;0;0;-713;975;794;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=258608) node_addr=42 prefix=AB len=24 type=0 totalLen=5418
+*** SAT_AppStorageEMU::copyAndSend() : (ms=258770) node_addr=42 prefix=AB len=18 type=0 totalLen=5436
+*** DEBUG :	ms=260019	visible_1=924	IR_1=727	visible_2=0	IR_2=0	X=-716	Y=980	Z=799	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 63411;924;727;0;0;-716;980;799;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=260608) node_addr=42 prefix=AB len=24 type=0 totalLen=5460
+*** SAT_AppStorageEMU::copyAndSend() : (ms=260770) node_addr=42 prefix=AB len=18 type=0 totalLen=5478
+*** DEBUG :	ms=262019	visible_1=925	IR_1=726	visible_2=0	IR_2=0	X=-719	Y=977	Z=792	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 65411;925;726;0;0;-719;977;792;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=262607) node_addr=42 prefix=AB len=24 type=0 totalLen=5502
+*** SAT_AppStorageEMU::copyAndSend() : (ms=262770) node_addr=42 prefix=AB len=18 type=0 totalLen=5520
+*** DEBUG :	ms=264019	visible_1=926	IR_1=727	visible_2=0	IR_2=0	X=-720	Y=974	Z=795	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 1875;926;727;0;0;-720;974;795;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=264607) node_addr=42 prefix=AB len=24 type=0 totalLen=5544
+*** SAT_AppStorageEMU::copyAndSend() : (ms=264770) node_addr=42 prefix=AB len=17 type=0 totalLen=5561
+*** DEBUG :	ms=266019	visible_1=927	IR_1=728	visible_2=0	IR_2=0	X=-715	Y=974	Z=807	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 3875;927;728;0;0;-715;974;807;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=266607) node_addr=42 prefix=AB len=24 type=0 totalLen=5585
+*** SAT_AppStorageEMU::copyAndSend() : (ms=266770) node_addr=42 prefix=AB len=17 type=0 totalLen=5602
+*** DEBUG :	ms=268019	visible_1=929	IR_1=730	visible_2=0	IR_2=0	X=-712	Y=974	Z=805	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 5875;929;730;0;0;-712;974;805;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=268607) node_addr=42 prefix=AB len=24 type=0 totalLen=5626
+*** SAT_AppStorageEMU::copyAndSend() : (ms=268770) node_addr=42 prefix=AB len=17 type=0 totalLen=5643
+*** DEBUG :	ms=270019	visible_1=934	IR_1=735	visible_2=0	IR_2=0	X=-713	Y=973	Z=789	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 7875;934;735;0;0;-713;973;789;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=270607) node_addr=42 prefix=AB len=24 type=0 totalLen=5667
+*** SAT_AppStorageEMU::copyAndSend() : (ms=270770) node_addr=42 prefix=AB len=17 type=0 totalLen=5684
+*** DEBUG :	ms=272019	visible_1=935	IR_1=733	visible_2=0	IR_2=0	X=-716	Y=976	Z=799	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 9875;935;733;0;0;-716;976;799;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=272607) node_addr=42 prefix=AB len=24 type=0 totalLen=5708
+*** SAT_AppStorageEMU::copyAndSend() : (ms=272770) node_addr=42 prefix=AB len=17 type=0 totalLen=5725
+*** DEBUG :	ms=274019	visible_1=931	IR_1=731	visible_2=0	IR_2=0	X=-719	Y=975	Z=800	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 11875;931;731;0;0;-719;975;800;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=274608) node_addr=42 prefix=AB len=24 type=0 totalLen=5749
+*** SAT_AppStorageEMU::copyAndSend() : (ms=274770) node_addr=42 prefix=AB len=18 type=0 totalLen=5767
+*** DEBUG :	ms=276019	visible_1=933	IR_1=731	visible_2=0	IR_2=0	X=-721	Y=975	Z=802	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 13875;933;731;0;0;-721;975;802;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=276608) node_addr=42 prefix=AB len=24 type=0 totalLen=5791
+*** SAT_AppStorageEMU::copyAndSend() : (ms=276770) node_addr=42 prefix=AB len=18 type=0 totalLen=5809
+*** DEBUG :	ms=278019	visible_1=935	IR_1=732	visible_2=0	IR_2=0	X=-719	Y=975	Z=795	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 15875;935;732;0;0;-719;975;795;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=278607) node_addr=42 prefix=AB len=24 type=0 totalLen=5833
+*** SAT_AppStorageEMU::copyAndSend() : (ms=278770) node_addr=42 prefix=AB len=18 type=0 totalLen=5851
+*** DEBUG :	ms=280019	visible_1=936	IR_1=733	visible_2=0	IR_2=0	X=-716	Y=978	Z=798	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 17875;936;733;0;0;-716;978;798;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=280608) node_addr=42 prefix=AB len=24 type=0 totalLen=5875
+*** SAT_AppStorageEMU::copyAndSend() : (ms=280771) node_addr=42 prefix=AB len=18 type=0 totalLen=5893
+*** DEBUG :	ms=282019	visible_1=939	IR_1=734	visible_2=0	IR_2=0	X=-715	Y=974	Z=803	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 19875;939;734;0;0;-715;974;803;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=282608) node_addr=42 prefix=AB len=24 type=0 totalLen=5917
+*** SAT_AppStorageEMU::copyAndSend() : (ms=282771) node_addr=42 prefix=AB len=18 type=0 totalLen=5935
+*** DEBUG :	ms=284019	visible_1=940	IR_1=734	visible_2=0	IR_2=0	X=-716	Y=976	Z=797	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 21875;940;734;0;0;-716;976;797;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=284608) node_addr=42 prefix=AB len=24 type=0 totalLen=5959
+*** SAT_AppStorageEMU::copyAndSend() : (ms=284771) node_addr=42 prefix=AB len=18 type=0 totalLen=5977
+*** DEBUG :	ms=286019	visible_1=941	IR_1=734	visible_2=0	IR_2=0	X=-717	Y=976	Z=805	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 23875;941;734;0;0;-717;976;805;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=286608) node_addr=42 prefix=AB len=24 type=0 totalLen=6001
+*** SAT_AppStorageEMU::copyAndSend() : (ms=286771) node_addr=42 prefix=AB len=18 type=0 totalLen=6019
+*** DEBUG :	ms=288019	visible_1=944	IR_1=735	visible_2=0	IR_2=0	X=-713	Y=975	Z=800	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 25875;944;735;0;0;-713;975;800;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=288608) node_addr=42 prefix=AB len=24 type=0 totalLen=6043
+*** SAT_AppStorageEMU::copyAndSend() : (ms=288771) node_addr=42 prefix=AB len=18 type=0 totalLen=6061
+*** DEBUG :	ms=290019	visible_1=945	IR_1=736	visible_2=0	IR_2=0	X=-723	Y=972	Z=802	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 27875;945;736;0;0;-723;972;802;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=290608) node_addr=42 prefix=AB len=24 type=0 totalLen=6085
+*** SAT_AppStorageEMU::copyAndSend() : (ms=290770) node_addr=42 prefix=AB len=18 type=0 totalLen=6103
+*** DEBUG :	ms=292019	visible_1=945	IR_1=736	visible_2=0	IR_2=0	X=-715	Y=976	Z=801	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 29875;945;736;0;0;-715;976;801;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=292608) node_addr=42 prefix=AB len=24 type=0 totalLen=6127
+*** SAT_AppStorageEMU::copyAndSend() : (ms=292770) node_addr=42 prefix=AB len=18 type=0 totalLen=6145
+*** DEBUG :	ms=294019	visible_1=923	IR_1=719	visible_2=0	IR_2=0	X=-712	Y=976	Z=790	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 31875;923;719;0;0;-712;976;790;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=294607) node_addr=42 prefix=AB len=24 type=0 totalLen=6169
+*** SAT_AppStorageEMU::copyAndSend() : (ms=294770) node_addr=42 prefix=AB len=18 type=0 totalLen=6187
+*** DEBUG :	ms=296019	visible_1=939	IR_1=727	visible_2=0	IR_2=0	X=-718	Y=976	Z=801	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 33875;939;727;0;0;-718;976;801;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=296608) node_addr=42 prefix=AB len=24 type=0 totalLen=6211
+*** SAT_AppStorageEMU::copyAndSend() : (ms=296771) node_addr=42 prefix=AB len=18 type=0 totalLen=6229
+*** DEBUG :	ms=298019	visible_1=943	IR_1=731	visible_2=0	IR_2=0	X=-720	Y=979	Z=792	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 35875;943;731;0;0;-720;979;792;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=298608) node_addr=42 prefix=AB len=24 type=0 totalLen=6253
+*** SAT_AppStorageEMU::copyAndSend() : (ms=298771) node_addr=42 prefix=AB len=18 type=0 totalLen=6271
+*** DEBUG :	ms=300019	visible_1=946	IR_1=732	visible_2=0	IR_2=0	X=-716	Y=976	Z=772	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 37875;946;732;0;0;-716;976;772;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=300608) node_addr=42 prefix=AB len=24 type=0 totalLen=6295
+*** SAT_AppStorageEMU::copyAndSend() : (ms=300771) node_addr=42 prefix=AB len=18 type=0 totalLen=6313
+*** DEBUG :	ms=302019	visible_1=949	IR_1=734	visible_2=0	IR_2=0	X=-716	Y=980	Z=787	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 39875;949;734;0;0;-716;980;787;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=302608) node_addr=42 prefix=AB len=24 type=0 totalLen=6337
+*** SAT_AppStorageEMU::copyAndSend() : (ms=302771) node_addr=42 prefix=AB len=18 type=0 totalLen=6355
+*** DEBUG :	ms=304019	visible_1=949	IR_1=734	visible_2=0	IR_2=0	X=-713	Y=981	Z=779	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 41875;949;734;0;0;-713;981;779;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=304608) node_addr=42 prefix=AB len=24 type=0 totalLen=6379
+*** SAT_AppStorageEMU::copyAndSend() : (ms=304771) node_addr=42 prefix=AB len=18 type=0 totalLen=6397
+*** DEBUG :	ms=306019	visible_1=950	IR_1=734	visible_2=0	IR_2=0	X=-717	Y=984	Z=780	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 43875;950;734;0;0;-717;984;780;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=306608) node_addr=42 prefix=AB len=24 type=0 totalLen=6421
+*** SAT_AppStorageEMU::copyAndSend() : (ms=306770) node_addr=42 prefix=AB len=18 type=0 totalLen=6439
+*** DEBUG :	ms=308019	visible_1=951	IR_1=735	visible_2=0	IR_2=0	X=-713	Y=976	Z=788	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 45875;951;735;0;0;-713;976;788;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=308608) node_addr=42 prefix=AB len=24 type=0 totalLen=6463
+*** SAT_AppStorageEMU::copyAndSend() : (ms=308770) node_addr=42 prefix=AB len=18 type=0 totalLen=6481
+*** DEBUG :	ms=310019	visible_1=952	IR_1=735	visible_2=0	IR_2=0	X=-713	Y=975	Z=797	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 47875;952;735;0;0;-713;975;797;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=310607) node_addr=42 prefix=AB len=24 type=0 totalLen=6505
+*** SAT_AppStorageEMU::copyAndSend() : (ms=310770) node_addr=42 prefix=AB len=18 type=0 totalLen=6523
+*** DEBUG :	ms=312019	visible_1=931	IR_1=715	visible_2=0	IR_2=0	X=-712	Y=981	Z=806	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 49875;931;715;0;0;-712;981;806;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=312608) node_addr=42 prefix=AB len=24 type=0 totalLen=6547
+*** SAT_AppStorageEMU::copyAndSend() : (ms=312771) node_addr=42 prefix=AB len=18 type=0 totalLen=6565
+*** DEBUG :	ms=314019	visible_1=932	IR_1=719	visible_2=0	IR_2=0	X=-716	Y=982	Z=806	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 51875;932;719;0;0;-716;982;806;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=314608) node_addr=42 prefix=AB len=24 type=0 totalLen=6589
+*** SAT_AppStorageEMU::copyAndSend() : (ms=314771) node_addr=42 prefix=AB len=18 type=0 totalLen=6607
+*** DEBUG :	ms=316019	visible_1=931	IR_1=719	visible_2=0	IR_2=0	X=-714	Y=978	Z=795	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 53875;931;719;0;0;-714;978;795;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=316608) node_addr=42 prefix=AB len=24 type=0 totalLen=6631
+*** SAT_AppStorageEMU::copyAndSend() : (ms=316771) node_addr=42 prefix=AB len=18 type=0 totalLen=6649
+*** DEBUG :	ms=318019	visible_1=935	IR_1=720	visible_2=0	IR_2=0	X=-714	Y=978	Z=800	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 55875;935;720;0;0;-714;978;800;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=318608) node_addr=42 prefix=AB len=24 type=0 totalLen=6673
+*** SAT_AppStorageEMU::copyAndSend() : (ms=318771) node_addr=42 prefix=AB len=18 type=0 totalLen=6691
+*** DEBUG :	ms=320019	visible_1=933	IR_1=717	visible_2=0	IR_2=0	X=-718	Y=980	Z=812	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 57875;933;717;0;0;-718;980;812;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=320608) node_addr=42 prefix=AB len=24 type=0 totalLen=6715
+*** SAT_AppStorageEMU::copyAndSend() : (ms=320771) node_addr=42 prefix=AB len=18 type=0 totalLen=6733
+*** DEBUG :	ms=322019	visible_1=936	IR_1=719	visible_2=0	IR_2=0	X=-717	Y=981	Z=813	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 59875;936;719;0;0;-717;981;813;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=322608) node_addr=42 prefix=AB len=24 type=0 totalLen=6757
+*** SAT_AppStorageEMU::copyAndSend() : (ms=322770) node_addr=42 prefix=AB len=18 type=0 totalLen=6775
+*** DEBUG :	ms=324019	visible_1=925	IR_1=715	visible_2=0	IR_2=0	X=-719	Y=975	Z=798	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 61875;925;715;0;0;-719;975;798;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=324608) node_addr=42 prefix=AB len=24 type=0 totalLen=6799
+*** SAT_AppStorageEMU::copyAndSend() : (ms=324770) node_addr=42 prefix=AB len=18 type=0 totalLen=6817
+*** DEBUG :	ms=326019	visible_1=927	IR_1=716	visible_2=0	IR_2=0	X=-710	Y=977	Z=817	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 63875;927;716;0;0;-710;977;817;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=326607) node_addr=42 prefix=AB len=24 type=0 totalLen=6841
+*** SAT_AppStorageEMU::copyAndSend() : (ms=326770) node_addr=42 prefix=AB len=18 type=0 totalLen=6859
+*** DEBUG :	ms=328019	visible_1=943	IR_1=723	visible_2=0	IR_2=0	X=-717	Y=976	Z=787	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 339;943;723;0;0;-717;976;787;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=328606) node_addr=42 prefix=AB len=24 type=0 totalLen=6883
+*** SAT_AppStorageEMU::copyAndSend() : (ms=328769) node_addr=42 prefix=AB len=16 type=0 totalLen=6899
+*** DEBUG :	ms=330019	visible_1=943	IR_1=723	visible_2=0	IR_2=0	X=-716	Y=978	Z=815	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 2339;943;723;0;0;-716;978;815;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=330607) node_addr=42 prefix=AB len=24 type=0 totalLen=6923
+*** SAT_AppStorageEMU::copyAndSend() : (ms=330770) node_addr=42 prefix=AB len=17 type=0 totalLen=6940
+*** DEBUG :	ms=332019	visible_1=945	IR_1=724	visible_2=0	IR_2=0	X=-716	Y=982	Z=817	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 4339;945;724;0;0;-716;982;817;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=332607) node_addr=42 prefix=AB len=24 type=0 totalLen=6964
+*** SAT_AppStorageEMU::copyAndSend() : (ms=332770) node_addr=42 prefix=AB len=17 type=0 totalLen=6981
+*** DEBUG :	ms=334019	visible_1=944	IR_1=723	visible_2=0	IR_2=0	X=-716	Y=974	Z=795	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 6339;944;723;0;0;-716;974;795;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=334607) node_addr=42 prefix=AB len=24 type=0 totalLen=7005
+*** SAT_AppStorageEMU::copyAndSend() : (ms=334770) node_addr=42 prefix=AB len=17 type=0 totalLen=7022
+*** DEBUG :	ms=336019	visible_1=943	IR_1=723	visible_2=0	IR_2=0	X=-715	Y=974	Z=791	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 8339;943;723;0;0;-715;974;791;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=336607) node_addr=42 prefix=AB len=24 type=0 totalLen=7046
+*** SAT_AppStorageEMU::copyAndSend() : (ms=336770) node_addr=42 prefix=AB len=17 type=0 totalLen=7063
+*** DEBUG :	ms=338019	visible_1=945	IR_1=724	visible_2=0	IR_2=0	X=-712	Y=979	Z=814	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 10339;945;724;0;0;-712;979;814;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=338608) node_addr=42 prefix=AB len=24 type=0 totalLen=7087
+*** SAT_AppStorageEMU::copyAndSend() : (ms=338770) node_addr=42 prefix=AB len=18 type=0 totalLen=7105
+*** DEBUG :	ms=340019	visible_1=946	IR_1=725	visible_2=0	IR_2=0	X=-711	Y=980	Z=798	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 12339;946;725;0;0;-711;980;798;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=340608) node_addr=42 prefix=AB len=24 type=0 totalLen=7129
+*** SAT_AppStorageEMU::copyAndSend() : (ms=340770) node_addr=42 prefix=AB len=18 type=0 totalLen=7147
+*** DEBUG :	ms=342019	visible_1=935	IR_1=725	visible_2=0	IR_2=0	X=-720	Y=977	Z=803	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 14339;935;725;0;0;-720;977;803;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=342607) node_addr=42 prefix=AB len=24 type=0 totalLen=7171
+*** SAT_AppStorageEMU::copyAndSend() : (ms=342770) node_addr=42 prefix=AB len=18 type=0 totalLen=7189
+*** DEBUG :	ms=344019	visible_1=952	IR_1=744	visible_2=0	IR_2=0	X=-714	Y=972	Z=816	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 16339;952;744;0;0;-714;972;816;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=344608) node_addr=42 prefix=AB len=24 type=0 totalLen=7213
+*** SAT_AppStorageEMU::copyAndSend() : (ms=344771) node_addr=42 prefix=AB len=18 type=0 totalLen=7231
+*** DEBUG :	ms=346019	visible_1=964	IR_1=758	visible_2=0	IR_2=0	X=-714	Y=971	Z=819	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 18339;964;758;0;0;-714;971;819;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=346608) node_addr=42 prefix=AB len=24 type=0 totalLen=7255
+*** SAT_AppStorageEMU::copyAndSend() : (ms=346771) node_addr=42 prefix=AB len=18 type=0 totalLen=7273
+*** DEBUG :	ms=348019	visible_1=998	IR_1=795	visible_2=0	IR_2=0	X=-714	Y=976	Z=789	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 20339;998;795;0;0;-714;976;789;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=348608) node_addr=42 prefix=AB len=24 type=0 totalLen=7297
+*** SAT_AppStorageEMU::copyAndSend() : (ms=348771) node_addr=42 prefix=AB len=18 type=0 totalLen=7315
+*** DEBUG :	ms=350019	visible_1=1011	IR_1=821	visible_2=0	IR_2=0	X=-716	Y=977	Z=789	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 22339;1011;821;0;0;-716;977;789;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=350610) node_addr=42 prefix=AB len=24 type=0 totalLen=7339
+*** SAT_AppStorageEMU::copyAndSend() : (ms=350773) node_addr=42 prefix=AB len=19 type=0 totalLen=7358
+*** DEBUG :	ms=352019	visible_1=1014	IR_1=826	visible_2=0	IR_2=0	X=-715	Y=974	Z=800	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 24339;1014;826;0;0;-715;974;800;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=352610) node_addr=42 prefix=AB len=24 type=0 totalLen=7382
+*** SAT_AppStorageEMU::copyAndSend() : (ms=352773) node_addr=42 prefix=AB len=19 type=0 totalLen=7401
+*** DEBUG :	ms=354019	visible_1=1020	IR_1=831	visible_2=0	IR_2=0	X=-713	Y=978	Z=797	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 26339;1020;831;0;0;-713;978;797;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=354610) node_addr=42 prefix=AB len=24 type=0 totalLen=7425
+*** SAT_AppStorageEMU::copyAndSend() : (ms=354772) node_addr=42 prefix=AB len=19 type=0 totalLen=7444
+*** DEBUG :	ms=356019	visible_1=1020	IR_1=831	visible_2=0	IR_2=0	X=-720	Y=976	Z=807	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 28339;1020;831;0;0;-720;976;807;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=356610) node_addr=42 prefix=AB len=24 type=0 totalLen=7468
+*** SAT_AppStorageEMU::copyAndSend() : (ms=356772) node_addr=42 prefix=AB len=19 type=0 totalLen=7487
+*** DEBUG :	ms=358019	visible_1=1007	IR_1=816	visible_2=0	IR_2=0	X=-714	Y=973	Z=788	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 30339;1007;816;0;0;-714;973;788;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=358609) node_addr=42 prefix=AB len=24 type=0 totalLen=7511
+*** SAT_AppStorageEMU::copyAndSend() : (ms=358772) node_addr=42 prefix=AB len=19 type=0 totalLen=7530
+*** DEBUG :	ms=360018	visible_1=1011	IR_1=823	visible_2=0	IR_2=0	X=-713	Y=979	Z=802	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 32338;1011;823;0;0;-713;979;802;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=360609) node_addr=42 prefix=AB len=24 type=0 totalLen=7554
+*** SAT_AppStorageEMU::copyAndSend() : (ms=360772) node_addr=42 prefix=AB len=19 type=0 totalLen=7573
+*** DEBUG :	ms=362018	visible_1=1007	IR_1=813	visible_2=0	IR_2=0	X=-716	Y=970	Z=801	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 34338;1007;813;0;0;-716;970;801;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=362609) node_addr=42 prefix=AB len=24 type=0 totalLen=7597
+*** SAT_AppStorageEMU::copyAndSend() : (ms=362772) node_addr=42 prefix=AB len=19 type=0 totalLen=7616
+*** DEBUG :	ms=364018	visible_1=1018	IR_1=830	visible_2=0	IR_2=0	X=-713	Y=979	Z=806	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 36338;1018;830;0;0;-713;979;806;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=364609) node_addr=42 prefix=AB len=24 type=0 totalLen=7640
+*** SAT_AppStorageEMU::copyAndSend() : (ms=364772) node_addr=42 prefix=AB len=19 type=0 totalLen=7659
+*** DEBUG :	ms=366018	visible_1=1019	IR_1=831	visible_2=0	IR_2=0	X=-714	Y=973	Z=795	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 38338;1019;831;0;0;-714;973;795;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=366609) node_addr=42 prefix=AB len=24 type=0 totalLen=7683
+*** SAT_AppStorageEMU::copyAndSend() : (ms=366772) node_addr=42 prefix=AB len=19 type=0 totalLen=7702
+*** DEBUG :	ms=368018	visible_1=1018	IR_1=832	visible_2=0	IR_2=0	X=-717	Y=976	Z=801	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 40338;1018;832;0;0;-717;976;801;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=368609) node_addr=42 prefix=AB len=24 type=0 totalLen=7726
+*** SAT_AppStorageEMU::copyAndSend() : (ms=368772) node_addr=42 prefix=AB len=19 type=0 totalLen=7745
+*** DEBUG :	ms=370018	visible_1=1016	IR_1=831	visible_2=0	IR_2=0	X=-715	Y=980	Z=785	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 42338;1016;831;0;0;-715;980;785;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=370609) node_addr=42 prefix=AB len=24 type=0 totalLen=7769
+*** SAT_AppStorageEMU::copyAndSend() : (ms=370771) node_addr=42 prefix=AB len=19 type=0 totalLen=7788
+*** DEBUG :	ms=372018	visible_1=1015	IR_1=830	visible_2=0	IR_2=0	X=-714	Y=976	Z=819	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 44338;1015;830;0;0;-714;976;819;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=372609) node_addr=42 prefix=AB len=24 type=0 totalLen=7812
+*** SAT_AppStorageEMU::copyAndSend() : (ms=372771) node_addr=42 prefix=AB len=19 type=0 totalLen=7831
+*** DEBUG :	ms=374018	visible_1=1013	IR_1=830	visible_2=0	IR_2=0	X=-717	Y=978	Z=822	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 46338;1013;830;0;0;-717;978;822;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=374608) node_addr=42 prefix=AB len=24 type=0 totalLen=7855
+*** SAT_AppStorageEMU::copyAndSend() : (ms=374771) node_addr=42 prefix=AB len=19 type=0 totalLen=7874
+*** DEBUG :	ms=376018	visible_1=1009	IR_1=829	visible_2=0	IR_2=0	X=-718	Y=977	Z=817	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 48338;1009;829;0;0;-718;977;817;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=376609) node_addr=42 prefix=AB len=24 type=0 totalLen=7898
+*** SAT_AppStorageEMU::copyAndSend() : (ms=376772) node_addr=42 prefix=AB len=19 type=0 totalLen=7917
+*** DEBUG :	ms=378018	visible_1=1007	IR_1=827	visible_2=0	IR_2=0	X=-715	Y=979	Z=805	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 50338;1007;827;0;0;-715;979;805;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=378609) node_addr=42 prefix=AB len=24 type=0 totalLen=7941
+*** SAT_AppStorageEMU::copyAndSend() : (ms=378772) node_addr=42 prefix=AB len=19 type=0 totalLen=7960
+*** DEBUG :	ms=380018	visible_1=1005	IR_1=827	visible_2=0	IR_2=0	X=-713	Y=977	Z=805	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 52338;1005;827;0;0;-713;977;805;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=380609) node_addr=42 prefix=AB len=24 type=0 totalLen=7984
+*** SAT_AppStorageEMU::copyAndSend() : (ms=380772) node_addr=42 prefix=AB len=19 type=0 totalLen=8003
+*** DEBUG :	ms=382018	visible_1=1002	IR_1=826	visible_2=0	IR_2=0	X=-716	Y=979	Z=822	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 54338;1002;826;0;0;-716;979;822;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=382609) node_addr=42 prefix=AB len=24 type=0 totalLen=8027
+*** SAT_AppStorageEMU::copyAndSend() : (ms=382772) node_addr=42 prefix=AB len=19 type=0 totalLen=8046
+*** DEBUG :	ms=384018	visible_1=1000	IR_1=824	visible_2=0	IR_2=0	X=-716	Y=976	Z=814	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 56338;1000;824;0;0;-716;976;814;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=384609) node_addr=42 prefix=AB len=24 type=0 totalLen=8070
+*** SAT_AppStorageEMU::copyAndSend() : (ms=384772) node_addr=42 prefix=AB len=19 type=0 totalLen=8089
+*** DEBUG :	ms=386018	visible_1=996	IR_1=822	visible_2=0	IR_2=0	X=-711	Y=977	Z=814	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 58338;996;822;0;0;-711;977;814;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=386607) node_addr=42 prefix=AB len=24 type=0 totalLen=8113
+*** SAT_AppStorageEMU::copyAndSend() : (ms=386769) node_addr=42 prefix=AB len=18 type=0 totalLen=8131
+*** DEBUG :	ms=388018	visible_1=994	IR_1=821	visible_2=0	IR_2=0	X=-716	Y=975	Z=798	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 60338;994;821;0;0;-716;975;798;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=388606) node_addr=42 prefix=AB len=24 type=0 totalLen=8155
+*** SAT_AppStorageEMU::copyAndSend() : (ms=388769) node_addr=42 prefix=AB len=18 type=0 totalLen=8173
+*** DEBUG :	ms=390018	visible_1=992	IR_1=820	visible_2=0	IR_2=0	X=-713	Y=976	Z=817	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 62338;992;820;0;0;-713;976;817;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=390606) node_addr=42 prefix=AB len=24 type=0 totalLen=8197
+*** SAT_AppStorageEMU::copyAndSend() : (ms=390769) node_addr=42 prefix=AB len=18 type=0 totalLen=8215
+*** DEBUG :	ms=392018	visible_1=987	IR_1=818	visible_2=0	IR_2=0	X=-717	Y=980	Z=803	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 64338;987;818;0;0;-717;980;803;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=392607) node_addr=42 prefix=AB len=24 type=0 totalLen=8239
+*** SAT_AppStorageEMU::copyAndSend() : (ms=392770) node_addr=42 prefix=AB len=18 type=0 totalLen=8257
+*** DEBUG :	ms=394018	visible_1=986	IR_1=818	visible_2=0	IR_2=0	X=-709	Y=977	Z=806	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 802;986;818;0;0;-709;977;806;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=394605) node_addr=42 prefix=AB len=24 type=0 totalLen=8281
+*** SAT_AppStorageEMU::copyAndSend() : (ms=394768) node_addr=42 prefix=AB len=16 type=0 totalLen=8297
+*** DEBUG :	ms=396018	visible_1=983	IR_1=817	visible_2=0	IR_2=0	X=-717	Y=976	Z=807	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 2802;983;817;0;0;-717;976;807;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=396606) node_addr=42 prefix=AB len=24 type=0 totalLen=8321
+*** SAT_AppStorageEMU::copyAndSend() : (ms=396769) node_addr=42 prefix=AB len=17 type=0 totalLen=8338
+*** DEBUG :	ms=398018	visible_1=979	IR_1=816	visible_2=0	IR_2=0	X=-717	Y=969	Z=794	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 4802;979;816;0;0;-717;969;794;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=398606) node_addr=42 prefix=AB len=24 type=0 totalLen=8362
+*** SAT_AppStorageEMU::copyAndSend() : (ms=398769) node_addr=42 prefix=AB len=17 type=0 totalLen=8379
+*** DEBUG :	ms=400018	visible_1=977	IR_1=814	visible_2=0	IR_2=0	X=-723	Y=975	Z=807	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 6802;977;814;0;0;-723;975;807;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=400606) node_addr=42 prefix=AB len=24 type=0 totalLen=8403
+*** SAT_AppStorageEMU::copyAndSend() : (ms=400769) node_addr=42 prefix=AB len=17 type=0 totalLen=8420
+*** DEBUG :	ms=402018	visible_1=974	IR_1=822	visible_2=0	IR_2=0	X=-717	Y=977	Z=810	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 8802;974;822;0;0;-717;977;810;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=402606) node_addr=42 prefix=AB len=24 type=0 totalLen=8444
+*** SAT_AppStorageEMU::copyAndSend() : (ms=402768) node_addr=42 prefix=AB len=17 type=0 totalLen=8461
+*** DEBUG :	ms=404018	visible_1=966	IR_1=821	visible_2=0	IR_2=0	X=-719	Y=978	Z=807	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 10802;966;821;0;0;-719;978;807;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=404606) node_addr=42 prefix=AB len=24 type=0 totalLen=8485
+*** SAT_AppStorageEMU::copyAndSend() : (ms=404769) node_addr=42 prefix=AB len=18 type=0 totalLen=8503
+*** DEBUG :	ms=406018	visible_1=966	IR_1=821	visible_2=0	IR_2=0	X=-715	Y=980	Z=792	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 12802;966;821;0;0;-715;980;792;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=406606) node_addr=42 prefix=AB len=24 type=0 totalLen=8527
+*** SAT_AppStorageEMU::copyAndSend() : (ms=406769) node_addr=42 prefix=AB len=18 type=0 totalLen=8545
+*** DEBUG :	ms=408018	visible_1=922	IR_1=769	visible_2=0	IR_2=0	X=-718	Y=977	Z=800	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 14802;922;769;0;0;-718;977;800;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=408607) node_addr=42 prefix=AB len=24 type=0 totalLen=8569
+*** SAT_AppStorageEMU::copyAndSend() : (ms=408770) node_addr=42 prefix=AB len=18 type=0 totalLen=8587
+*** DEBUG :	ms=410018	visible_1=947	IR_1=812	visible_2=0	IR_2=0	X=-718	Y=977	Z=804	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 16802;947;812;0;0;-718;977;804;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=410607) node_addr=42 prefix=AB len=24 type=0 totalLen=8611
+*** SAT_AppStorageEMU::copyAndSend() : (ms=410770) node_addr=42 prefix=AB len=18 type=0 totalLen=8629
+*** DEBUG :	ms=412018	visible_1=964	IR_1=824	visible_2=0	IR_2=0	X=-711	Y=977	Z=801	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 18802;964;824;0;0;-711;977;801;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=412607) node_addr=42 prefix=AB len=24 type=0 totalLen=8653
+*** SAT_AppStorageEMU::copyAndSend() : (ms=412770) node_addr=42 prefix=AB len=18 type=0 totalLen=8671
+*** DEBUG :	ms=414018	visible_1=965	IR_1=825	visible_2=0	IR_2=0	X=-712	Y=981	Z=806	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 20802;965;825;0;0;-712;981;806;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=414607) node_addr=42 prefix=AB len=24 type=0 totalLen=8695
+*** SAT_AppStorageEMU::copyAndSend() : (ms=414770) node_addr=42 prefix=AB len=18 type=0 totalLen=8713
+*** DEBUG :	ms=416018	visible_1=962	IR_1=823	visible_2=0	IR_2=0	X=-718	Y=972	Z=808	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 22802;962;823;0;0;-718;972;808;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=416607) node_addr=42 prefix=AB len=24 type=0 totalLen=8737
+*** SAT_AppStorageEMU::copyAndSend() : (ms=416770) node_addr=42 prefix=AB len=18 type=0 totalLen=8755
+*** DEBUG :	ms=418018	visible_1=961	IR_1=823	visible_2=0	IR_2=0	X=-714	Y=971	Z=814	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 24802;961;823;0;0;-714;971;814;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=418607) node_addr=42 prefix=AB len=24 type=0 totalLen=8779
+*** SAT_AppStorageEMU::copyAndSend() : (ms=418769) node_addr=42 prefix=AB len=18 type=0 totalLen=8797
+*** DEBUG :	ms=420018	visible_1=960	IR_1=822	visible_2=0	IR_2=0	X=-718	Y=981	Z=808	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 26802;960;822;0;0;-718;981;808;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=420606) node_addr=42 prefix=AB len=24 type=0 totalLen=8821
+*** SAT_AppStorageEMU::copyAndSend() : (ms=420769) node_addr=42 prefix=AB len=18 type=0 totalLen=8839
+*** DEBUG :	ms=422018	visible_1=957	IR_1=820	visible_2=0	IR_2=0	X=-714	Y=980	Z=803	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 28802;957;820;0;0;-714;980;803;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=422606) node_addr=42 prefix=AB len=24 type=0 totalLen=8863
+*** SAT_AppStorageEMU::copyAndSend() : (ms=422769) node_addr=42 prefix=AB len=18 type=0 totalLen=8881
+*** DEBUG :	ms=424018	visible_1=953	IR_1=818	visible_2=0	IR_2=0	X=-714	Y=983	Z=809	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 30802;953;818;0;0;-714;983;809;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=424607) node_addr=42 prefix=AB len=24 type=0 totalLen=8905
+*** SAT_AppStorageEMU::copyAndSend() : (ms=424770) node_addr=42 prefix=AB len=18 type=0 totalLen=8923
+*** DEBUG :	ms=426018	visible_1=952	IR_1=817	visible_2=0	IR_2=0	X=-711	Y=977	Z=811	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 32802;952;817;0;0;-711;977;811;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=426607) node_addr=42 prefix=AB len=24 type=0 totalLen=8947
+*** SAT_AppStorageEMU::copyAndSend() : (ms=426770) node_addr=42 prefix=AB len=18 type=0 totalLen=8965
+*** DEBUG :	ms=428018	visible_1=939	IR_1=791	visible_2=0	IR_2=0	X=-714	Y=978	Z=809	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 34802;939;791;0;0;-714;978;809;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=428607) node_addr=42 prefix=AB len=24 type=0 totalLen=8989
+*** SAT_AppStorageEMU::copyAndSend() : (ms=428770) node_addr=42 prefix=AB len=18 type=0 totalLen=9007
+*** DEBUG :	ms=430018	visible_1=944	IR_1=798	visible_2=0	IR_2=0	X=-718	Y=977	Z=803	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 36802;944;798;0;0;-718;977;803;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=430607) node_addr=42 prefix=AB len=24 type=0 totalLen=9031
+*** SAT_AppStorageEMU::copyAndSend() : (ms=430770) node_addr=42 prefix=AB len=18 type=0 totalLen=9049
+*** DEBUG :	ms=432018	visible_1=944	IR_1=798	visible_2=0	IR_2=0	X=-715	Y=977	Z=811	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 38802;944;798;0;0;-715;977;811;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=432607) node_addr=42 prefix=AB len=24 type=0 totalLen=9073
+*** SAT_AppStorageEMU::copyAndSend() : (ms=432770) node_addr=42 prefix=AB len=18 type=0 totalLen=9091
+*** DEBUG :	ms=434018	visible_1=942	IR_1=798	visible_2=0	IR_2=0	X=-717	Y=972	Z=822	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 40802;942;798;0;0;-717;972;822;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=434607) node_addr=42 prefix=AB len=24 type=0 totalLen=9115
+*** SAT_AppStorageEMU::copyAndSend() : (ms=434769) node_addr=42 prefix=AB len=18 type=0 totalLen=9133
+*** DEBUG :	ms=436018	visible_1=940	IR_1=797	visible_2=0	IR_2=0	X=-720	Y=974	Z=807	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 42802;940;797;0;0;-720;974;807;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=436606) node_addr=42 prefix=AB len=24 type=0 totalLen=9157
+*** SAT_AppStorageEMU::copyAndSend() : (ms=436769) node_addr=42 prefix=AB len=18 type=0 totalLen=9175
+*** DEBUG :	ms=438018	visible_1=937	IR_1=795	visible_2=0	IR_2=0	X=-713	Y=978	Z=819	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 44802;937;795;0;0;-713;978;819;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=438606) node_addr=42 prefix=AB len=24 type=0 totalLen=9199
+*** SAT_AppStorageEMU::copyAndSend() : (ms=438769) node_addr=42 prefix=AB len=18 type=0 totalLen=9217
+*** DEBUG :	ms=440018	visible_1=934	IR_1=795	visible_2=0	IR_2=0	X=-713	Y=979	Z=820	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 46802;934;795;0;0;-713;979;820;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=440607) node_addr=42 prefix=AB len=24 type=0 totalLen=9241
+*** SAT_AppStorageEMU::copyAndSend() : (ms=440770) node_addr=42 prefix=AB len=18 type=0 totalLen=9259
+*** DEBUG :	ms=442018	visible_1=931	IR_1=793	visible_2=0	IR_2=0	X=-716	Y=978	Z=807	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 48802;931;793;0;0;-716;978;807;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=442607) node_addr=42 prefix=AB len=24 type=0 totalLen=9283
+*** SAT_AppStorageEMU::copyAndSend() : (ms=442770) node_addr=42 prefix=AB len=18 type=0 totalLen=9301
+*** DEBUG :	ms=444018	visible_1=928	IR_1=791	visible_2=0	IR_2=0	X=-716	Y=976	Z=816	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 50802;928;791;0;0;-716;976;816;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=444607) node_addr=42 prefix=AB len=24 type=0 totalLen=9325
+*** SAT_AppStorageEMU::copyAndSend() : (ms=444770) node_addr=42 prefix=AB len=18 type=0 totalLen=9343
+*** DEBUG :	ms=446018	visible_1=925	IR_1=790	visible_2=0	IR_2=0	X=-715	Y=977	Z=800	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 52802;925;790;0;0;-715;977;800;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=446607) node_addr=42 prefix=AB len=24 type=0 totalLen=9367
+*** SAT_AppStorageEMU::copyAndSend() : (ms=446770) node_addr=42 prefix=AB len=18 type=0 totalLen=9385
+*** DEBUG :	ms=448018	visible_1=921	IR_1=788	visible_2=0	IR_2=0	X=-717	Y=977	Z=813	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 54802;921;788;0;0;-717;977;813;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=448607) node_addr=42 prefix=AB len=24 type=0 totalLen=9409
+*** SAT_AppStorageEMU::copyAndSend() : (ms=448770) node_addr=42 prefix=AB len=18 type=0 totalLen=9427
+*** DEBUG :	ms=450018	visible_1=916	IR_1=786	visible_2=0	IR_2=0	X=-716	Y=976	Z=806	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 56802;916;786;0;0;-716;976;806;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=450607) node_addr=42 prefix=AB len=24 type=0 totalLen=9451
+*** SAT_AppStorageEMU::copyAndSend() : (ms=450769) node_addr=42 prefix=AB len=18 type=0 totalLen=9469
+*** DEBUG :	ms=452018	visible_1=913	IR_1=784	visible_2=0	IR_2=0	X=-710	Y=969	Z=818	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 58802;913;784;0;0;-710;969;818;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=452606) node_addr=42 prefix=AB len=24 type=0 totalLen=9493
+*** SAT_AppStorageEMU::copyAndSend() : (ms=452769) node_addr=42 prefix=AB len=18 type=0 totalLen=9511
+*** DEBUG :	ms=454018	visible_1=912	IR_1=783	visible_2=0	IR_2=0	X=-716	Y=973	Z=815	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 60802;912;783;0;0;-716;973;815;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=454606) node_addr=42 prefix=AB len=24 type=0 totalLen=9535
+*** SAT_AppStorageEMU::copyAndSend() : (ms=454769) node_addr=42 prefix=AB len=18 type=0 totalLen=9553
+*** DEBUG :	ms=456018	visible_1=909	IR_1=782	visible_2=0	IR_2=0	X=-718	Y=977	Z=803	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 62802;909;782;0;0;-718;977;803;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=456607) node_addr=42 prefix=AB len=24 type=0 totalLen=9577
+*** SAT_AppStorageEMU::copyAndSend() : (ms=456770) node_addr=42 prefix=AB len=18 type=0 totalLen=9595
+*** DEBUG :	ms=458018	visible_1=905	IR_1=780	visible_2=0	IR_2=0	X=-715	Y=981	Z=807	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 64802;905;780;0;0;-715;981;807;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=458607) node_addr=42 prefix=AB len=24 type=0 totalLen=9619
+*** SAT_AppStorageEMU::copyAndSend() : (ms=458770) node_addr=42 prefix=AB len=18 type=0 totalLen=9637
+*** DEBUG :	ms=460018	visible_1=903	IR_1=779	visible_2=0	IR_2=0	X=-711	Y=975	Z=818	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 1266;903;779;0;0;-711;975;818;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=460606) node_addr=42 prefix=AB len=24 type=0 totalLen=9661
+*** SAT_AppStorageEMU::copyAndSend() : (ms=460769) node_addr=42 prefix=AB len=17 type=0 totalLen=9678
+*** DEBUG :	ms=462018	visible_1=902	IR_1=777	visible_2=0	IR_2=0	X=-718	Y=975	Z=810	temp_1=414	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 3266;902;777;0;0;-718;975;810;414;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=462606) node_addr=42 prefix=AB len=24 type=0 totalLen=9702
+*** SAT_AppStorageEMU::copyAndSend() : (ms=462769) node_addr=42 prefix=AB len=17 type=0 totalLen=9719
+*** DEBUG :	ms=464018	visible_1=901	IR_1=777	visible_2=0	IR_2=0	X=-717	Y=981	Z=817	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 5266;901;777;0;0;-717;981;817;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=464606) node_addr=42 prefix=AB len=24 type=0 totalLen=9743
+*** SAT_AppStorageEMU::copyAndSend() : (ms=464769) node_addr=42 prefix=AB len=17 type=0 totalLen=9760
+*** DEBUG :	ms=466018	visible_1=900	IR_1=777	visible_2=0	IR_2=0	X=-714	Y=974	Z=807	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 7266;900;777;0;0;-714;974;807;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=466606) node_addr=42 prefix=AB len=24 type=0 totalLen=9784
+*** SAT_AppStorageEMU::copyAndSend() : (ms=466768) node_addr=42 prefix=AB len=17 type=0 totalLen=9801
+*** DEBUG :	ms=468018	visible_1=898	IR_1=776	visible_2=0	IR_2=0	X=-717	Y=974	Z=812	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 9266;898;776;0;0;-717;974;812;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=468605) node_addr=42 prefix=AB len=24 type=0 totalLen=9825
+*** SAT_AppStorageEMU::copyAndSend() : (ms=468768) node_addr=42 prefix=AB len=17 type=0 totalLen=9842
+*** DEBUG :	ms=470018	visible_1=896	IR_1=774	visible_2=0	IR_2=0	X=-718	Y=975	Z=814	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 11266;896;774;0;0;-718;975;814;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=470606) node_addr=42 prefix=AB len=24 type=0 totalLen=9866
+*** SAT_AppStorageEMU::copyAndSend() : (ms=470769) node_addr=42 prefix=AB len=18 type=0 totalLen=9884
+*** DEBUG :	ms=472018	visible_1=895	IR_1=773	visible_2=0	IR_2=0	X=-714	Y=977	Z=810	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 13266;895;773;0;0;-714;977;810;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=472607) node_addr=42 prefix=AB len=24 type=0 totalLen=9908
+*** SAT_AppStorageEMU::copyAndSend() : (ms=472770) node_addr=42 prefix=AB len=18 type=0 totalLen=9926
+*** DEBUG :	ms=474018	visible_1=893	IR_1=772	visible_2=0	IR_2=0	X=-714	Y=977	Z=830	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 15266;893;772;0;0;-714;977;830;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=474607) node_addr=42 prefix=AB len=24 type=0 totalLen=9950
+*** SAT_AppStorageEMU::copyAndSend() : (ms=474770) node_addr=42 prefix=AB len=18 type=0 totalLen=9968
+*** DEBUG :	ms=476018	visible_1=893	IR_1=772	visible_2=0	IR_2=0	X=-714	Y=978	Z=812	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 17266;893;772;0;0;-714;978;812;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=476607) node_addr=42 prefix=AB len=24 type=0 totalLen=9992
+*** SAT_AppStorageEMU::copyAndSend() : (ms=476770) node_addr=42 prefix=AB len=18 type=0 totalLen=10010
+*** DEBUG :	ms=478018	visible_1=893	IR_1=771	visible_2=0	IR_2=0	X=-711	Y=978	Z=826	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 19266;893;771;0;0;-711;978;826;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=478607) node_addr=42 prefix=AB len=24 type=0 totalLen=10034
+*** SAT_AppStorageEMU::copyAndSend() : (ms=478771) node_addr=42 prefix=AB len=18 type=0 totalLen=10052
+*** DEBUG :	ms=480018	visible_1=892	IR_1=772	visible_2=0	IR_2=0	X=-712	Y=978	Z=804	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 21266;892;772;0;0;-712;978;804;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=480607) node_addr=42 prefix=AB len=24 type=0 totalLen=10076
+*** SAT_AppStorageEMU::copyAndSend() : (ms=480771) node_addr=42 prefix=AB len=18 type=0 totalLen=10094
+*** DEBUG :	ms=482018	visible_1=892	IR_1=771	visible_2=0	IR_2=0	X=-711	Y=978	Z=818	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 23266;892;771;0;0;-711;978;818;412;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=482607) node_addr=42 prefix=AB len=24 type=0 totalLen=10118
+*** SAT_AppStorageEMU::copyAndSend() : (ms=482770) node_addr=42 prefix=AB len=18 type=0 totalLen=10136
+*** DEBUG :	ms=484018	visible_1=892	IR_1=771	visible_2=0	IR_2=0	X=-708	Y=973	Z=804	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 25266;892;771;0;0;-708;973;804;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=484606) node_addr=42 prefix=AB len=24 type=0 totalLen=10160
+*** SAT_AppStorageEMU::copyAndSend() : (ms=484770) node_addr=42 prefix=AB len=18 type=0 totalLen=10178
+*** DEBUG :	ms=486018	visible_1=892	IR_1=770	visible_2=0	IR_2=0	X=-710	Y=980	Z=807	temp_1=413	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 27266;892;770;0;0;-710;980;807;413;0;0;0;
+
+*** SAT_AppStorageEMU::copyAndSend() : (ms=486606) node_addr=42 prefix=AB len=24 type=0 totalLen=10202
+*** SAT_AppStorageEMU::copyAndSend() : (ms=486770) node_addr=42 prefix=AB len=18 type=0 totalLen=10220
+*** DEBUG :	ms=488018	visible_1=892	IR_1=770	visible_2=0	IR_2=0	X=-709	Y=975	Z=813	temp_1=412	temp_2=0	temp_3=0	temp_4=0
+MESSAGE(TEXT): 29266;892;770;0;0;-709;975;813;412;0;0;0;
+
+*** END OF EXPERIMENT BY REACHING 10KB

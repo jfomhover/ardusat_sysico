@@ -1,6 +1,8 @@
 /*
-    ardusat_lum.ino - gathers the values of the luminosity sensor(s) 
-    @author : Jean-François Omhover for Arts et Metiers ParisTech
+    File :         lumcalibrate.ino
+    Author :       Jean-Francois Omhover (@jfomhover)
+    Last Changed : Aug. 8th 2013
+    Description :  testing the different parameters of SAT_Lum under different conditions (see datasets)
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -14,11 +16,6 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-    CHANGES
-
-    TODOLIST
-
 */
 
 
@@ -42,6 +39,8 @@
 #include <Wire.h>//for I2C
 #include <nanosat_message.h>
 #include <I2C_add.h>
+#include <Arduino.h>
+#include <I2CComm.h>
 
 #ifdef COMM_EMULATION
 #include <SAT_AppStorageEMU.h>
@@ -176,7 +175,7 @@ void setup()
   Wire.begin();        // join i2c bus (address optional for master)
   Serial.begin(9600);  // start serial for output (fast)
 
-  if (tsl.begin(1)) {
+  if (tsl.begin()) {
     Serial.println("Found sensor");
   } else {
     Serial.println("No sensor?");

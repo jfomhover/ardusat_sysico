@@ -1,7 +1,9 @@
 /*
-    test_messagewriter.ino - testing the ArduSatMessageWriter class with several example values
-    @author : Jean-François Omhover for Arts et Metiers ParisTech
-
+    File :         messagewriter.ino
+    Author :       Jean-Francois Omhover (@jfomhover)
+    Last Changed : Aug. 8th 2013
+    Description :  tests the ArduSatMessageWriter class (see ArduSatMessageWriter library)
+                   
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -14,11 +16,6 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-    CHANGES
-
-    TODOLIST
-
 */
 
 
@@ -105,7 +102,7 @@ void testMessageWriter(ArduSatMessageWriter * writer, int format, struct testing
 
 void setup()
 {
-  Serial.begin(115200);  // start serial for output (fast)
+  Serial.begin(9600);  // start serial for output (fast)
 }
 
 // ************
