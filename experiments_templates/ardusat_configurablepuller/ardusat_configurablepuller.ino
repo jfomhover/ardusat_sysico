@@ -34,7 +34,7 @@
 #define DEBUG_MODE              // prints the values in readable format via Serial
 #define DEBUG_LED   9           // the pin of the led that will blink at each pool of the sensors
 #define COMM_EMULATION        // to emulate the Comm via SAT_AppStorageEMU, prints out (via Serial) the results of the data that is sent through
-#define PULL_DELAY  2000        // data is pooled every PULL_DELAY seconds
+#define PULL_DELAY  33000        // data is pooled every PULL_DELAY seconds
 //#define LEGACY_SDK              // use sdk BEFORE the integration of I2CComm, on Aug. 7th 2013
 
 #define POOL_SAT_LUM            // comment to NOT POOL the luminosity values
@@ -444,8 +444,8 @@ void setup()
 // *** LOOP ***
 // ************
 
-int previousMs;
-int nextMs;
+unsigned long int previousMs;
+unsigned long int nextMs;
 
 void loop()
 {
@@ -480,7 +480,7 @@ void loop()
 #endif
 
   nextMs = PULL_DELAY-(millis()-previousMs);  // "intelligent delay" : just the ms needed to have a perfect timing, takes into account the delay of all the functions in the loop
-
+  
   if (nextMs > 0)
     delay(nextMs); //wait for next pull
 }
