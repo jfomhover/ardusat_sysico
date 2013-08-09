@@ -60,6 +60,7 @@ public:
     SAT_AppStorageEMUSD();
     void configEMU(boolean debug, // is the class printing verbose lines on Serial
     				int bauds,		// serial baud rate (for debug==true)
+    				int csPin, 		// pin of the chip select on your arduino config (uno ethernet = 4)
     				char * filename = NULL);	// name of the file, (if NULL, default "datalog.bin")
 
     /*

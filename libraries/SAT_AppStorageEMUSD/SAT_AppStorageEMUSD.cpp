@@ -34,9 +34,47 @@
 #include <EEPROM.h>
 #include "SAT_AppStorageEMUSD.h"
 #include <SD.h>
+#include <avr/pgmspace.h>
 
 #define CHIPSELECT	4
 
+// *** RAM OPTIMIZATION FOR DEBUG (too much strings in this class)
+const prog_uchar string_0[] PROGMEM = "Initializing SD card...";
+#define PGM_STRING_INITIALIZING	string_0
+const prog_uchar string_1[] PROGMEM = "SD card failed, or not present";
+#define PGM_STRING_SDFAILED		string_1
+const prog_uchar string_2[] PROGMEM = "SD card initialized.";
+#define PGM_STRING_INITIALIZED	string_2
+const prog_uchar string_3[] PROGMEM = "SD writing...";
+#define PGM_STRING_SDWRITING	string_3
+const prog_uchar string_4[] PROGMEM = "SD not available...";
+#define PGM_STRING_SDNOTAVAIL	string_4
+const prog_uchar string_5[] PROGMEM = "*** END OF EXPERIMENT BY REACHING 10KB";
+#define PGM_STRING_ENDOFEXP		string_5
+const prog_uchar string_6[] PROGMEM = "*** SAT_AppStorageEMUSD::copyAndSend() : ";
+#define PGM_STRING_COPYANDSEND	string_6
+const prog_uchar string_7[] PROGMEM = " ms=";
+#define PGM_STRING_MS			string_7
+const prog_uchar string_8[] PROGMEM = " node_addr=";
+#define PGM_STRING_NODEADDR		string_8
+const prog_uchar string_9[] PROGMEM = " prefix=";
+#define PGM_STRING_PREFIX		string_9
+const prog_uchar string_10[] PROGMEM = " len=";
+#define PGM_STRING_LEN			string_10
+const prog_uchar string_11[] PROGMEM = " type=";
+#define PGM_STRING_TYPE			string_11
+const prog_uchar string_12[] PROGMEM = " type=";
+#define PGM_STRING_TOTALLEN		string_12
+const prog_uchar string_13[] PROGMEM = "Error opening ";
+#define PGM_STRING_ERROROPENING	string_13
+
+
+void ASEMUSD_printPROGMEMString(const prog_uchar *str) {
+	char c;
+
+	while((c = pgm_read_byte(str++)))
+		Serial.write(c);
+}
 
 /******************************************************************************
  * Constructors
@@ -49,7 +87,7 @@ SAT_AppStorageEMUSD::SAT_AppStorageEMUSD()
   dataCount_ = 0;
 }
 
-void SAT_AppStorageEMUSD::configEMU(boolean debug, int bauds, char * filename) {
+void SAT_AppStorageEMUSD::configEMU(boolean debug, int bauds, int csPin, char * filename) {
 	debugMode_ = debug;
 
 	if (filename == NULL)
@@ -59,7 +97,8 @@ void SAT_AppStorageEMUSD::configEMU(boolean debug, int bauds, char * filename) {
 
 	if (debugMode_) {
 		Serial.begin(bauds);
-		Serial.print("Initializing SD card...");
+		ASEMUSD_printPROGMEMString(PGM_STRING_INITIALIZING);
+//		Serial.print("Initializing SD card...");
 	}
 
   // make sure that the default chip select pin is set to
@@ -70,11 +109,13 @@ void SAT_AppStorageEMUSD::configEMU(boolean debug, int bauds, char * filename) {
   if (!SD.begin(CHIPSELECT)) {
 	  SDavailable_ = false;
 	  if (debugMode_)
-		  Serial.println("SD card failed, or not present");
+			ASEMUSD_printPROGMEMString(PGM_STRING_SDFAILED);
+//		  Serial.println("SD card failed, or not present");
   }
   SDavailable_ = true;
   if (debugMode_)
-	  Serial.println("SD card initialized.");
+		ASEMUSD_printPROGMEMString(PGM_STRING_INITIALIZED);
+//	  Serial.println("SD card initialized.");
 }
 
 /******************************************************************************
@@ -93,11 +134,13 @@ void SAT_AppStorageEMUSD::send(char data[])
 
   if (SDavailable_) {
 	  if(debugMode_)
-		  Serial.println("SD writing...");
+			ASEMUSD_printPROGMEMString(PGM_STRING_SDWRITING);
+//		  Serial.println("SD writing...");
 	  write2SD((byte*)data,0, dataLen);
   } else
 	  if(debugMode_)
-		  Serial.println("SD not available...");
+			ASEMUSD_printPROGMEMString(PGM_STRING_SDNOTAVAIL);
+//		  Serial.println("SD not available...");
 
   for(unsigned int i = 0; i < messages; i++)
   {
@@ -118,11 +161,13 @@ void SAT_AppStorageEMUSD::send(byte *data, unsigned int offset, unsigned int len
 
   if (SDavailable_) {
 	  if(debugMode_)
-		  Serial.println("SD writing...");
+			ASEMUSD_printPROGMEMString(PGM_STRING_SDWRITING);
+//		  Serial.println("SD writing...");
 	  write2SD((byte*)data,0, dataLen);
   } else
 	  if(debugMode_)
-		  Serial.println("SD not available...");
+			ASEMUSD_printPROGMEMString(PGM_STRING_SDNOTAVAIL);
+//		  Serial.println("SD not available...");
 
   for(unsigned int i = 0; i < messages; i++)
   {
@@ -158,23 +203,32 @@ void SAT_AppStorageEMUSD::copyAndSend(
 
 
   if (dataCount_ > 10240) {
-    Serial.print("*** END OF EXPERIMENT BY REACHING 10KB");
+	  if (debugMode_)
+		ASEMUSD_printPROGMEMString(PGM_STRING_ENDOFEXP);
+//    Serial.print("*** END OF EXPERIMENT BY REACHING 10KB");
     while(1);
   }
 
   if (debugMode_) {
-    Serial.print("*** SAT_AppStorageEMUSD::copyAndSend() : (ms=");
+		ASEMUSD_printPROGMEMString(PGM_STRING_COPYANDSEND);
+//    Serial.print("*** SAT_AppStorageEMUSD::copyAndSend() : ");
+		ASEMUSD_printPROGMEMString(PGM_STRING_MS);
+//    Serial.print(" ms=");
     Serial.print(millis());
-    Serial.print(")");
-    Serial.print(" node_addr=");
+	ASEMUSD_printPROGMEMString(PGM_STRING_NODEADDR);
+//    Serial.print(" node_addr=");
     Serial.print(msg.node_addr,HEX);
-    Serial.print(" prefix=");
+	ASEMUSD_printPROGMEMString(PGM_STRING_PREFIX);
+//   Serial.print(" prefix=");
     Serial.print(msg.prefix,HEX);
-    Serial.print(" len=");
+	ASEMUSD_printPROGMEMString(PGM_STRING_LEN);
+//  Serial.print(" len=");
     Serial.print(msg.len);
-    Serial.print(" type=");
+	ASEMUSD_printPROGMEMString(PGM_STRING_TYPE);
+//    Serial.print(" type=");
     Serial.print(msg.type,HEX);
-    Serial.print(" totalLen=");
+	ASEMUSD_printPROGMEMString(PGM_STRING_TOTALLEN);
+//    Serial.print(" totalLen=");
     Serial.println(dataCount_);
   }
 
@@ -188,22 +242,22 @@ void SAT_AppStorageEMUSD::write2SD(byte data[], unsigned int offset, unsigned in
 
 	  // if the file is available, write to it:
 	  if (dataFile) {
-		  if (debugMode_)
-			  Serial.println("writing to SD...");
 		  dataFile.write(data+offset,length);
 		  dataFile.flush();
 		  dataFile.close();
-		  for(int i=0; i<3; i++) {
-		  		  digitalWrite(9,HIGH);
+		  if (debugMode_)
+			  for(int i=0; i<3; i++) {
+				  digitalWrite(9,HIGH);
+				  delay(50);
+				  digitalWrite(9,LOW);
 		  		  delay(50);
-		  		  digitalWrite(9,LOW);
-		  		  delay(50);
-		  }
+			  }
 	  }
 	  // if the file isn't open, pop up an error:
 	  else {
 		  if (debugMode_) {
-			  Serial.print("error opening ");
+				ASEMUSD_printPROGMEMString(PGM_STRING_ERROROPENING);
+//			  Serial.print("error opening ");
 		  	  Serial.println(filename_);
 		  }
 	  }

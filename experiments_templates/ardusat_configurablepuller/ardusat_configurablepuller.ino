@@ -35,6 +35,7 @@
 
 #define DEBUG_MODE              // prints the values in readable format via Serial
 #define DEBUG_LED   9           // the pin of the led that will blink at each pool of the sensors
+//#define DEBUG_FREERAM           // use MemoryFree lib to compute the amount of free ram (only for DEBUG_MODE)
 	// choose ONLY ONE below
 //#define COMM_EMULATION          // to emulate the Comm via SAT_AppStorageEMU, prints out (via Serial) the results of the data that is sent through
 #define COMM_EMULATION_SD		// to emulate the Comm via SAT_AppStorageEMUSD, writes the result on SD/"datalog.bin"
@@ -74,6 +75,10 @@
 #include <nanosat_message.h>
 #include <I2C_add.h>
 #include <I2CComm.h>
+
+#if defined(DEBUG_MODE) && defined(DEBUG_FREERAM)
+#include "MemoryFree.h"
+#endif
 
 #ifdef COMM_EMULATION
 #include <SAT_AppStorageEMU.h>
@@ -479,17 +484,34 @@ void outputValues() {
 void setup()
 {
 #if defined(DEBUG_MODE)
-  Serial.begin(9600);  // start serial for output (fast)
+
+  Serial.begin(9600);  // start serial for output
   I2CComm.begin();
   pinMode(DEBUG_LED,OUTPUT);
   digitalWrite(DEBUG_LED, LOW);
-#endif // DEBUG_MODE
 #if defined(COMM_EMULATION)
   store.configEMU(true,9600);
 #endif
 #if defined(COMM_EMULATION_SD)
-  store.configEMU(true,9600);
+  store.configEMU(true,9600,4);
 #endif
+
+#if defined(DEBUG_FREERAM)
+  Serial.print("free ram = ");
+  Serial.println(freeMemory());
+#endif
+
+#else // NON DEBUG_MODE
+
+#if defined(COMM_EMULATION)
+  store.configEMU(false,0);
+#endif
+#if defined(COMM_EMULATION_SD)
+  store.configEMU(false,0,4);
+#endif
+
+#endif // DEBUG_MODE
+
 
   setupSensors();
 }
@@ -504,6 +526,7 @@ unsigned long int nextMs;
 void loop()
 {
   previousMs = millis();  // marking the previous millis for "intelligent" delay
+
 
 #ifdef DEBUG_MODE
   digitalWrite(DEBUG_LED, HIGH);
@@ -538,4 +561,3 @@ void loop()
   if (nextMs > 0)
     delay(nextMs); //wait for next pull
 }
-
