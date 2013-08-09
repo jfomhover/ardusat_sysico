@@ -1,15 +1,17 @@
 /*
     File :         ardusat_configurablepuller.ino
     Author :       Jean-Francois Omhover (@jfomhover)
-    Last Changed : Aug. 8th 2013
+    Last Changed : Aug. 9th 2013
     Description :  configurable code for pulling the RAW VALUES (int) of the sensors regularly
                    and returning binary values back to earth
-                   
+
     Usage :        - required : select (comment/uncomment) the necessary sensors in for CONFIG section below
                    - required : choose (define) the right PULL_DELAY for the regular pooling
                    - required : select (comment/uncomment) an output mode : OUTPUT_BINARY or OUTPUT_TEXTCSV
                    - option : uncomment DEBUG_MODE to output verbose lines on Serial (and blink a led at each pooling cycle)
                    - option : modify the CHARBUFFER_SPACE macro to fit your requirements
+                   - option : use COMM_EMULATION for emulating SAT_AppStorage (output on Serial instead of sending data)
+                   - option : use COMM_EMULATION for emulating SAT_AppStorage (output on SD instead of sending data)
                    ! Beware of the 10ko limit, choose the output format wisely.
 
     This program is free software: you can redistribute it and/or modify
@@ -33,18 +35,22 @@
 
 #define DEBUG_MODE              // prints the values in readable format via Serial
 #define DEBUG_LED   9           // the pin of the led that will blink at each pool of the sensors
-#define COMM_EMULATION        // to emulate the Comm via SAT_AppStorageEMU, prints out (via Serial) the results of the data that is sent through
-#define PULL_DELAY  33000        // data is pooled every PULL_DELAY seconds
+	// choose ONLY ONE below
+//#define COMM_EMULATION          // to emulate the Comm via SAT_AppStorageEMU, prints out (via Serial) the results of the data that is sent through
+#define COMM_EMULATION_SD		// to emulate the Comm via SAT_AppStorageEMUSD, writes the result on SD/"datalog.bin"
 //#define LEGACY_SDK              // use sdk BEFORE the integration of I2CComm, on Aug. 7th 2013
+
+#define PULL_DELAY  2000        // data is pooled every PULL_DELAY seconds
 
 #define POOL_SAT_LUM            // comment to NOT POOL the luminosity values
 #define POOL_SAT_MAG            // comment to NOT POOL the magnetometer values
 #define POOL_SAT_TMP            // comment to NOT POOL the temperature values
 //#define POOL_INFRATHERM       // comment to NOT POOL the infratherm values
+//#define POOL_SAT_ACCEL			// comment to NOT POOL the accelerometer
 
 #define OUTPUT_TEXTCSV          // to output in text/csv format
 //#define OUTPUT_BINARY         // to output in binary format (see struct below)
-#define CHARBUFFER_SPACE  256   // space allocated for the message in ASCII (will be used only if OUTPUT_ASCII is uncommented)
+#define CHARBUFFER_SPACE  64   // space allocated for the message in ASCII (will be used only if OUTPUT_ASCII is uncommented)
 
 /*
 #define I2C_ADD_MAG             0X0E    // magnetometer
@@ -71,11 +77,17 @@
 
 #ifdef COMM_EMULATION
 #include <SAT_AppStorageEMU.h>
-#else
+#endif
+#ifdef COMM_EMULATION_SD
+#include <SD.h>
+#include <EEPROM.h>
+#include <SAT_AppStorageEMUSD.h>
+#endif
+#if !defined(COMM_EMULATION) && !defined(COMM_EMULATION_SD)
 #include <EEPROM.h>
 #include <OnboardCommLayer.h>
 #include <SAT_AppStorage.h>
-#endif /* COMM_EMULATION */
+#endif /* NO EMULATION */
 
     // BELOW, ADD THE HEADERS YOU NEED
 #ifdef POOL_SAT_LUM
@@ -90,6 +102,9 @@
 #ifdef POOL_INFRATHERM
 #include <SAT_InfraTherm.h>
 #endif
+#ifdef POOL_SAT_ACCEL
+#include <SAT_Accel.h>
+#endif
 
 // ************************
 // *** API CONSTRUCTORS ***
@@ -97,7 +112,11 @@
 
 #ifdef COMM_EMULATION
 SAT_AppStorageEMU store;
-#else
+#endif
+#ifdef COMM_EMULATION_SD
+SAT_AppStorageEMUSD store;
+#endif
+#if !defined(COMM_EMULATION) && !defined(COMM_EMULATION_SD)
 SAT_AppStorage store;
 #endif
 
@@ -122,12 +141,16 @@ SAT_Temp tmp_sensor4(4);
 SAT_InfraTherm mlx;
 #endif
 
+#ifdef POOL_SAT_ACCEL
+SAT_Accel accel;
+#endif
+
     // SETUP OF THE SENSORS NEEDED (constructors mainly)
 void setupSensors() {
-  
+
   // *** SAT_MAG SETUP ***
 #ifdef POOL_SAT_MAG
-  mag.configMag();          // turn the MAG3110 on 
+  mag.configMag();          // turn the MAG3110 on
 #endif
 
 #ifdef POOL_SAT_LUM
@@ -174,7 +197,9 @@ void setupSensors() {
 
 #endif // POOL_SAT_LUM
 
-
+#ifdef POOL_SAT_ACCEL
+  accel.powerOn();
+#endif
 }
 
 // ********************************
@@ -196,9 +221,9 @@ struct _dataStruct {
   uint16_t tsl_one_values[2];
   uint16_t tsl_two_values[2];
 #endif
-  
+
 #ifdef POOL_SAT_MAG
-  int16_t mag_values[3]; 
+  int16_t mag_values[3];
 #endif
 
 #ifdef POOL_SAT_TMP
@@ -208,6 +233,12 @@ struct _dataStruct {
 #ifdef POOL_INFRATHERM
   int16_t infrat_value;
 #endif // POOL_INFRATHERM
+
+#ifdef POOL_SAT_ACCEL
+  int16_t accel_x;
+  int16_t accel_y;
+  int16_t accel_z;
+#endif
 } data;
 
 #define DATA_LENGTH  sizeof(struct _dataStruct)
@@ -225,7 +256,7 @@ void resetValues() {
 void poolValues() {
   resetValues();
   data.header = '#';            // used for parsing (even if the struct has a fixed size)
-  
+
   data.availableValues = 0
 #ifdef POOL_SAT_LUM
                          | AVAILABLE_SAT_LUM
@@ -240,7 +271,7 @@ void poolValues() {
                          | AVAILABLE_SAT_INFRATHERM
 #endif
                          ;
-  
+
   data.ms = millis();
 
       // BELOW, ADD THE POOLING FUNCTIONS YOU NEED
@@ -267,6 +298,10 @@ void poolValues() {
 #ifdef POOL_INFRATHERM
   data.infrat_value = mlx.getRawTemp();
 #endif // POOL_INFRATHERM
+
+#ifdef POOL_SAT_ACCEL
+  accel.readAccel(&(data.accel_x), &(data.accel_y), &(data.accel_z));
+#endif
 }
 
 #ifdef OUTPUT_TEXTCSV
@@ -306,7 +341,7 @@ void printPreBufferUInt(char * buf, unsigned int val) {
 void prepareMessage() {
   memset(messageBuffer, 0, CHARBUFFER_SPACE);
   bufferLen = 0;
-  
+
   PRINTUINT(messagePreBuffer, data.ms);
   if (!commitPreMessage())  return;
 
@@ -348,7 +383,16 @@ void prepareMessage() {
 #ifdef POOL_INFRATHERM
   PRINTINT(messagePreBuffer, data.infrat_value);
   if (!commitPreMessage())  return;
-#endif // POOL_INFRATHERM  
+#endif // POOL_INFRATHERM
+
+#ifdef POOL_SAT_ACCEL
+  PRINTINT(messagePreBuffer, data.accel_x);
+  if (!commitPreMessage())  return;
+  PRINTINT(messagePreBuffer, data.accel_y);
+  if (!commitPreMessage())  return;
+  PRINTINT(messagePreBuffer, data.accel_z);
+  if (!commitPreMessage())  return;
+#endif
 
   if ((bufferLen + 2) < CHARBUFFER_SPACE)
     messageBuffer[bufferLen++]='\n';
@@ -399,15 +443,24 @@ void outputValues() {
   Serial.print(data.infrat_value);
 #endif
 
+#ifdef POOL_SAT_ACCEL
+  Serial.print("\taccel_X=");
+  Serial.print(data.accel_x);
+  Serial.print("\taccel_Y=");
+  Serial.print(data.accel_y);
+  Serial.print("\taccel_Z=");
+  Serial.print(data.accel_z);
+#endif
+
   Serial.println();
 
 #ifdef OUTPUT_BINARY
   byte * t_bytePtr = (byte *)&data;
   Serial.print("MESSAGE(BIN): ");
   for (int i=0; i<DATA_LENGTH; i++) {
-    if (t_bytePtr[i]<0x10) {Serial.print("0");} 
+    if (t_bytePtr[i]<0x10) {Serial.print("0");}
     Serial.print(t_bytePtr[i],HEX);
-    Serial.print(" "); 
+    Serial.print(" ");
   }
   Serial.println("");
 #endif
@@ -427,15 +480,16 @@ void setup()
 {
 #if defined(DEBUG_MODE)
   Serial.begin(9600);  // start serial for output (fast)
+  I2CComm.begin();
   pinMode(DEBUG_LED,OUTPUT);
   digitalWrite(DEBUG_LED, LOW);
 #endif // DEBUG_MODE
 #if defined(COMM_EMULATION)
-  Serial.begin(9600);  // start serial for output (fast)
-  store.debugMode = true;
+  store.configEMU(true,9600);
 #endif
-
-  Wire.begin();        // join i2c bus (address optional for master)
+#if defined(COMM_EMULATION_SD)
+  store.configEMU(true,9600);
+#endif
 
   setupSensors();
 }
@@ -480,7 +534,7 @@ void loop()
 #endif
 
   nextMs = PULL_DELAY-(millis()-previousMs);  // "intelligent delay" : just the ms needed to have a perfect timing, takes into account the delay of all the functions in the loop
-  
+
   if (nextMs > 0)
     delay(nextMs); //wait for next pull
 }

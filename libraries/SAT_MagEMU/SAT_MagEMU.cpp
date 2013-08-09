@@ -28,6 +28,7 @@ http://dlnmh9ip6v2uc.cloudfront.net/datasheets/BreakoutBoards/Mag3110_v10.pde
 ////////////////////////////////////////////////////////////////////////////////
 */
 
+#include <Arduino.h>
 #include "SAT_MagEMU.h"
 #include <I2C_add.h>
 #include <Wire.h>
