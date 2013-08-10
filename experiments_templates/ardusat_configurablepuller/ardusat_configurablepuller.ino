@@ -43,8 +43,10 @@
 // *** I2C COMMUNICATION ***
 // !!! choose ONLY ONE below
 //#define COMM_EMULATION          // to emulate the Comm via SAT_AppStorageEMU, prints out (via Serial) the results of the data that is sent through
-//#define COMM_EMULATION_SD	  // to emulate the Comm via SAT_AppStorageEMUSD, writes the result on SD/"datalog.bin"
+#define COMM_EMULATION_SD	  // to emulate the Comm via SAT_AppStorageEMUSD, writes the result on SD/"datalog.bin"
 #define SD_CHIPSELECT      4      // pin used for CS by SD lib (ArduinoUno Ethernet CS = 4)
+#define SD_FILENAME "datalog.bin" // name of the file used for storing data
+#define SD_RESETFILE       false  // true to erase file at reset, false to append data at the end of the file
 //#define LEGACY_SDK              // NOT IMPLEMENTED YET : use sdk BEFORE the integration of I2CComm, on Aug. 7th 2013
 
 // *** SENSOR PULLING ***
@@ -52,12 +54,12 @@
 #define PULL_SAT_LUM           // comment to NOT PULL the luminosity values
 #define PULL_SAT_MAG           // comment to NOT PULL the magnetometer values
 #define PULL_SAT_TMP           // comment to NOT PULL the temperature values
-#define PULL_INFRATHERM        // comment to NOT PULL the infratherm values
-#define PULL_SAT_ACCEL         // comment to NOT PULL the accelerometer
+//#define PULL_INFRATHERM        // comment to NOT PULL the infratherm values
+//#define PULL_SAT_ACCEL         // comment to NOT PULL the accelerometer
 
 // *** RESULTS / OUTPUTS ***
-#define OUTPUT_TEXTCSV          // to output in text/csv format
-//#define OUTPUT_BINARY         // to output in binary format (see struct below)
+//#define OUTPUT_TEXTCSV          // to output in text/csv format
+#define OUTPUT_BINARY         // to output in binary format (see struct below)
 #define CHARBUFFER_SPACE  96   // space allocated for the message in ASCII (will be used only if OUTPUT_ASCII is uncommented)
 
 /*
@@ -307,10 +309,11 @@ void setupSensors() {
 // *** SENSOR POOLING FUNCTIONS ***
 // ********************************
 
-#define AVAILABLE_SAT_LUM  0x01
-#define AVAILABLE_SAT_MAG  0x02
-#define AVAILABLE_SAT_TMP  0x04
+#define AVAILABLE_SAT_LUM         0x01
+#define AVAILABLE_SAT_MAG         0x02
+#define AVAILABLE_SAT_TMP         0x04
 #define AVAILABLE_SAT_INFRATHERM  0x08
+#define AVAILABLE_SAT_ACCEL       0x10
 
 struct _dataStruct {
   char header;          // don't touch that, or adapt it, whatever ^^
@@ -370,6 +373,9 @@ void poolValues() {
 #endif
 #ifdef PULL_INFRATHERM
                          | AVAILABLE_SAT_INFRATHERM
+#endif
+#ifdef PULL_SAT_ACCEL
+                         | AVAILABLE_SAT_ACCEL
 #endif
                          ;
 
@@ -515,7 +521,7 @@ void prepareMessage() {
 #ifdef DEBUG_MODE
 void outputValues() {
   printString(PGM_STRING_DEBUG);
-  
+
   printString(PGM_STRING_SENSOR_MS);
   Serial.print(data.ms);
 
@@ -604,7 +610,7 @@ void setup()
   store.configEMU(true,DEBUG_BAUDRATE);
 #endif
 #if defined(COMM_EMULATION_SD)
-  store.configEMU(true,DEBUG_BAUDRATE,SD_CHIPSELECT);
+  store.configEMU(true,DEBUG_BAUDRATE,SD_CHIPSELECT,SD_RESETFILE,SD_FILENAME);
 #endif
 
 #else // NON DEBUG_MODE

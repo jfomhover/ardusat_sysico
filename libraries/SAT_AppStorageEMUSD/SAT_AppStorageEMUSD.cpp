@@ -67,6 +67,10 @@ const prog_uchar string_12[] PROGMEM = " type=";
 #define PGM_STRING_TOTALLEN		string_12
 const prog_uchar string_13[] PROGMEM = "Error opening ";
 #define PGM_STRING_ERROROPENING	string_13
+const prog_uchar string_14[] PROGMEM = "File erased ";
+#define PGM_STRING_FILEERASED	string_14
+const prog_uchar string_15[] PROGMEM = "!!File could not be erased!!!";
+#define PGM_STRING_FILENOTERASED	string_15
 
 
 void ASEMUSD_printPROGMEMString(const prog_uchar *str) {
@@ -87,7 +91,7 @@ SAT_AppStorageEMUSD::SAT_AppStorageEMUSD()
   dataCount_ = 0;
 }
 
-void SAT_AppStorageEMUSD::configEMU(boolean debug, int bauds, int csPin, char * filename) {
+void SAT_AppStorageEMUSD::configEMU(boolean debug, int bauds, int csPin, boolean erasefile, char * filename) {
 	debugMode_ = debug;
 
 	if (filename == NULL)
@@ -108,14 +112,16 @@ void SAT_AppStorageEMUSD::configEMU(boolean debug, int bauds, int csPin, char * 
   // see if the card is present and can be initialized:
   if (!SD.begin(CHIPSELECT)) {
 	  SDavailable_ = false;
-	  if (debugMode_)
-			ASEMUSD_printPROGMEMString(PGM_STRING_SDFAILED);
-//		  Serial.println("SD card failed, or not present");
+	  if (debugMode_)	ASEMUSD_printPROGMEMString(PGM_STRING_SDFAILED);
+  } else {
+	  SDavailable_ = true;
+	  if (debugMode_)	ASEMUSD_printPROGMEMString(PGM_STRING_INITIALIZED);
+	  if (erasefile) {
+	  	  bool t_b = SD.remove(filename_);
+	  	  if (debugMode_)	ASEMUSD_printPROGMEMString(PGM_STRING_FILEERASED);
+	  	  else				ASEMUSD_printPROGMEMString(PGM_STRING_FILENOTERASED);
+	  }
   }
-  SDavailable_ = true;
-  if (debugMode_)
-		ASEMUSD_printPROGMEMString(PGM_STRING_INITIALIZED);
-//	  Serial.println("SD card initialized.");
 }
 
 /******************************************************************************
@@ -238,7 +244,7 @@ void SAT_AppStorageEMUSD::copyAndSend(
 void SAT_AppStorageEMUSD::write2SD(byte data[], unsigned int offset, unsigned int length) {
 	  // open the file. note that only one file can be open at a time,
 	  // so you have to close this one before opening another.
-	  File dataFile = SD.open("datalog.bin", FILE_WRITE);
+	  File dataFile = SD.open(filename_, FILE_WRITE);
 
 	  // if the file is available, write to it:
 	  if (dataFile) {
