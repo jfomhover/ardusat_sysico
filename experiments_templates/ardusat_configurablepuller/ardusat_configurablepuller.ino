@@ -1,7 +1,7 @@
 /*
     File :         ardusat_configurablepuller.ino
     Author :       Jean-Francois Omhover (@jfomhover)
-    Last Changed : Aug. 9th 2013
+    Last Changed : Aug. 10th 2013
     Description :  configurable code for pulling the RAW VALUES (int) of the sensors regularly
                    and returning binary values back to earth
 
@@ -33,25 +33,32 @@
 // *** CONFIG ***
 // **************
 
+// *** DEBUGGING ***
 #define DEBUG_MODE              // prints the values in readable format via Serial
 #define DEBUG_LED   9           // the pin of the led that will blink at each pool of the sensors
-//#define DEBUG_FREERAM           // use MemoryFree lib to compute the amount of free ram (only for DEBUG_MODE)
-	// choose ONLY ONE below
+#define DEBUG_FREERAM           // use MemoryFree lib to compute the amount of free ram (only for DEBUG_MODE)
+#define DEBUG_BAUDRATE  9600    // the baud rate used for serial outputs
+#define USE_PROGMEM             // RECOMMENDED : free 130 bytes of ram in DEBUG_MODE by putting strings in PROGMEM
+
+// *** I2C COMMUNICATION ***
+// !!! choose ONLY ONE below
 //#define COMM_EMULATION          // to emulate the Comm via SAT_AppStorageEMU, prints out (via Serial) the results of the data that is sent through
-#define COMM_EMULATION_SD		// to emulate the Comm via SAT_AppStorageEMUSD, writes the result on SD/"datalog.bin"
-//#define LEGACY_SDK              // use sdk BEFORE the integration of I2CComm, on Aug. 7th 2013
+//#define COMM_EMULATION_SD	  // to emulate the Comm via SAT_AppStorageEMUSD, writes the result on SD/"datalog.bin"
+#define SD_CHIPSELECT      4      // pin used for CS by SD lib (ArduinoUno Ethernet CS = 4)
+//#define LEGACY_SDK              // NOT IMPLEMENTED YET : use sdk BEFORE the integration of I2CComm, on Aug. 7th 2013
 
-#define PULL_DELAY  2000        // data is pooled every PULL_DELAY seconds
+// *** SENSOR PULLING ***
+#define PULL_DELAY  2000       // data is pooled every PULL_DELAY seconds
+#define PULL_SAT_LUM           // comment to NOT PULL the luminosity values
+#define PULL_SAT_MAG           // comment to NOT PULL the magnetometer values
+#define PULL_SAT_TMP           // comment to NOT PULL the temperature values
+#define PULL_INFRATHERM        // comment to NOT PULL the infratherm values
+#define PULL_SAT_ACCEL         // comment to NOT PULL the accelerometer
 
-#define POOL_SAT_LUM            // comment to NOT POOL the luminosity values
-#define POOL_SAT_MAG            // comment to NOT POOL the magnetometer values
-#define POOL_SAT_TMP            // comment to NOT POOL the temperature values
-//#define POOL_INFRATHERM       // comment to NOT POOL the infratherm values
-//#define POOL_SAT_ACCEL			// comment to NOT POOL the accelerometer
-
+// *** RESULTS / OUTPUTS ***
 #define OUTPUT_TEXTCSV          // to output in text/csv format
 //#define OUTPUT_BINARY         // to output in binary format (see struct below)
-#define CHARBUFFER_SPACE  64   // space allocated for the message in ASCII (will be used only if OUTPUT_ASCII is uncommented)
+#define CHARBUFFER_SPACE  96   // space allocated for the message in ASCII (will be used only if OUTPUT_ASCII is uncommented)
 
 /*
 #define I2C_ADD_MAG             0X0E    // magnetometer
@@ -76,8 +83,12 @@
 #include <I2C_add.h>
 #include <I2CComm.h>
 
-#if defined(DEBUG_MODE) && defined(DEBUG_FREERAM)
+#if defined(DEBUG_FREERAM)
 #include "MemoryFree.h"
+#endif
+
+#if defined (USE_PROGMEM)
+#include <avr/pgmspace.h>
 #endif
 
 #ifdef COMM_EMULATION
@@ -95,20 +106,101 @@
 #endif /* NO EMULATION */
 
     // BELOW, ADD THE HEADERS YOU NEED
-#ifdef POOL_SAT_LUM
+#ifdef PULL_SAT_LUM
 #include <SAT_Lum.h>
 #endif
-#ifdef POOL_SAT_MAG
+#ifdef PULL_SAT_MAG
 #include <SAT_Mag.h>
 #endif
-#ifdef POOL_SAT_TMP
+#ifdef PULL_SAT_TMP
 #include <SAT_Temp.h>
 #endif
-#ifdef POOL_INFRATHERM
+#ifdef PULL_INFRATHERM
 #include <SAT_InfraTherm.h>
 #endif
-#ifdef POOL_SAT_ACCEL
+#ifdef PULL_SAT_ACCEL
 #include <SAT_Accel.h>
+#endif
+
+
+// ******************************
+// *** MEMORY OPTI BY PROGMEM ***
+// *** DO NOT TOUCH !!!       ***
+// ******************************
+
+#if defined(DEBUG_MODE)
+
+#if defined(USE_PROGMEM)
+
+#define T_STRINGCHAR  prog_uchar
+#define T_STRINGMEM  PROGMEM
+void printString(const prog_uchar *str) {
+	char c;
+
+	while((c = pgm_read_byte(str++)))
+		Serial.write(c);
+}
+
+#else  // not USE_PROGMEM
+
+#define T_STRINGCHAR  char
+#define T_STRINGMEM
+#define printString(str)  Serial.print(str)
+
+#endif  // USE_PROGMEM
+
+// *** RAM OPTIMIZATION FOR DEBUG (too much strings in this sketch)
+const T_STRINGCHAR string_0[] T_STRINGMEM = "Found tsl_one";
+#define PGM_STRING_FOUNDTSLONE	            string_0
+const T_STRINGCHAR string_1[] T_STRINGMEM = "No tsl_one";
+#define PGM_STRING_NOTFOUNDTSLONE           string_1
+
+const T_STRINGCHAR string_2[] T_STRINGMEM = "Found tsl_two";
+#define PGM_STRING_FOUNDTSLTWO	            string_2
+const T_STRINGCHAR string_3[] T_STRINGMEM = "No tsl_two";
+#define PGM_STRING_NOTFOUNDTSLTWO           string_3
+
+const T_STRINGCHAR string_4[] T_STRINGMEM = "MESSAGE(BIN): ";
+#define PGM_STRING_MESSAGEBIN               string_4
+const T_STRINGCHAR string_5[] T_STRINGMEM = "MESSAGE(TEXT): ";
+#define PGM_STRING_MESSAGETEXT              string_5
+
+const T_STRINGCHAR string_6[] T_STRINGMEM = "*** DEBUG :";
+#define PGM_STRING_DEBUG                    string_6
+
+const T_STRINGCHAR string_7[] T_STRINGMEM = "\tms=";
+#define PGM_STRING_SENSOR_MS                string_7
+const T_STRINGCHAR string_8[] T_STRINGMEM = "\tvisible_1=";
+#define PGM_STRING_SENSOR_LUMVIS1           string_8
+const T_STRINGCHAR string_9[] T_STRINGMEM = "\tIR_1=";
+#define PGM_STRING_SENSOR_LUMIR1            string_9
+const T_STRINGCHAR string_10[] T_STRINGMEM = "\tvisible_2=";
+#define PGM_STRING_SENSOR_LUMVIS2            string_10
+const T_STRINGCHAR string_11[] T_STRINGMEM = "\tIR_2=";
+#define PGM_STRING_SENSOR_LUMIR2             string_11
+const T_STRINGCHAR string_12[] T_STRINGMEM = "\tX=";
+#define PGM_STRING_SENSOR_MAGX               string_12
+const T_STRINGCHAR string_13[] T_STRINGMEM = "\tY=";
+#define PGM_STRING_SENSOR_MAGY               string_13
+const T_STRINGCHAR string_14[] T_STRINGMEM = "\tZ=";
+#define PGM_STRING_SENSOR_MAGZ               string_14
+const T_STRINGCHAR string_15[] T_STRINGMEM = "\ttemp_1=";
+#define PGM_STRING_SENSOR_TEMP1              string_15
+const T_STRINGCHAR string_16[] T_STRINGMEM = "\ttemp_2=";
+#define PGM_STRING_SENSOR_TEMP2              string_16
+const T_STRINGCHAR string_17[] T_STRINGMEM = "\ttemp_3=";
+#define PGM_STRING_SENSOR_TEMP3              string_17
+const T_STRINGCHAR string_18[] T_STRINGMEM = "\ttemp_4=";
+#define PGM_STRING_SENSOR_TEMP4              string_18
+const T_STRINGCHAR string_19[] T_STRINGMEM = "\tinfratherm=";
+#define PGM_STRING_SENSOR_INTHERM            string_19
+const T_STRINGCHAR string_20[] T_STRINGMEM = "\taccel_X=";
+#define PGM_STRING_SENSOR_ACCELX             string_20
+const T_STRINGCHAR string_21[] T_STRINGMEM = "\taccel_Y=";
+#define PGM_STRING_SENSOR_ACCELY             string_21
+const T_STRINGCHAR string_22[] T_STRINGMEM = "\taccel_Z=";
+#define PGM_STRING_SENSOR_ACCELZ             string_22
+
 #endif
 
 // ************************
@@ -126,27 +218,27 @@ SAT_AppStorage store;
 #endif
 
     // BELOW, ADD THE CONSTRUCTORS YOU NEED
-#ifdef POOL_SAT_LUM
+#ifdef PULL_SAT_LUM
 SAT_Lum tsl_one(1);                // one is on the front
 SAT_Lum tsl_two(2);                // the other... bottomplate ?
 #endif
 
-#ifdef POOL_SAT_MAG
+#ifdef PULL_SAT_MAG
 SAT_Mag mag;
 #endif
 
-#ifdef POOL_SAT_TMP
+#ifdef PULL_SAT_TMP
 SAT_Temp tmp_sensor1(1);        // previously was "payload"
 SAT_Temp tmp_sensor2(2);
 SAT_Temp tmp_sensor3(3);    // previously was "bottomplate"
 SAT_Temp tmp_sensor4(4);
 #endif
 
-#ifdef POOL_INFRATHERM
+#ifdef PULL_INFRATHERM
 SAT_InfraTherm mlx;
 #endif
 
-#ifdef POOL_SAT_ACCEL
+#ifdef PULL_SAT_ACCEL
 SAT_Accel accel;
 #endif
 
@@ -154,21 +246,22 @@ SAT_Accel accel;
 void setupSensors() {
 
   // *** SAT_MAG SETUP ***
-#ifdef POOL_SAT_MAG
+#ifdef PULL_SAT_MAG
   mag.configMag();          // turn the MAG3110 on
 #endif
 
-#ifdef POOL_SAT_LUM
+#ifdef PULL_SAT_LUM
   // *** SAT_LUM SETUP ***
 #if defined(DEBUG_MODE)
+
 #ifndef LEGACY_SDK
   if (tsl_one.begin()) {
 #else // LEGACY_SDK
   if (tsl_one.begin(0x42)) {
 #endif // LEGACY_SDK
-    Serial.println("Found tsl_one");
+    printString(PGM_STRING_FOUNDTSLONE);
   } else {
-    Serial.println("No tsl_one");
+    printString(PGM_STRING_NOTFOUNDTSLONE);
 //    while (1);
   }
 #ifndef LEGACY_SDK
@@ -176,12 +269,14 @@ void setupSensors() {
 #else // LEGACY_SDK
   if (tsl_two.begin(0x42)) {
 #endif // LEGACY_SDK
-    Serial.println("Found tsl_two");
+    printString(PGM_STRING_FOUNDTSLTWO);
   } else {
-    Serial.println("No tsl_two");
+    printString(PGM_STRING_NOTFOUNDTSLTWO);
 //    while (1);
   }
-#else
+
+#else // for non DEBUG_MODE
+
 #ifndef LEGACY_SDK
   tsl_one.begin();
   tsl_two.begin();
@@ -189,20 +284,21 @@ void setupSensors() {
   tsl_one.begin(1);
   tsl_two.begin(1);
 #endif // LEGACY_SDK
+
 #endif // DEBUG_MODE
 
   //tsl.setGain(SAT_Lum_GAIN_0X);         // set no gain (for bright situtations)
-  tsl_one.setGain(SAT_Lum_GAIN_16X);      // set 16x gain (for dim situations)
+  tsl_one.setGain(SAT_Lum_GAIN_0X);      // set 16x gain (for dim situations)
   tsl_two.setGain(SAT_Lum_GAIN_16X);      // set 16x gain (for dim situations)
 
   //tsl.setTiming(SAT_Lum_INTEGRATIONTIME_13MS);  // shortest integration time (bright light)
-  tsl_one.setTiming(SAT_Lum_INTEGRATIONTIME_101MS);  // medium integration time (medium light)
+  tsl_one.setTiming(SAT_Lum_INTEGRATIONTIME_13MS);  // medium integration time (medium light)
   tsl_two.setTiming(SAT_Lum_INTEGRATIONTIME_101MS);  // medium integration time (medium light)
   //tsl.setTiming(SAT_Lum_INTEGRATIONTIME_402MS);  // longest integration time (dim light)
 
-#endif // POOL_SAT_LUM
+#endif // PULL_SAT_LUM
 
-#ifdef POOL_SAT_ACCEL
+#ifdef PULL_SAT_ACCEL
   accel.powerOn();
 #endif
 }
@@ -222,24 +318,24 @@ struct _dataStruct {
   long int ms;          // i use that as an id
 
           // BELOW, ADD THE SENSOR VALUES YOU NEED
-#ifdef POOL_SAT_LUM
+#ifdef PULL_SAT_LUM
   uint16_t tsl_one_values[2];
   uint16_t tsl_two_values[2];
 #endif
 
-#ifdef POOL_SAT_MAG
+#ifdef PULL_SAT_MAG
   int16_t mag_values[3];
 #endif
 
-#ifdef POOL_SAT_TMP
+#ifdef PULL_SAT_TMP
   int16_t temp_values[4];
-#endif // POOL_SAT_LUM
+#endif // PULL_SAT_LUM
 
-#ifdef POOL_INFRATHERM
+#ifdef PULL_INFRATHERM
   int16_t infrat_value;
-#endif // POOL_INFRATHERM
+#endif // PULL_INFRATHERM
 
-#ifdef POOL_SAT_ACCEL
+#ifdef PULL_SAT_ACCEL
   int16_t accel_x;
   int16_t accel_y;
   int16_t accel_z;
@@ -263,16 +359,16 @@ void poolValues() {
   data.header = '#';            // used for parsing (even if the struct has a fixed size)
 
   data.availableValues = 0
-#ifdef POOL_SAT_LUM
+#ifdef PULL_SAT_LUM
                          | AVAILABLE_SAT_LUM
 #endif
-#ifdef POOL_SAT_MAG
+#ifdef PULL_SAT_MAG
                          | AVAILABLE_SAT_MAG
 #endif
-#ifdef POOL_SAT_TMP
+#ifdef PULL_SAT_TMP
                          | AVAILABLE_SAT_TMP
 #endif
-#ifdef POOL_INFRATHERM
+#ifdef PULL_INFRATHERM
                          | AVAILABLE_SAT_INFRATHERM
 #endif
                          ;
@@ -280,31 +376,31 @@ void poolValues() {
   data.ms = millis();
 
       // BELOW, ADD THE POOLING FUNCTIONS YOU NEED
-#ifdef POOL_SAT_LUM
+#ifdef PULL_SAT_LUM
   data.tsl_one_values[0] = tsl_one.getLuminosity(SAT_Lum_VISIBLE);
   data.tsl_one_values[1] = tsl_one.getLuminosity(SAT_Lum_INFRARED);
   data.tsl_two_values[0] = tsl_two.getLuminosity(SAT_Lum_VISIBLE);
   data.tsl_two_values[1] = tsl_two.getLuminosity(SAT_Lum_INFRARED);
 #endif
 
-#ifdef POOL_SAT_MAG
+#ifdef PULL_SAT_MAG
   data.mag_values[0] = mag.readx();
   data.mag_values[1] = mag.ready();
   data.mag_values[2] = mag.readz();
 #endif
 
-#ifdef POOL_SAT_TMP
+#ifdef PULL_SAT_TMP
   data.temp_values[0] = tmp_sensor1.getRawTemp();
   data.temp_values[1] = tmp_sensor2.getRawTemp();
   data.temp_values[2] = tmp_sensor3.getRawTemp();
   data.temp_values[3] = tmp_sensor4.getRawTemp();
-#endif // POOL_SAT_TMP
+#endif // PULL_SAT_TMP
 
-#ifdef POOL_INFRATHERM
+#ifdef PULL_INFRATHERM
   data.infrat_value = mlx.getRawTemp();
-#endif // POOL_INFRATHERM
+#endif // PULL_INFRATHERM
 
-#ifdef POOL_SAT_ACCEL
+#ifdef PULL_SAT_ACCEL
   accel.readAccel(&(data.accel_x), &(data.accel_y), &(data.accel_z));
 #endif
 }
@@ -324,12 +420,11 @@ boolean commitPreMessage() {
   }
 }
 
-//#define PRINTINT(buf,val)  sprintf(buf,"%i;",val)
-//#define PRINTFLOAT(buf,val)  sprintf(buf,"%f;",val)  // doesn't work ?!?
-//#define PRINTINT(buf,val)  { memset(buf, 0x00, 16); itoa(val, buf, 10); buf[strlen(buf)]=';'; }          // using itoa instead of sprintf gets a 1.5ko smaller prog ^^
-//#define PRINTFLOAT(buf,val)  { memset(buf, 0x00, 16); dtostrf(val, 3, 2, buf); buf[strlen(buf)]=';'; }
+// PRINTING MACROS
 #define PRINTINT(buf,val)  printPreBufferInt(buf,val)
 #define PRINTUINT(buf,val)  printPreBufferUInt(buf,val)
+#define PRINTLONG(buf,val)	printPreBufferLInt(buf,val)
+#define PRINTULONG(buf,val)	printPreBufferULInt(buf,val)
 
 void printPreBufferInt(char * buf, int val) {
   memset(buf, 0x00, 16);
@@ -343,15 +438,28 @@ void printPreBufferUInt(char * buf, unsigned int val) {
   buf[strlen(buf)]=';';
 }
 
+void printPreBufferLInt(char * buf, long int val) {
+  memset(buf, 0x00, 16);
+  ltoa(val, buf, 10);
+  buf[strlen(buf)]=';';
+}
+
+void printPreBufferULInt(char * buf, unsigned long int val) {
+  memset(buf, 0x00, 16);
+  ultoa(val, buf, 10);
+  buf[strlen(buf)]=';';
+}
+
+// PRINTING PROCESS
 void prepareMessage() {
   memset(messageBuffer, 0, CHARBUFFER_SPACE);
   bufferLen = 0;
 
-  PRINTUINT(messagePreBuffer, data.ms);
+  PRINTULONG(messagePreBuffer, data.ms);
   if (!commitPreMessage())  return;
 
       // BELOW, ADD THE POOLING FUNCTIONS YOU NEED
-#ifdef POOL_SAT_LUM
+#ifdef PULL_SAT_LUM
   PRINTUINT(messagePreBuffer, data.tsl_one_values[0]);
   if (!commitPreMessage())  return;
   PRINTUINT(messagePreBuffer, data.tsl_one_values[1]);
@@ -360,18 +468,18 @@ void prepareMessage() {
   if (!commitPreMessage())  return;
   PRINTUINT(messagePreBuffer, data.tsl_two_values[1]);
   if (!commitPreMessage())  return;
-#endif //POOL_SAT_LUM
+#endif //PULL_SAT_LUM
 
-#ifdef POOL_SAT_MAG
+#ifdef PULL_SAT_MAG
   PRINTINT(messagePreBuffer, data.mag_values[0]);
   if (!commitPreMessage())  return;
   PRINTINT(messagePreBuffer, data.mag_values[1]);
   if (!commitPreMessage())  return;
   PRINTINT(messagePreBuffer, data.mag_values[2]);
   if (!commitPreMessage())  return;
-#endif // POOL_SAT_MAG
+#endif // PULL_SAT_MAG
 
-#ifdef POOL_SAT_TMP
+#ifdef PULL_SAT_TMP
   PRINTINT(messagePreBuffer, data.temp_values[0]);
   if (!commitPreMessage())  return;
 
@@ -383,14 +491,14 @@ void prepareMessage() {
 
   PRINTINT(messagePreBuffer, data.temp_values[3]);
   if (!commitPreMessage())  return;
-#endif // POOL_SAT_TMP
+#endif // PULL_SAT_TMP
 
-#ifdef POOL_INFRATHERM
+#ifdef PULL_INFRATHERM
   PRINTINT(messagePreBuffer, data.infrat_value);
   if (!commitPreMessage())  return;
-#endif // POOL_INFRATHERM
+#endif // PULL_INFRATHERM
 
-#ifdef POOL_SAT_ACCEL
+#ifdef PULL_SAT_ACCEL
   PRINTINT(messagePreBuffer, data.accel_x);
   if (!commitPreMessage())  return;
   PRINTINT(messagePreBuffer, data.accel_y);
@@ -406,54 +514,55 @@ void prepareMessage() {
 
 #ifdef DEBUG_MODE
 void outputValues() {
-  Serial.print("*** DEBUG :");
-  Serial.print("\tms=");
+  printString(PGM_STRING_DEBUG);
+  
+  printString(PGM_STRING_SENSOR_MS);
   Serial.print(data.ms);
 
       // BELOW, IF YOU'D LIKE SOME DEBUG, ADD THE PRINTING LINES
 
-#ifdef POOL_SAT_LUM
-  Serial.print("\tvisible_1=");
+#ifdef PULL_SAT_LUM
+  printString(PGM_STRING_SENSOR_LUMVIS1);
   Serial.print(data.tsl_one_values[0]);
-  Serial.print("\tIR_1=");
+  printString(PGM_STRING_SENSOR_LUMIR1);
   Serial.print(data.tsl_one_values[1]);
-  Serial.print("\tvisible_2=");
+  printString(PGM_STRING_SENSOR_LUMVIS2);
   Serial.print(data.tsl_two_values[0]);
-  Serial.print("\tIR_2=");
+  printString(PGM_STRING_SENSOR_LUMIR2);
   Serial.print(data.tsl_two_values[1]);
 #endif
 
-#ifdef POOL_SAT_MAG
-  Serial.print("\tX=");
+#ifdef PULL_SAT_MAG
+  printString(PGM_STRING_SENSOR_MAGX);
   Serial.print(data.mag_values[0]);
-  Serial.print("\tY=");
+  printString(PGM_STRING_SENSOR_MAGY);
   Serial.print(data.mag_values[1]);
-  Serial.print("\tZ=");
+  printString(PGM_STRING_SENSOR_MAGZ);
   Serial.print(data.mag_values[2]);
 #endif
 
-#ifdef POOL_SAT_TMP
-  Serial.print("\ttemp_1=");
+#ifdef PULL_SAT_TMP
+  printString(PGM_STRING_SENSOR_TEMP1);
   Serial.print(data.temp_values[0]);
-  Serial.print("\ttemp_2=");
+  printString(PGM_STRING_SENSOR_TEMP2);
   Serial.print(data.temp_values[1]);
-  Serial.print("\ttemp_3=");
+  printString(PGM_STRING_SENSOR_TEMP3);
   Serial.print(data.temp_values[2]);
-  Serial.print("\ttemp_4=");
+  printString(PGM_STRING_SENSOR_TEMP4);
   Serial.print(data.temp_values[3]);
 #endif
 
-#ifdef POOL_INFRATHERM
-  Serial.print("\tinfratherm=");
+#ifdef PULL_INFRATHERM
+  printString(PGM_STRING_SENSOR_INTHERM);
   Serial.print(data.infrat_value);
 #endif
 
-#ifdef POOL_SAT_ACCEL
-  Serial.print("\taccel_X=");
+#ifdef PULL_SAT_ACCEL
+  printString(PGM_STRING_SENSOR_ACCELX);
   Serial.print(data.accel_x);
-  Serial.print("\taccel_Y=");
+  printString(PGM_STRING_SENSOR_ACCELY);
   Serial.print(data.accel_y);
-  Serial.print("\taccel_Z=");
+  printString(PGM_STRING_SENSOR_ACCELZ);
   Serial.print(data.accel_z);
 #endif
 
@@ -461,7 +570,8 @@ void outputValues() {
 
 #ifdef OUTPUT_BINARY
   byte * t_bytePtr = (byte *)&data;
-  Serial.print("MESSAGE(BIN): ");
+  printString(PGM_STRING_MESSAGEBIN);
+//  Serial.print("MESSAGE(BIN): ");
   for (int i=0; i<DATA_LENGTH; i++) {
     if (t_bytePtr[i]<0x10) {Serial.print("0");}
     Serial.print(t_bytePtr[i],HEX);
@@ -470,7 +580,8 @@ void outputValues() {
   Serial.println("");
 #endif
 #ifdef OUTPUT_TEXTCSV
-  Serial.print("MESSAGE(TEXT): ");
+  printString(PGM_STRING_MESSAGETEXT);
+//  Serial.print("MESSAGE(TEXT): ");
   Serial.print(messageBuffer);
   Serial.println("");
 #endif
@@ -485,20 +596,15 @@ void setup()
 {
 #if defined(DEBUG_MODE)
 
-  Serial.begin(9600);  // start serial for output
+  Serial.begin(DEBUG_BAUDRATE);  // start serial for output
   I2CComm.begin();
   pinMode(DEBUG_LED,OUTPUT);
   digitalWrite(DEBUG_LED, LOW);
 #if defined(COMM_EMULATION)
-  store.configEMU(true,9600);
+  store.configEMU(true,DEBUG_BAUDRATE);
 #endif
 #if defined(COMM_EMULATION_SD)
-  store.configEMU(true,9600,4);
-#endif
-
-#if defined(DEBUG_FREERAM)
-  Serial.print("free ram = ");
-  Serial.println(freeMemory());
+  store.configEMU(true,DEBUG_BAUDRATE,SD_CHIPSELECT);
 #endif
 
 #else // NON DEBUG_MODE
@@ -512,7 +618,13 @@ void setup()
 
 #endif // DEBUG_MODE
 
-
+#if defined(DEBUG_FREERAM)
+#if !defined(DEBUG_MODE)
+  Serial.begin(DEBUG_BAUDRATE);
+#endif
+  Serial.print("free ram = ");
+  Serial.println(freeMemory());
+#endif
   setupSensors();
 }
 
@@ -520,8 +632,8 @@ void setup()
 // *** LOOP ***
 // ************
 
-unsigned long int previousMs;
-unsigned long int nextMs;
+signed long int previousMs;
+signed long int nextMs;
 
 void loop()
 {
@@ -561,3 +673,4 @@ void loop()
   if (nextMs > 0)
     delay(nextMs); //wait for next pull
 }
+
