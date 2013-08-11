@@ -36,8 +36,8 @@
 // *** DEBUGGING ***
 #define DEBUG_MODE              // prints the values in readable format via Serial
 #define DEBUG_LED   9           // the pin of the led that will blink at each pool of the sensors
-#define DEBUG_FREERAM           // use MemoryFree lib to compute the amount of free ram (only for DEBUG_MODE)
-#define DEBUG_BAUDRATE  9600    // the baud rate used for serial outputs
+//#define DEBUG_FREERAM           // use MemoryFree lib to compute the amount of free ram (only for DEBUG_MODE)
+#define DEBUG_BAUDRATE  9600  // the baud rate used for serial outputs
 #define USE_PROGMEM             // RECOMMENDED : free 130 bytes of ram in DEBUG_MODE by putting strings in PROGMEM
 
 // *** I2C COMMUNICATION ***
@@ -54,8 +54,8 @@
 #define PULL_SAT_LUM           // comment to NOT PULL the luminosity values
 #define PULL_SAT_MAG           // comment to NOT PULL the magnetometer values
 #define PULL_SAT_TMP           // comment to NOT PULL the temperature values
-//#define PULL_INFRATHERM        // comment to NOT PULL the infratherm values
-//#define PULL_SAT_ACCEL         // comment to NOT PULL the accelerometer
+#define PULL_INFRATHERM        // comment to NOT PULL the infratherm values
+#define PULL_SAT_ACCEL         // comment to NOT PULL the accelerometer
 
 // *** RESULTS / OUTPUTS ***
 //#define OUTPUT_TEXTCSV          // to output in text/csv format
@@ -302,6 +302,8 @@ void setupSensors() {
 
 #ifdef PULL_SAT_ACCEL
   accel.powerOn();
+  accel.setRangeSetting(2);
+  accel.setFullResBit(true);
 #endif
 }
 
@@ -610,16 +612,19 @@ void setup()
   store.configEMU(true,DEBUG_BAUDRATE);
 #endif
 #if defined(COMM_EMULATION_SD)
+  pinMode(SD_CHIPSELECT,OUTPUT);
   store.configEMU(true,DEBUG_BAUDRATE,SD_CHIPSELECT,SD_RESETFILE,SD_FILENAME);
 #endif
 
 #else // NON DEBUG_MODE
 
+  I2CComm.begin();
 #if defined(COMM_EMULATION)
   store.configEMU(false,0);
 #endif
 #if defined(COMM_EMULATION_SD)
-  store.configEMU(false,0,4);
+  pinMode(SD_CHIPSELECT,OUTPUT);
+  store.configEMU(false,0,SD_CHIPSELECT,SD_RESETFILE,SD_FILENAME);
 #endif
 
 #endif // DEBUG_MODE

@@ -36,6 +36,8 @@
 // functions will not work.
 #define SD_CHIPSELECT  4
 
+#define DEBUG_BAUDRATE  115200  // the baud rate used for serial outputs
+
 
 // ****************
 // *** INCLUDES ***
@@ -261,7 +263,7 @@ boolean decodeChunk(byte content) {
 void setup()
 {
 	// Open serial communications and wait for port to open:
-	Serial.begin(115200);
+	Serial.begin(DEBUG_BAUDRATE);
 	while (!Serial) {
 		; // wait for serial port to connect. Needed for Leonardo only
 	}
