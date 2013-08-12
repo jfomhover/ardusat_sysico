@@ -1,0 +1,24 @@
+ArduSat-Dev config test script (freeram=783)
+- writing node address [0x2B] in EEPROM. done
+- beginning I2C. 0 done
+- check node address. 0x2B
+- scanning I2C : MAG[0x0E] LUX1[0x29] TMP1[0x48]
+- testing SDK ram charge.
+  I2CComm		-8
+  OnboardCommLayer		-34
+  SAT_AppStorage		-5
+- testing sensor ram charge.
+  SAT_Accel		-30
+  SAT_Gyro		-35
+  SAT_InfraTherm	-16
+  SAT_Lum		-16
+  SAT_Mag		-22
+  SAT_Temp		-9
+- testing sensor freq.
+  SAT_Accel		2439.02
+  SAT_Gyro		2439.02
+  SAT_InfraTherm	2500.00
+  SAT_Lum		63.01
+  SAT_Mag		354.61
+  SAT_Temp		2941.18
+end of test. 638
