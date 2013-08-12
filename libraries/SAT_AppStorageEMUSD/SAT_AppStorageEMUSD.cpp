@@ -83,6 +83,9 @@ void ASEMUSD_printPROGMEMString(const prog_uchar *str) {
 /******************************************************************************
  * Constructors
  ******************************************************************************/
+
+static File dataFile;
+
 SAT_AppStorageEMUSD::SAT_AppStorageEMUSD()
 {
   nodeAddress_  = EEPROM.read(0x00);
@@ -91,7 +94,7 @@ SAT_AppStorageEMUSD::SAT_AppStorageEMUSD()
   dataCount_ = 0;
 }
 
-void SAT_AppStorageEMUSD::configEMU(boolean debug, int bauds, int csPin, boolean erasefile, char * filename) {
+void SAT_AppStorageEMUSD::configEMU(boolean debug, int csPin, boolean erasefile, char * filename) {
 	debugMode_ = debug;
 
 	if (filename == NULL)
@@ -100,7 +103,7 @@ void SAT_AppStorageEMUSD::configEMU(boolean debug, int bauds, int csPin, boolean
 		memcpy(filename_,filename,(strlen(filename) > 12) ? 12 : strlen(filename));
 
 	if (debugMode_) {
-		Serial.begin(bauds);
+//		Serial.begin(bauds);
 		ASEMUSD_printPROGMEMString(PGM_STRING_INITIALIZING);
 //		Serial.print("Initializing SD card...");
 	}
@@ -120,6 +123,16 @@ void SAT_AppStorageEMUSD::configEMU(boolean debug, int bauds, int csPin, boolean
 	  	  bool t_b = SD.remove(filename_);
 	  	  if (debugMode_)	ASEMUSD_printPROGMEMString(PGM_STRING_FILEERASED);
 	  	  else				ASEMUSD_printPROGMEMString(PGM_STRING_FILENOTERASED);
+	  }
+	  // open the file. note that only one file can be open at a time,
+	  // so you have to close this one before opening another.
+	  dataFile = SD.open(filename_, FILE_WRITE);
+	  if (!dataFile) {
+		  if (debugMode_) {
+				ASEMUSD_printPROGMEMString(PGM_STRING_ERROROPENING);
+//			  Serial.print("error opening ");
+		  	  Serial.println(filename_);
+		  }
 	  }
   }
 }
@@ -242,15 +255,11 @@ void SAT_AppStorageEMUSD::copyAndSend(
 }
 
 void SAT_AppStorageEMUSD::write2SD(byte data[], unsigned int offset, unsigned int length) {
-	  // open the file. note that only one file can be open at a time,
-	  // so you have to close this one before opening another.
-	  File dataFile = SD.open(filename_, FILE_WRITE);
-
 	  // if the file is available, write to it:
 	  if (dataFile) {
 		  dataFile.write(data+offset,length);
 		  dataFile.flush();
-		  dataFile.close();
+//		  dataFile.close(); // we never close... too bad hu ?
 		  if (debugMode_)
 			  for(int i=0; i<3; i++) {
 				  digitalWrite(9,HIGH);
@@ -258,13 +267,5 @@ void SAT_AppStorageEMUSD::write2SD(byte data[], unsigned int offset, unsigned in
 				  digitalWrite(9,LOW);
 		  		  delay(50);
 			  }
-	  }
-	  // if the file isn't open, pop up an error:
-	  else {
-		  if (debugMode_) {
-				ASEMUSD_printPROGMEMString(PGM_STRING_ERROROPENING);
-//			  Serial.print("error opening ");
-		  	  Serial.println(filename_);
-		  }
 	  }
 }

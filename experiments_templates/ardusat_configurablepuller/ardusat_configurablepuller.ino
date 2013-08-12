@@ -1,7 +1,7 @@
 /*
     File :         ardusat_configurablepuller.ino
     Author :       Jean-Francois Omhover (@jfomhover)
-    Last Changed : Aug. 10th 2013
+    Last Changed : Aug. 12th 2013
     Description :  configurable code for pulling the RAW VALUES (int) of the sensors regularly
                    and returning binary values back to earth
 
@@ -13,6 +13,7 @@
                    - option : use COMM_EMULATION for emulating SAT_AppStorage (output on Serial instead of sending data)
                    - option : use COMM_EMULATION for emulating SAT_AppStorage (output on SD instead of sending data)
                    ! Beware of the 10ko limit, choose the output format wisely.
+                   ! Beware : considering the limit by SAT_AppStorage, you can't capture at > 8 or 9 Hz with the sketch below
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -37,7 +38,7 @@
 #define DEBUG_MODE              // prints the values in readable format via Serial
 #define DEBUG_LED   9           // the pin of the led that will blink at each pool of the sensors
 //#define DEBUG_FREERAM           // use MemoryFree lib to compute the amount of free ram (only for DEBUG_MODE)
-#define DEBUG_BAUDRATE  9600  // the baud rate used for serial outputs
+#define DEBUG_BAUDRATE  115200  // the baud rate used for serial outputs
 #define USE_PROGMEM             // RECOMMENDED : free 130 bytes of ram in DEBUG_MODE by putting strings in PROGMEM
 
 // *** I2C COMMUNICATION ***
@@ -50,7 +51,7 @@
 //#define LEGACY_SDK              // NOT IMPLEMENTED YET : use sdk BEFORE the integration of I2CComm, on Aug. 7th 2013
 
 // *** SENSOR PULLING ***
-#define PULL_DELAY  2000       // data is pooled every PULL_DELAY seconds
+#define PULL_DELAY  0       // data is pooled every PULL_DELAY seconds
 #define PULL_SAT_LUM           // comment to NOT PULL the luminosity values
 #define PULL_SAT_MAG           // comment to NOT PULL the magnetometer values
 #define PULL_SAT_TMP           // comment to NOT PULL the temperature values
@@ -62,18 +63,6 @@
 #define OUTPUT_BINARY         // to output in binary format (see struct below)
 #define CHARBUFFER_SPACE  96   // space allocated for the message in ASCII (will be used only if OUTPUT_ASCII is uncommented)
 
-/*
-#define I2C_ADD_MAG             0X0E    // magnetometer
-#define I2C_ADD_LUX1            0X29    // TSL2561 #1 (bottomplate camera)
-#define I2C_ADD_LUX2            0x39    // TSL2561 #2 (bottomplate slit)
-#define I2C_ADD_TMP1            0X48    // temp sensor TMP102 (payload #1)
-#define I2C_ADD_TMP2            0X49    // temp sensor TMP102 (payload #2)
-#define I2C_ADD_TMP3            0X4A    // temp sensor TMP102 (bottomplate #1)
-#define I2C_ADD_TMP4            0X4B    // temp sensor TMP102 (bottomplate #2)
-#define I2C_ADD_ACC             0X53    // accelerometer ADXL345
-#define I2C_ADD_GYR             0X69    // gyros ITG3200
-#define I2C_ADD_MLX             0X51    // IR thermometer (bottomplate)
-*/
 
 // ***************
 // *** HEADERS ***
@@ -613,7 +602,7 @@ void setup()
 #endif
 #if defined(COMM_EMULATION_SD)
   pinMode(SD_CHIPSELECT,OUTPUT);
-  store.configEMU(true,DEBUG_BAUDRATE,SD_CHIPSELECT,SD_RESETFILE,SD_FILENAME);
+  store.configEMU(true,SD_CHIPSELECT,SD_RESETFILE,SD_FILENAME);
 #endif
 
 #else // NON DEBUG_MODE
@@ -624,7 +613,7 @@ void setup()
 #endif
 #if defined(COMM_EMULATION_SD)
   pinMode(SD_CHIPSELECT,OUTPUT);
-  store.configEMU(false,0,SD_CHIPSELECT,SD_RESETFILE,SD_FILENAME);
+  store.configEMU(false,SD_CHIPSELECT,SD_RESETFILE,SD_FILENAME);
 #endif
 
 #endif // DEBUG_MODE

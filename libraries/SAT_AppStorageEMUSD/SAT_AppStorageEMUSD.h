@@ -29,7 +29,6 @@
 #include <inttypes.h>
 #include <stdlib.h>
 #include <Arduino.h>
-
 #include <nanosat_message.h>
 #include <OnboardCommLayer.h>
 
@@ -59,7 +58,7 @@ public:
      */
     SAT_AppStorageEMUSD();
     void configEMU(boolean debug, 				// is the class printing verbose lines on Serial
-    				int bauds,					// serial baud rate (for debug==true)
+//    				int bauds,					// serial baud rate (for debug==true)
     				int csPin, 					// pin of the chip select on your arduino config (uno ethernet = 4)
     				boolean erasefile, 			// true = erase the file to restart capture, false = append data
     				char * filename = NULL);	// name of the file, (if NULL, default "datalog.bin")
