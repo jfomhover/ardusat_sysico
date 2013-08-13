@@ -1,7 +1,7 @@
 /*
     File :         ardusat_configurablepuller.ino
     Author :       Jean-Francois Omhover (@jfomhover)
-    Last Changed : Aug. 12th 2013
+    Last Changed : Aug. 13th 2013, adding Gyro pulling
     Description :  configurable code for pulling the RAW VALUES (int) of the sensors regularly
                    and returning binary values back to earth
 
@@ -55,8 +55,11 @@
 #define PULL_SAT_LUM           // comment to NOT PULL the luminosity values
 #define PULL_SAT_MAG           // comment to NOT PULL the magnetometer values
 #define PULL_SAT_TMP           // comment to NOT PULL the temperature values
-#define PULL_INFRATHERM        // comment to NOT PULL the infratherm values
-#define PULL_SAT_ACCEL         // comment to NOT PULL the accelerometer
+//#define PULL_INFRATHERM        // comment to NOT PULL the infratherm values
+//#define PULL_SAT_ACCEL         // comment to NOT PULL the accelerometer
+//#define PULL_SAT_GYRO         // comment to NOT PULL the gyroscope
+//#define PULL_SAT_GEIGER     // NOT IMPLEMENTED : comment to NOT PULL the geiger counters
+#define PULL_CRC16               // adds the CRC16 of the binary message at the end
 
 // *** RESULTS / OUTPUTS ***
 //#define OUTPUT_TEXTCSV          // to output in text/csv format
@@ -72,6 +75,7 @@
 #include <Wire.h>//for I2C
 #include <nanosat_message.h>
 #include <I2C_add.h>
+#include <I2C_Conv.h>  // for SAT_Geiger
 #include <I2CComm.h>
 
 #if defined(DEBUG_FREERAM)
@@ -111,6 +115,15 @@
 #endif
 #ifdef PULL_SAT_ACCEL
 #include <SAT_Accel.h>
+#endif
+#ifdef PULL_SAT_GYRO
+#include <SAT_Gyro.h>
+#endif
+#ifdef PULL_SAT_GEIGER
+#include <SAT_Geiger.h>
+#endif
+#ifdef PULL_CRC16
+#include <util/crc16.h>
 #endif
 
 
@@ -191,7 +204,14 @@ const T_STRINGCHAR string_21[] T_STRINGMEM = "\taccel_Y=";
 #define PGM_STRING_SENSOR_ACCELY             string_21
 const T_STRINGCHAR string_22[] T_STRINGMEM = "\taccel_Z=";
 #define PGM_STRING_SENSOR_ACCELZ             string_22
-
+const T_STRINGCHAR string_23[] T_STRINGMEM = "\tgyro_X=";
+#define PGM_STRING_SENSOR_GYROX             string_23
+const T_STRINGCHAR string_24[] T_STRINGMEM = "\tgyro_Y=";
+#define PGM_STRING_SENSOR_GYROY             string_24
+const T_STRINGCHAR string_25[] T_STRINGMEM = "\tgyro_Z=";
+#define PGM_STRING_SENSOR_GYROZ             string_25
+const T_STRINGCHAR string_26[] T_STRINGMEM = "\tcrc16=";
+#define PGM_STRING_CRC16                     string_26
 #endif
 
 // ************************
@@ -232,6 +252,16 @@ SAT_InfraTherm mlx;
 #ifdef PULL_SAT_ACCEL
 SAT_Accel accel;
 #endif
+
+#ifdef PULL_SAT_GYRO
+SAT_Gyro gyro;
+#endif
+
+#ifdef PULL_SAT_GEIGER
+// TODO : SAT_Geiger geiger;
+#endif
+
+
 
     // SETUP OF THE SENSORS NEEDED (constructors mainly)
 void setupSensors() {
@@ -294,6 +324,15 @@ void setupSensors() {
   accel.setRangeSetting(2);
   accel.setFullResBit(true);
 #endif
+
+#ifdef PULL_SAT_GYRO
+  gyro.reset();
+  gyro.init(I2C_ADD_GYR); 
+#endif
+
+#ifdef PULL_SAT_GEIGER
+// no setup required
+#endif
 }
 
 // ********************************
@@ -305,6 +344,9 @@ void setupSensors() {
 #define AVAILABLE_SAT_TMP         0x04
 #define AVAILABLE_SAT_INFRATHERM  0x08
 #define AVAILABLE_SAT_ACCEL       0x10
+#define AVAILABLE_SAT_GYRO        0x20
+#define AVAILABLE_SAT_GEIGER      0x40
+#define AVAILABLE_CRC16           0x80
 
 struct _dataStruct {
   char header;          // don't touch that, or adapt it, whatever ^^
@@ -333,6 +375,21 @@ struct _dataStruct {
   int16_t accel_x;
   int16_t accel_y;
   int16_t accel_z;
+#endif
+
+#ifdef PULL_SAT_GYRO
+  int16_t gyro_x;
+  int16_t gyro_y;
+  int16_t gyro_z;
+#endif
+
+#ifdef PULL_SAT_GEIGER
+// TODO : long geiger_cpm1;
+// TODO : float 
+#endif
+
+#ifdef PULL_CRC16
+  uint16_t  crc16;
 #endif
 } data;
 
@@ -368,6 +425,15 @@ void poolValues() {
 #ifdef PULL_SAT_ACCEL
                          | AVAILABLE_SAT_ACCEL
 #endif
+#ifdef PULL_SAT_GYRO
+                         | AVAILABLE_SAT_GYRO
+#endif
+#ifdef PULL_SAT_GEIGER
+// TODO :                         | AVAILABLE_SAT_GEIGER
+#endif
+#ifdef AVAILABLE_CRC16
+                         | AVAILABLE_CRC16
+#endif
                          ;
 
   data.ms = millis();
@@ -399,6 +465,22 @@ void poolValues() {
 
 #ifdef PULL_SAT_ACCEL
   accel.readAccel(&(data.accel_x), &(data.accel_y), &(data.accel_z));
+#endif
+
+#ifdef PULL_SAT_GYRO
+  gyro.readGyroRaw(&(data.gyro_x), &(data.gyro_y), &(data.gyro_z));
+#endif
+
+#ifdef PULL_SAT_ACCEL
+// TODO : oh come on !
+#endif
+
+#ifdef PULL_CRC16
+  uint8_t * ptr_t = (uint8_t *)&data;
+  uint8_t size_t = sizeof(struct _dataStruct) - 2;
+  data.crc16 = 0;
+  for (int i=0; i<size_t; i++)
+    data.crc16 = _crc16_update(data.crc16,ptr_t[i]);
 #endif
 }
 
@@ -504,6 +586,19 @@ void prepareMessage() {
   if (!commitPreMessage())  return;
 #endif
 
+#ifdef PULL_SAT_GYRO
+  PRINTINT(messagePreBuffer, data.gyro_x);
+  if (!commitPreMessage())  return;
+  PRINTINT(messagePreBuffer, data.gyro_y);
+  if (!commitPreMessage())  return;
+  PRINTINT(messagePreBuffer, data.gyro_z);
+  if (!commitPreMessage())  return;
+#endif
+
+#ifdef PULL_SAT_GEIGER
+  // TODO
+#endif
+
   if ((bufferLen + 2) < CHARBUFFER_SPACE)
     messageBuffer[bufferLen++]='\n';
 }
@@ -561,6 +656,24 @@ void outputValues() {
   Serial.print(data.accel_y);
   printString(PGM_STRING_SENSOR_ACCELZ);
   Serial.print(data.accel_z);
+#endif
+
+#ifdef PULL_SAT_GYRO
+  printString(PGM_STRING_SENSOR_GYROX);
+  Serial.print(data.gyro_x);
+  printString(PGM_STRING_SENSOR_GYROY);
+  Serial.print(data.gyro_y);
+  printString(PGM_STRING_SENSOR_GYROZ);
+  Serial.print(data.gyro_z);
+#endif
+
+#ifdef PULL_SAT_GEIGER
+// TODO
+#endif
+
+#ifdef PULL_CRC16
+  printString(PGM_STRING_CRC16);
+  Serial.print(data.crc16,HEX);
 #endif
 
   Serial.println();

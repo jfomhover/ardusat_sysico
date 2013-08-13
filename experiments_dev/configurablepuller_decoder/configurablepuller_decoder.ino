@@ -44,6 +44,7 @@
 // ****************
 
 #include <SD.h>
+#include <util/crc16.h>
 
 // On the Ethernet Shield, CS is pin 4. Note that even if it's not
 // used as the CS pin, the hardware CS pin (10 on most Arduino boards,
@@ -56,7 +57,7 @@ const int chipSelect = 4;
 // *** DATA STRUCTURES ***
 // ***********************
 
-// note : we HAVE to define the size manually cause structs aren't all aligned on 4 bytes
+// note : we HAVE to define the size manually cause structs aren't always aligned on 4 bytes (maybe ?)
 
 #define SAT_MILLIS_HEADER "millis;"
 #define SAT_MILLIS_SIZE  4
@@ -65,20 +66,20 @@ struct _dataMILLIS {
 };
 
 #define SAT_LUM_HEADER "tsl1_visible;tsl1_ir;tsl2_visible;tsl2_ir;"
-#define SAT_LUM_SIZE  4
+#define SAT_LUM_SIZE  8
 struct _dataLUM {
 	uint16_t tsl_one_values[2];
 	uint16_t tsl_two_values[2];
 };
 
 #define SAT_MAG_HEADER "mag_x;mag_y;mag_z;"
-#define SAT_MAG_SIZE  2
+#define SAT_MAG_SIZE  6
 struct _dataMAG {
 	int16_t mag_values[3];
 };
 
 #define SAT_TMP_HEADER "tmp_1;tmp_2;tmp_3;tmp_4;"
-#define SAT_TMP_SIZE  2
+#define SAT_TMP_SIZE  8
 struct _dataTMP {
 	int16_t temp_values[4];
 };
@@ -97,6 +98,26 @@ struct _dataACCEL {
   int16_t accel_z;
 };
 
+#define SAT_GYRO_HEADER  "gyro_x;gyro_y;gyro_z;"
+#define SAT_GYRO_SIZE  6
+struct _dataGYRO {
+  int16_t gyro_x;
+  int16_t gyro_y;
+  int16_t gyro_z;
+};
+
+#define SAT_GEIGER_HEADER  ""
+#define SAT_GEIGER_SIZE  0
+struct _dataGEIGER {
+// TODO
+};
+
+#define CRC16_HEADER  "crc16;crc_ok;"
+#define CRC16_SIZE  2
+struct _dataCRC16 {
+  uint16_t crc16;
+};
+
 File dataFile;
 
 
@@ -110,61 +131,83 @@ File dataFile;
 #define AVAILABLE_SAT_TMP         0x04
 #define AVAILABLE_SAT_INFRATHERM  0x08
 #define AVAILABLE_SAT_ACCEL       0x10
+#define AVAILABLE_SAT_GYRO        0x20
+#define AVAILABLE_SAT_GEIGER      0x40
+#define AVAILABLE_CRC16           0x80
 
+#define MAX_BUFFER_LEN  128
+struct _chunkStruct {
+  char header;
+  byte availableValues;
+  byte readBuffer[MAX_BUFFER_LEN];
+} chunk;
 
-byte * readBuffer = NULL;
-int bufferLen = 0;
+//byte * readBuffer = NULL;
+//int bufferLen = 0;
 
 byte previousContent = 0;
 
 boolean decodeChunk(byte content) {
+        // clears the buffer
+        for (int i=0; i<MAX_BUFFER_LEN; i++)
+          chunk.readBuffer[i] = 0;
+          
 	int expectedLen = sizeof(_dataMILLIS);
 	if (content & AVAILABLE_SAT_LUM) {
-		expectedLen += sizeof(_dataLUM);
+		expectedLen += SAT_LUM_SIZE;
 #ifdef VERBOSE
 		Serial.print("+LUM");
 #endif
 	}
 	if (content & AVAILABLE_SAT_MAG) {
-		expectedLen += sizeof(_dataMAG);
+		expectedLen += SAT_MAG_SIZE;
 #ifdef VERBOSE
 		Serial.print("+MAG");
 #endif
 	}
 	if (content & AVAILABLE_SAT_TMP) {
-		expectedLen += sizeof(_dataTMP);
+		expectedLen += SAT_TMP_SIZE;
 #ifdef VERBOSE
 		Serial.print("+TMP");
 #endif
 	}
 	if (content & AVAILABLE_SAT_INFRATHERM) {
-		expectedLen += sizeof(_dataINFRATHERM);
+		expectedLen += SAT_INFRATHERM_SIZE;
 #ifdef VERBOSE
 		Serial.print("+INFRATHERM");
 #endif
 	}
 	if (content & AVAILABLE_SAT_ACCEL) {
-		expectedLen += sizeof(_dataACCEL);
+		expectedLen += SAT_ACCEL_SIZE;
 #ifdef VERBOSE
 		Serial.print("+ACCEL");
+#endif
+	}
+	if (content & AVAILABLE_SAT_GYRO) {
+		expectedLen += SAT_GYRO_SIZE;
+#ifdef VERBOSE
+		Serial.print("+GYRO");
+#endif
+	}
+	if (content & AVAILABLE_SAT_GEIGER) {
+		expectedLen += SAT_GEIGER_SIZE;
+#ifdef VERBOSE
+		Serial.print("+GEIGER");
+#endif
+	}
+	if (content & AVAILABLE_CRC16) {
+		expectedLen += CRC16_SIZE;
+#ifdef VERBOSE
+		Serial.print("+CRC16");
 #endif
 	}
 #ifdef VERBOSE
 	Serial.write('\n');
 #endif
 
-	if (expectedLen > bufferLen) {
-		if (readBuffer != NULL)
-			free(readBuffer);
-		readBuffer = (byte*)malloc(expectedLen);
-		if (readBuffer == NULL) {
-			Serial.println("!!! NOT ENOUGH RAM");
-			return(false);
-		}
-	}
 	for (int i=0; i<expectedLen; i++)
 		if (dataFile.available())
-			readBuffer[i] = dataFile.read();
+			chunk.readBuffer[i] = dataFile.read();
 		else {
 			Serial.println("!!! NOT ENOUGH DATA");
 			return(false);
@@ -189,6 +232,15 @@ boolean decodeChunk(byte content) {
 		if (content & AVAILABLE_SAT_ACCEL) {
 			Serial.print(SAT_ACCEL_HEADER);
 		}
+		if (content & AVAILABLE_SAT_GYRO) {
+			Serial.print(SAT_GYRO_HEADER);
+		}
+		if (content & AVAILABLE_SAT_GEIGER) {
+			Serial.print(SAT_GEIGER_HEADER);
+		}
+		if (content & AVAILABLE_CRC16) {
+			Serial.print(CRC16_HEADER);
+		}
 		Serial.write('\n');
 
 		previousContent = content;
@@ -196,13 +248,13 @@ boolean decodeChunk(byte content) {
 
 	int decodeIndex = 0;
 
-	struct _dataMILLIS * ptr =  (struct _dataMILLIS *)(readBuffer+decodeIndex);
+	struct _dataMILLIS * ptr =  (struct _dataMILLIS *)(chunk.readBuffer+decodeIndex);
 	decodeIndex += sizeof(struct _dataMILLIS);
 	Serial.print((uint32_t)ptr->ms);
 	Serial.write(';');
 
 	if (content & AVAILABLE_SAT_LUM) {
-		struct _dataLUM * ptr =  (struct _dataLUM *)(readBuffer+decodeIndex);
+		struct _dataLUM * ptr =  (struct _dataLUM *)(chunk.readBuffer+decodeIndex);
 		decodeIndex += sizeof(struct _dataLUM);
 		Serial.print((int16_t)ptr->tsl_one_values[0]);
 		Serial.write(';');
@@ -215,7 +267,7 @@ boolean decodeChunk(byte content) {
 	}
 
 	if (content & AVAILABLE_SAT_MAG) {
-		struct _dataMAG * ptr =  (struct _dataMAG *)(readBuffer+decodeIndex);
+		struct _dataMAG * ptr =  (struct _dataMAG *)(chunk.readBuffer+decodeIndex);
 		decodeIndex += sizeof(struct _dataMAG);
 		Serial.print((int16_t)ptr->mag_values[0]);
 		Serial.write(';');
@@ -226,7 +278,7 @@ boolean decodeChunk(byte content) {
 	}
 
 	if (content & AVAILABLE_SAT_TMP) {
-		struct _dataTMP * ptr =  (struct _dataTMP *)(readBuffer+decodeIndex);
+		struct _dataTMP * ptr =  (struct _dataTMP *)(chunk.readBuffer+decodeIndex);
 		decodeIndex += sizeof(struct _dataTMP);
 		for (int i=0; i<4; i++) {
 			Serial.print((int16_t)ptr->temp_values[i]);
@@ -235,14 +287,14 @@ boolean decodeChunk(byte content) {
 	}
 
 	if (content & AVAILABLE_SAT_INFRATHERM) {
-		struct _dataINFRATHERM * ptr =  (struct _dataINFRATHERM *)(readBuffer+decodeIndex);
+		struct _dataINFRATHERM * ptr =  (struct _dataINFRATHERM *)(chunk.readBuffer+decodeIndex);
 		decodeIndex += SAT_INFRATHERM_SIZE; // sizeof(struct _dataINFRATHERM);
 		Serial.print((int16_t)ptr->infrat_value);
 		Serial.write(';');
 	}
 
 	if (content & AVAILABLE_SAT_ACCEL) {
-		struct _dataACCEL * ptr =  (struct _dataACCEL *)(readBuffer+decodeIndex);
+		struct _dataACCEL * ptr =  (struct _dataACCEL *)(chunk.readBuffer+decodeIndex);
 		decodeIndex += SAT_ACCEL_SIZE; // sizeof(struct _dataACCEL);
 		Serial.print((int16_t)ptr->accel_x);
 		Serial.write(';');
@@ -250,6 +302,42 @@ boolean decodeChunk(byte content) {
 		Serial.write(';');
 		Serial.print((int16_t)ptr->accel_z);
 		Serial.write(';');
+	}
+
+	if (content & AVAILABLE_SAT_GYRO) {
+		struct _dataGYRO * ptr =  (struct _dataGYRO *)(chunk.readBuffer+decodeIndex);
+		decodeIndex += SAT_GYRO_SIZE;
+		Serial.print((int16_t)ptr->gyro_x);
+		Serial.write(';');
+		Serial.print((int16_t)ptr->gyro_y);
+		Serial.write(';');
+		Serial.print((int16_t)ptr->gyro_z);
+		Serial.write(';');
+	}
+
+	if (content & AVAILABLE_SAT_GEIGER) {
+		struct _dataGEIGER * ptr =  (struct _dataGEIGER *)(chunk.readBuffer+decodeIndex);
+		decodeIndex += SAT_GEIGER_SIZE;
+// TODO
+	}
+
+	if (content & AVAILABLE_CRC16) {
+		struct _dataCRC16 * ptr =  (struct _dataCRC16 *)(chunk.readBuffer+decodeIndex);
+		decodeIndex += CRC16_SIZE; // sizeof(struct _dataACCEL);
+
+                uint8_t * ptr_t = (uint8_t *)&chunk;
+                uint8_t size_t = 2 + expectedLen - 2; // +2 for headers, -2 for crc at the end (kept for readibility)
+                uint16_t crc16_t = 0;
+                for (int i=0; i<size_t; i++)
+                  crc16_t = _crc16_update(crc16_t,ptr_t[i]);
+
+                if (crc16_t == ptr->crc16) {
+                  Serial.print(ptr->crc16,HEX);
+                  Serial.print(";OK;");
+                } else {
+                  Serial.print(ptr->crc16,HEX);
+                  Serial.print(";ERR;");
+                }
 	}
 	Serial.write('\n');
 	return(true);
@@ -304,6 +392,8 @@ void loop()
 		byte b = dataFile.read();
 		if (b == CHUNK_HEADER_CHAR) {
 			byte content = dataFile.read();
+                        chunk.header = b;
+                        chunk.availableValues = content;
 			decodeChunk(content);
 		} else {
 			Serial.println("!!! HEADER MISMATCH");
