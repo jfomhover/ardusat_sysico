@@ -106,21 +106,21 @@ void SAT_AppStorageEMU::send(char data[])
   copyAndSend((byte*) data, finalOffset, remainderLen);
 }
 
-void SAT_AppStorageEMU::send(byte *data, unsigned int start, unsigned int end)
+void SAT_AppStorageEMU::send(byte *data ,unsigned int offset, unsigned int length)
 {
-  unsigned int dataLen  = (unsigned)(end-start);
+  unsigned int dataLen  = (unsigned)(length-offset);
   unsigned int messages = dataLen / NODE_COMM_MAX_BUFFER_SIZE;
 
   for(unsigned int i = 0; i < messages; i++)
   {
     unsigned int start_offset   = i * NODE_COMM_MAX_BUFFER_SIZE;
-    copyAndSend((byte*) data, start+start_offset, NODE_COMM_MAX_BUFFER_SIZE);
+    copyAndSend((byte*) data, offset+start_offset, NODE_COMM_MAX_BUFFER_SIZE);
   }
   // process remainder or if data was less then NODE_COMM_MAX_BUFFER_SIZE;
   uint8_t remainderLen = dataLen % NODE_COMM_MAX_BUFFER_SIZE;
   uint8_t finalOffset  = (dataLen > NODE_COMM_MAX_BUFFER_SIZE) ?
     (messages * NODE_COMM_MAX_BUFFER_SIZE) : 0;
-  copyAndSend((byte*) data, start+finalOffset, remainderLen);
+  copyAndSend((byte*) data, offset+finalOffset, remainderLen);
 }
 
 void SAT_AppStorageEMU::copyAndSend(

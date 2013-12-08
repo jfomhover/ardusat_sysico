@@ -66,7 +66,7 @@ class SAT_AppStorageEMU
      *   retreival by ground station.
      */
     void send(char data[]);
-    void send(byte *data, unsigned int start, unsigned int end);
+    void send(byte *data, unsigned int offset, unsigned int length);
 };
 
 #endif /* SAT_APP_STORAGE_EMU_H */
